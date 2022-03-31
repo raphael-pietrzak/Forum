@@ -5,13 +5,11 @@ import (
 	"net/http"
 )
 
-
-
-
 type User struct {
 	Uid    int    `json:"uid"`
 	Email  string `json:"email"`
 	Passwd string `json:"passwd"`
+	Username string `json:"username"`
 }
 
 type Post struct {
@@ -29,3 +27,4 @@ type Comment struct {
 func Api(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello from API")
 }
+
