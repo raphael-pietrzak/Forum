@@ -10,6 +10,7 @@ import (
 func main() {
 
 	http.HandleFunc("/", f.Forum)
+	http.HandleFunc("/addpost", f.AddPost)
 	http.HandleFunc("/login", f.Login)
 
 	//Show #CSS
