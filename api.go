@@ -5,8 +5,11 @@ import (
 	"net/http"
 )
 
+var Posts []Post
 
-
+type Data struct {
+	Post []Post
+}
 
 type User struct {
 	Uid    int    `json:"uid"`
@@ -26,6 +29,8 @@ type Comment struct {
 	Content string `json:"content"`
 }
 
-func Api(w http.ResponseWriter, r *http.Request) {
+func DataToStruct(w http.ResponseWriter, r *http.Request) {
+	// json.Unmarshal(post, &Posts)
+
 	fmt.Fprintf(w, "Hello from API")
 }

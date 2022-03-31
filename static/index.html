@@ -4,9 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="views/style.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <header>
+        <h1>Forum</h1>
+    </header>
+    <main>
+        <sidebar>
+            <ul>
+                <li><a href="/index">Home</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/admin">Admin</a></li>
+            </ul>
+        </sidebar>
+        <content>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{.Pid}}
+                        {{.Category}}
+                        <img src="{{.Picture}}" alt="efe">
+                        {{ range .Comment}}
+                        {{.}}
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+        </content>
+    </main>
+    <footer>
+        <p>Raphael, Audran, Max</p>
+    </footer>
+
+    
+
+
 </body>
 </html>
