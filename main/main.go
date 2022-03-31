@@ -4,12 +4,12 @@ import (
 	"fmt"
 	f "forum"
 	"net/http"
-	"github.com/mattn/go-sqlite3"
 )
 
 func main() {
 	
 	http.HandleFunc("/", f.Forum)
+	http.HandleFunc("/addpost", f.AddPost)
 
 	//Show #CSS
 	fs := http.FileServer(http.Dir("./views"))

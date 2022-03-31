@@ -6,8 +6,9 @@ import (
 )
 
 var Posts []Post
+var Data Send
 
-type Data struct {
+type Send struct {
 	Post []Post
 }
 
