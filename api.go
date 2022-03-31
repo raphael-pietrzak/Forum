@@ -1,6 +1,5 @@
 package forum 
 
-import 
 
 struct User {
 	Uid int `json:"uid"`
