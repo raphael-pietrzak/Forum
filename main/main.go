@@ -34,6 +34,7 @@ func main() {
 	http.HandleFunc("/", f.Forum)
 	http.HandleFunc("/addpost", f.AddPost)
 	http.HandleFunc("/login", f.Login)
+	http.HandleFunc("/sign_up", f.Sign_up)
 
 	//Show #CSS
 	fs := http.FileServer(http.Dir("./views"))
