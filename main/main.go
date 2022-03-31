@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/accueil", f.MainPage())
+	http.HandleFunc("/accueil", f.MainPage)
 
 	//Show #CSS
 	fs := http.FileServer(http.Dir("./static"))
