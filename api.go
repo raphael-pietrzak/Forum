@@ -5,15 +5,12 @@ import (
 	"net/http"
 )
 
-<<<<<<< HEAD
 var Posts []Post
 
 type Data struct {
 	Post []Post
 }
 
-=======
->>>>>>> a7a163536db4fced7d1d0934a60fadd35bd2654a
 type User struct {
 	Uid    int    `json:"uid"`
 	Email  string `json:"email"`
