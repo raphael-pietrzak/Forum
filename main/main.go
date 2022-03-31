@@ -4,7 +4,7 @@ import (
 	"fmt"
 	f "forum"
 	"net/http"
-	"github.com/mattn/go-sqlite3"
+	//"github.com/mattn/go-sqlite3"
 )
 
 func main() {

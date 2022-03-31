@@ -17,3 +17,4 @@ CREATE TABLE `comment`(
 	`content` VARCHAR(280) NOT NULL, 
 	FOREIGN KEY(cid) REFERENCES user(uid)
 ); 
+
