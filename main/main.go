@@ -9,7 +9,7 @@ import (
 
 func main() {
 	
-	http.HandleFunc("/", f.MainPage)
+	http.HandleFunc("/", f.Forum)
 	http.HandleFunc("/login", f.Login)
 
 	//Show #CSS
