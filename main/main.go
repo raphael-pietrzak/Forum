@@ -4,11 +4,11 @@ import (
 	"fmt"
 	f "forum"
 	"net/http"
-	//"github.com/mattn/go-sqlite3"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func main() {
-	
+
 	http.HandleFunc("/", f.Forum)
 	http.HandleFunc("/login", f.Login)
 
