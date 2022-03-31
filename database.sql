@@ -5,16 +5,17 @@ CREATE TABLE `user`(
 ); 
 
 CREATE TABLE `posts`(
-    `pid` INT NOT NULL,
+    `pid` INTEGER PRIMARY KEY AUTOINCREMENT,
     `category` VARCHAR(10) NOT NULL, 
     `picture` BLOB NOT NULL,
-    PRIMARY KEY(pid),
     FOREIGN KEY(pid) REFERENCES user(uid)
 ); 
 
 CREATE TABLE `comments`(
-    `cid`INT NOT NULL, 
+    `cid` INTEGER PRIMARY KEY AUTOINCREMENT, 
     `content` VARCHAR(280) NOT NULL, 
-    PRIMARY KEY(cid),
     FOREIGN KEY(cid) REFERENCES user(uid)
 ); 
+
+INSERT INTO user VALUES(1,"emailTest","passwordTest")
+INSERT INTO comments VALUES(1,"thisIsAComment",1)
