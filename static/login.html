@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="views/login.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="login">
+        <div class="login_bar">
+            <p><input type="text" placeholder="Email.." name="mail"></p>
+            <p><input type="text" placeholder="Password.." name="password"></p>
+            <div>
+                <form action="/" method="post">
+                    <button type="submit" method="post" class="button_confirm">Log in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <form action="/sign_up" method="post">
+        <p>Don't have an account ? <a href="/sign_up">Sign up</a></p>
+    </form>
+</body>
+</html>

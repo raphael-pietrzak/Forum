@@ -5,6 +5,13 @@ import (
 	"net/http"
 )
 
+var Posts []Post
+var Data Send
+
+type Send struct {
+	Post []Post
+}
+
 type User struct {
 	Uid    int    `json:"uid"`
 	Email  string `json:"email"`
@@ -24,7 +31,9 @@ type Comment struct {
 	Content string `json:"content"`
 }
 
-func Api(w http.ResponseWriter, r *http.Request) {
+func DataToStruct(w http.ResponseWriter, r *http.Request) {
+	// json.Unmarshal(post, &Posts)
+
 	fmt.Fprintf(w, "Hello from API")
 }
 
