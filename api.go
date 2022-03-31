@@ -1,19 +1,30 @@
-package forum 
+package forum
 
+import (
+	"fmt"
+	"net/http"
+)
 
-struct User {
-	Uid int `json:"uid"`
-	Email string `json:"email"`
+type User struct {
+	Uid    int    `json:"uid"`
+	Email  string `json:"email"`
 	Passwd string `json:"passwd"`
+	Username string `json:"username"`
 }
 
-struct Post {
-	Pid int `json:"pid"`
+type Post struct {
+	Pid      int    `json:"pid"`
 	Category string `json:"category"`
-	Picture string `json:"picture"`
+	Picture  string `json:"picture"`
+	Comment  []string
 }
 
-struct Comment {
-	Cid int `json:"cid"` 
+type Comment struct {
+	Cid     int    `json:"cid"`
 	Content string `json:"content"`
 }
+
+func Api(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello from API")
+}
+
