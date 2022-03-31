@@ -19,4 +19,3 @@ func main() {
 	fmt.Println("Listening at http://localhost:5500")
 	http.ListenAndServe("localhost:5500", nil)
 }
-

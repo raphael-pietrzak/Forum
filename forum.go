@@ -5,7 +5,7 @@ import (
 	"text/template"
 )
 
-func MainPage(w http.ResponseWriter, r *http.Request) {
+func Forum(w http.ResponseWriter, r *http.Request) {
 
 	tmpl := template.Must(template.ParseFiles("static/index.html"))
 
