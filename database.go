@@ -33,7 +33,7 @@ func SqlDatabase(){
 		log.Fatal(err)
 	}
 
-	_, err = db.Exec("INSERT IF NOT EXISTS INTO user (username,email,passwd) values('raph','remail','rpasswd'), ('audran','aemail','apasswd'), ('maxim','memail','mpasswd');")
+	_, err = db.Exec("INSERT INTO user (username,email,passwd) values('raph','remail','rpasswd'), ('audran','aemail','apasswd'), ('maxim','memail','mpasswd');")
 	if err != nil {
 		log.Fatal(err)
 	}
