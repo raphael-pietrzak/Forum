@@ -1,19 +1,18 @@
-function NewComment() {
-  var counter = 0;
-  var btn = document.getElementById('addComment');
-  var form = document.getElementById('addNewComment');
-  var addInput = function NewComment() {
-    counter++;
-    var input = document.createElement("input");
-    input.id = 'input-' + counter;
-    input.type = 'text';
-    input.name = 'name';
-    input.placeholder = 'Input number ' + counter;
-    form.appendChild(input);
-  };
-  btn.addEventListener('click', function NewComment() {
-    addInput();
-  }.bind(this));
+
+
+function NewComment(id) {
+  //add input div
+  var input = document.createElement("div");
+  input.className = "input";
+  var inputText = document.createElement("input");
+  inputText.type = "text";
+  inputText.placeholder = "Add a comment...";
+  input.appendChild(inputText);
+  var inputButton = document.createElement("button");
+  inputButton.innerHTML = "Post";
+  input.appendChild(inputButton);
+  console.log(id);
+  document.getElementById("comments"+id).appendChild(input);
 }
 
 

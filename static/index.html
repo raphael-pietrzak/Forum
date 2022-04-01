@@ -26,8 +26,8 @@
             <div class="container">
                 {{range .Post}}
                 <form id ="addNewComment" action="">  </form>
-                    <button onclick="NewComment()" id="addComment" type="button">Comment</button>
-                <div>{{.Content}}</div>
+                    <button onclick="NewComment(id)"  id="{{.Pid}}" type="button">Comment</button>
+                <div id="comments{{.Pid}}">{{.Content}}</div>
                 {{end}}
             </div>
             <form action="/addpost" >
