@@ -7,10 +7,10 @@ import (
 )
 
 
-func addValues(table string, types string, value string) {
+func AddValues(table string, types string, value string) {
 	db, err := sql.Open("sqlite3", "./database.db")
 	debug(err)
-	execution := "INSERT IF NOT EXISTS INTO " + table + "('"+ types + "') VALUES (" + "'"+ value +"');"
+	execution := "INSERT IF NOT EXISTS INTO " + table + types + " VALUES " + value +";"
 	db.Exec(execution);
 
 
@@ -70,7 +70,7 @@ func RecupComment() []Comment {
 
 	err = rows.Err()
 	debug(err)
-	var newTab []User
+	var newTab []Comment
 	for rows.Next() {
 		var username string 
 		var email string 
@@ -78,7 +78,7 @@ func RecupComment() []Comment {
 		var uid int
 		err = rows.Scan(&uid, &username, &email, &passwd) 
 		debug(err)
-		newTab = append(newTab, User{ Uid: uid, Email:email, Username:username, Passwd:passwd})
+		//newTab = append(newTab, User{ Uid: uid, Email:email, Username:username, Passwd:passwd})
 	}
 	err = rows.Err()
 	debug(err)

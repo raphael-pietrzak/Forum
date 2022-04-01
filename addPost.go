@@ -5,6 +5,6 @@ import (
 )
 
 func AddPost(w http.ResponseWriter, r *http.Request) {
-	Posts = append(Posts, Post{Pid: 1, Category: "Categorie 1", Picture: "http://www.google.com/images/srpr/logo11w.png", Comment: []string{"Commentaire 1", "Commentaire 2"}})
+	AddValues("user", "('email','passwd')", "('aaaa','bbbbb')")
 	Forum(w, r)
 }

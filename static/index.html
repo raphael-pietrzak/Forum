@@ -18,16 +18,7 @@
         <button class="button_sign_up">Sign up</button>
     </form>
     <main>
-        <sidebar>
-            <ul>
-                <li><a href="/index">Home</a></li>
-                <li><a href="/register">Register</a></li>
-                <li><a href="/logout">Logout</a></li>
-                <li><a href="/profile">Profile</a></li>
-                <li><a href="/admin">Admin</a></li>
-            </ul>
-        </sidebar>
-        <content>
+        <posts>
             <div class="container">
                 {{range .Post}}
                     {{.Pid}}
@@ -41,7 +32,7 @@
                     <button>Post</button>
                 </form>
             </div>
-        </content>
+        </posts>
     </main>
     <footer>
         <p>Raphael, Audran, Max</p>
