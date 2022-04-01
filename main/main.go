@@ -14,7 +14,6 @@ func main() {
 	f.TableCreation()
 	fmt.Println(f.RecupUser())
 
-
 	http.HandleFunc("/", f.Forum)
 	http.HandleFunc("/addpost", f.AddPost)
 	http.HandleFunc("/login", f.Login)
@@ -26,5 +25,4 @@ func main() {
 
 	fmt.Println("Listening at http://localhost:5500")
 	http.ListenAndServe("localhost:5500", nil)
-
 }
