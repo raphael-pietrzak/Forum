@@ -10,3 +10,7 @@ body {
 main {
     background-color: white;
 }
+
+input{
+    display: block;
+}
