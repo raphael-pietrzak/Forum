@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="views/login.css">
-    <title>Login</title>
+    <link rel="stylesheet" href="views/passwd_forgot.css">
+    <title>Forgot</title>
 </head>
 <body class="align">
 
     <div class="grid">
   
-      <form action="/login_up" method="post" class="form login">
+      <form action="/forgot" method="post" class="form login">
   
         <header class="login__header">
-          <h3 class="login__title">Login</h3>
+          <h3 class="login__title">Sign up</h3>
         </header>
   
         <div class="login__body">
@@ -24,15 +24,14 @@
           </div>
   
           <div class="form__field">
-            <input type="password" placeholder="Password" name="password" required>
+            <input type="password" placeholder="New password.." name="new_password" required>
           </div>
   
         </div>
   
         <footer class="login__footer">
-          <input type="submit" value="Login">
-  
-          <p><span class="icon icon--info">?</span><a href="/forgot">Forgot Password</a></p>
+          <input type="submit" methode="post" value="Confirm">
+
         </footer>
   
       </form>

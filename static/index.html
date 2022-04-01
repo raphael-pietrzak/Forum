@@ -11,13 +11,16 @@
 <body>
     <header>
         <h1>Forum</h1>
+        <div>
+            <form action="/login" method="post" >
+                <button class="button_login" >Login</button>
+            </form>
+            <form action="/sign_up">
+                <button class="button_sign_up">Sign up</button>
+            </form>
+        </div>
     </header>
-    <form action="/login" method="post" >
-        <button class="button_login" >Login</button>
-    </form>
-    <form action="/sign_up">
-        <button class="button_sign_up">Sign up</button>
-    </form>
+    
     <main>
         <posts>
             <div class="container">
