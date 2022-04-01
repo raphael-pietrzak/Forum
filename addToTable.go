@@ -72,13 +72,11 @@ func RecupComment() []Comment {
 	debug(err)
 	var newTab []Comment
 	for rows.Next() {
-		var username string 
-		var email string 
-		var passwd string 
-		var uid int
-		err = rows.Scan(&uid, &username, &email, &passwd) 
+		var cid int
+		var content string
+		err = rows.Scan(&cid, &content) 
 		debug(err)
-		//newTab = append(newTab, User{ Uid: uid, Email:email, Username:username, Passwd:passwd})
+		newTab = append(newTab, Comment{ Cid: cid, Content:content})
 	}
 	err = rows.Err()
 	debug(err)
