@@ -4,9 +4,10 @@ import (
 	"fmt"
 	f "forum"
 	"net/http"
-
 	_ "github.com/mattn/go-sqlite3"
 )
+
+var PostContent string
 
 func main() {
 	// f.SqlDatabase()
@@ -19,6 +20,7 @@ func main() {
 	http.HandleFunc("/addcomment", f.AddComment)
 	http.HandleFunc("/login", f.Login)
 	http.HandleFunc("/sign_up", f.Sign_up)
+	http.HandleFunc("/forgot", f.Passwd_forgot)
 
 	//Show #CSS
 	fs := http.FileServer(http.Dir("./views"))
