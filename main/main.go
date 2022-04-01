@@ -23,6 +23,7 @@ func main() {
 	http.HandleFunc("/sign_up", f.Sign_up)
 	http.HandleFunc("/new_post", f.NewPost)
 
+
 	//Show #CSS
 	fs := http.FileServer(http.Dir("./views"))
 	http.Handle("/views/", http.StripPrefix("/views/", fs))
