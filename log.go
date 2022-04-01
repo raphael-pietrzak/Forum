@@ -34,13 +34,13 @@ func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
 		password := r.Form.Get("new_password")
 		fmt.Println(mail,password)
 
-		_,err := db.Exec("UPDATE user SET passwd = '"+password+"' WHERE email='"+mail+"' ")
+		_,err := db.Exec("UPDATE user SET passwd = '" + password + "' WHERE email='" + mail + "' ")
 		debug(err)
 
 		fmt.Println(RecupUser())
 		for i := range Users {
 			if Users[i].Email == mail {
-				
+
 		Cookies(w,r)
 
 		http.Redirect(w, r, "/login",301)
