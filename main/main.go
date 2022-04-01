@@ -10,7 +10,8 @@ import (
 )
 
 func main() {
-	f.SqlDatabase()
+	// f.SqlDatabase()
+	fmt.Println(f.RecupUser()) 
 
 	db, _ := sql.Open("sqlite3", "./datbase.db")
 	_, err := db.Exec("CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY, content TEXT, title TEXT);")
