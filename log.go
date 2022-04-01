@@ -38,6 +38,8 @@ func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
 		debug(err)
 
 		fmt.Println(RecupUser())
+		Cookies(w,r)
+
 
 		http.Redirect(w, r, "/login",301)
 	}

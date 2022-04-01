@@ -2,6 +2,13 @@ body {
     background-color: rgb(42, 44, 46);
 
 }
+
+header{
+    display: flex;
+    color: white;
+    flex-direction: row;
+    justify-content: space-between;
+}
 .container {
     display: flex;
     flex-direction: column-reverse;
@@ -9,4 +16,8 @@ body {
 
 main {
     background-color: white;
+    padding: 10% 0 10%;
+}
+footer{
+    color: white;
 }
