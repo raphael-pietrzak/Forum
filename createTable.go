@@ -25,7 +25,7 @@ func tableCreation(){
 		debug(err)
 	}
 
-	_, err = db.Exec("CREATE TABLE IF NOT EXISTS posts (pid INTEGER, photo BLOB, category TEXT, FOREIGN KEY(pid) REFERENCES user(uid);")
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS posts (pid INTEGER, photo TEXT, category TEXT, FOREIGN KEY(pid) REFERENCES user(uid);")
 	if err != nil {
 		debug(err)
 	}
