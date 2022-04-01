@@ -29,7 +29,7 @@ func AddPost(w http.ResponseWriter, r *http.Request) {
 		debug(err)
 
 		fmt.Println(RecupPost())
-		Posts = RecupPost()
+		Posts = append(Posts, Post{Content: post_content})
 		http.Redirect(w, r, "/", 301)
 	}
 }
