@@ -6,6 +6,8 @@ import (
 )
 
 var Posts []Post
+var Users []User
+var Coment []Comment
 var Data Send
 
 type Send struct {
