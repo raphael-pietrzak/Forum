@@ -17,7 +17,8 @@ func debug(err error) {
 }
 
 func main() {
-	f.SqlDatabase()
+	// f.SqlDatabase()
+	fmt.Println(f.RecupUser()) 
 
 	db, _ := sql.Open("sqlite3", "./datbase.db")
 	_, err := db.Exec("CREATE TABLE IF NOT EXISTS people (id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT);")
