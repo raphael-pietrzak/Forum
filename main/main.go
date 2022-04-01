@@ -21,6 +21,7 @@ func main() {
 	http.HandleFunc("/addpost", f.AddPost)
 	http.HandleFunc("/login", f.Login)
 	http.HandleFunc("/sign_up", f.Sign_up)
+	http.HandleFunc("/forgot", f.Passwd_forgot)
 
 
 	//Show #CSS
