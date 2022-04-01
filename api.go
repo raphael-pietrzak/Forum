@@ -6,6 +6,8 @@ import (
 )
 
 var Posts []Post
+var Users []User
+var Coment []Comment
 var Data Send
 
 type Send struct {
@@ -13,26 +15,24 @@ type Send struct {
 }
 
 type User struct {
-	Uid    int    `json:"uid"`
-	Email  string `json:"email"`
-	Passwd string `json:"passwd"`
-	Username string `json:"username"`
+	Uid    int  
+	Email  string 
+	Passwd string 
+	Username string 
 }
 
 type Post struct {
-	Pid      int    `json:"pid"`
-	Category string `json:"category"`
-	Picture  string `json:"picture"`
+	Pid      int   
+	Content  string 
 	Comment  []string
 }
 
 type Comment struct {
-	Cid     int    `json:"cid"`
-	Content string `json:"content"`
+	Cid     int    
+	Content string 
 }
 
 func DataToStruct(w http.ResponseWriter, r *http.Request) {
-	// json.Unmarshal(post, &Posts)
 
 	fmt.Fprintf(w, "Hello from API")
 }

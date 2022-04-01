@@ -6,6 +6,7 @@ import (
 )
 
 func Forum(w http.ResponseWriter, r *http.Request) {
+	Posts = RecupPost()
 	tmpl := template.Must(template.ParseFiles("static/index.html"))
 	tmpl.Execute(w, Send{Post: Posts})
 }
