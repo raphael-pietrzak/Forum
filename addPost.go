@@ -6,5 +6,6 @@ import (
 
 func AddPost(w http.ResponseWriter, r *http.Request) {
 	AddValues("user", "('email','passwd')", "('aaaa','bbbbb')")
+	Posts = RecupPosts()
 	Forum(w, r)
 }
