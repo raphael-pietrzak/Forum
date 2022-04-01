@@ -108,7 +108,6 @@
     cursor: pointer;
   }
   
-  .form input[type='text'],
   .form input[type='email'],
   .form input[type='password'] {
     inline-size: 100%;
@@ -157,22 +156,15 @@
     width: 0.5em;
   }
   
-  .login input[type='text'],
   .login input[type='email'],
   .login input[type='password'] {
     border: 0.0625em solid #e5e5e5;
     padding: 1em 1.25em;
   }
-
-  .login input[type='text'] {
-    border-top-left-radius: var(--loginInputBorderRadius);
-    border-top-right-radius: var(--loginInputBorderRadius);
-  }
   
   .login input[type='email'] {
     border-top-left-radius: var(--loginInputBorderRadius);
     border-top-right-radius: var(--loginInputBorderRadius);
-    border-top: 0;
   }
   
   .login input[type='password'] {

@@ -4,19 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="views/sign_up.css">
     <title>Sign_up</title>
 </head>
-<body>
-    <h1>Bonjour au nouveau</h1>
-    <div class="sign_up">
-        <div class="signUp_bar">
-            <form action="/sign_up" method="post">
-                <p><input required type="text" placeholder="User name" name="user_name"></p>
-                <p><input required type="text" placeholder="Email.." name="mail"></p>
-                <p><input required type="text" placeholder="Password.." name="password"></p>
-                <button type="submit" method="post" class="button_confirm">Sign up</button>
-            </form>
+<body class="align">
+
+    <div class="grid">
+  
+      <form action="/sign_up" method="post" class="form login">
+  
+        <header class="login__header">
+          <h3 class="login__title">Sign up</h3>
+        </header>
+  
+        <div class="login__body">
+
+          <div class="form__field">
+            <input type="text" placeholder="User name.." name="user_name" required>
+          </div>
+  
+          <div class="form__field">
+            <input type="email" placeholder="Email.." name="mail" required>
+          </div>
+  
+          <div class="form__field">
+            <input type="password" placeholder="Password.." name="password" required>
+          </div>
+  
         </div>
+  
+        <footer class="login__footer">
+          <input type="submit" value="Sign up">
+
+        </footer>
+  
+      </form>
+  
     </div>
-</body>
+  
+  </body>
 </html>
