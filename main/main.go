@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	f "forum"
 	"net/http"
@@ -11,11 +10,10 @@ import (
 
 func main() {
 	// f.SqlDatabase()
-	fmt.Println(f.RecupUser()) 
 
-	db, _ := sql.Open("sqlite3", "./datbase.db")
-	_, err := db.Exec("CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY, content TEXT, title TEXT);")
-	f.Debug(err)
+	f.TableCreation()
+	fmt.Println(f.RecupUser())
+
 
 	http.HandleFunc("/", f.Forum)
 	http.HandleFunc("/addpost", f.AddPost)

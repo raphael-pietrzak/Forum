@@ -21,17 +21,14 @@
         <posts>
             <div class="container">
                 {{range .Post}}
-                    {{.Pid}}
-                    {{.Category}}
-                    <img src="{{.Picture}}" alt="efe">
-                    {{ range .Comment}}
-                    {{.}}
-                    {{end}}
+                <div>{{.Content}}</div>
+                
                 {{end}}
-                <form action="/addpost" method="post">
-                    <button>Post</button>
-                </form>
             </div>
+
+            <form action="/addpost" >
+                <button>Post</button>
+            </form>
         </posts>
     </main>
     <footer>
