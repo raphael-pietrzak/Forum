@@ -40,8 +40,11 @@ func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(RecupUser())
 		for i := range Users {
 			if Users[i].Email == mail {
-
+				fmt.Println("Le mail est bon")
+			}
+		}
 		Cookies(w,r)
+
 
 		http.Redirect(w, r, "/login",301)
 	}
