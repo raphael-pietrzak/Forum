@@ -21,6 +21,7 @@ func main() {
 	http.HandleFunc("/addpost", f.AddPost)
 	http.HandleFunc("/login", f.Login)
 	http.HandleFunc("/sign_up", f.Sign_up)
+	http.HandleFunc("/new_post", f.NewPost)
 
 	//Show #CSS
 	fs := http.FileServer(http.Dir("./views"))
@@ -28,5 +29,5 @@ func main() {
 
 	fmt.Println("Listening at http://localhost:5500")
 	http.ListenAndServe("localhost:5500", nil)
-
 }
+

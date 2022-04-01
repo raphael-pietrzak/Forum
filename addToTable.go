@@ -12,8 +12,6 @@ func AddValues(table string, types string, value string) {
 	debug(err)
 	execution := "INSERT IF NOT EXISTS INTO " + table + types + " VALUES " + value +";"
 	db.Exec(execution);
-
-
 }
 
 func RecupUser() []User {
