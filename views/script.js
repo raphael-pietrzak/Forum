@@ -16,4 +16,10 @@ function NewComment() {
   }.bind(this));
 }
 
-
+function addElement() {
+  var newDiv = document.createElement("div");
+  var newContent = document.createTextNode('Hi there and greetings!');
+  newDiv.appendChild(newContent);
+  var currentDiv = document.getElementById('container');
+  document.body.insertBefore(newDiv, currentDiv);
+}
