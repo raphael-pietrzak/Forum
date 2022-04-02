@@ -6,13 +6,11 @@ import (
 )
 
 func Cookies(w http.ResponseWriter, r *http.Request) {
-	cookie := http.Cookie{
-		Name: "admin", 
-		Value: "Admin"}
-	for _, c := range r.Cookies() {
-		fmt.Println(c.Name, c.Value)
+	cookie, err := r.Cookie("session")
+	if err != nil {
+		fmt.Println("Cookie not found")
+	} else {
+		fmt.Println("Cookie found")
+		fmt.Println(cookie)
 	}
-
-
-	http.SetCookie(w, &cookie)
 }

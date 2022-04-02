@@ -25,10 +25,9 @@
         <posts>
             <div class="container">
                 {{range .Post}}
-                <form action="" >
-                    <button onclick="">Comment</button>
-                </form>
-                <div>{{.Content}}</div>
+                <form id ="addNewComment" action="">  </form>
+                    <button onclick="NewComment(id)"  id="{{.Pid}}" type="button">Comment</button>
+                <div id="comments{{.Pid}}">{{.Content}}</div>
                 {{end}}
             </div>
 
