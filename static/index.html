@@ -9,35 +9,58 @@
     <title>Accueil</title>
 </head>
 <body>
+
     <header>
         <h1>Forum</h1>
-        <div>
-            <form action="/login" method="post" >
-                <button class="button_login" >Login</button>
+        <div id="user-profile">
+            <form action="/login"  >
+                <button class="button_login">Login</button>
             </form>
             <form action="/sign_up">
                 <button class="button_sign_up">Sign up</button>
             </form>
         </div>
+        <div id="name">
+            <p>{{.User.Username}}</p>
+        </div>
+
     </header>
     
     <main>
         <posts>
             <div class="container">
                 {{range .Post}}
-                <form id ="addNewComment" action="">  </form>
-                    <button onclick="NewComment(id)"  id="{{.Pid}}" type="button">Comment</button>
-                <div id="comments{{.Pid}}">{{.Content}}</div>
+                <form id ="addNewComment">  
+                    <button onclick="NewComment(id)"  id="{{.Pid}}" type="button">{{.Content}}</button>
+                    <!-- <div>
+                        <form action="/addcomment">
+                            <input type="text">
+                            <input type="hidden" name="pid" value="{{.Pid}}">
+                            <button>
+                                Post
+                            </button>
+                        </form>
+                    </div> -->
+                    <div>
+                        {{range .Comments}}
+                        {{.}}
+                        {{end}}
+                    </div>
+                    <div id="comment{{.Pid}}" class="comment"></div>
+                </form>
                 {{end}}
             </div>
             <form action="/addpost" >
-                <button>Post</button>
+                <button>Post</button> 
             </form>
         </posts>
     </main>
     <footer>
-        <p>Raphael, Audran, Max</p>
+        <p>Copyright © 2020</p>
+        <p>All rights reserved</p>
     </footer>
+    <script> UserProfile("{{.User.Username}}");</script>
+
 </body>
 </html>
 

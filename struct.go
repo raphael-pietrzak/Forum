@@ -14,19 +14,21 @@ var Data Send
 
 type Send struct {
 	Post []Post
+	User User
 }
 
 type User struct {
-	Uid      int
+	Id       int
+	Uid      string
 	Email    string
 	Passwd   string
 	Username string
 }
 
 type Post struct {
-	Pid     int
-	Content string
-	Comment []string
+	Pid      int
+	Content  string
+	Comments []string
 }
 
 type Comment struct {

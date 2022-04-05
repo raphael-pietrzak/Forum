@@ -13,12 +13,8 @@ func main() {
 
 	f.TableCreation()
 
+	f.Posts = f.RecupPost()
 	// Cookie
-
-
-
-
-
 
 
 	http.HandleFunc("/", f.Home)

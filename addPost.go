@@ -9,6 +9,7 @@ import (
 
 func AddPost(w http.ResponseWriter, r *http.Request) {
 
+	fmt.Println(r.Method)
 	switch r.Method {
 
 	case "GET":
@@ -32,6 +33,5 @@ func AddPost(w http.ResponseWriter, r *http.Request) {
 
 		Posts = append(Posts, Post{Content: post_content})
 		http.Redirect(w, r, "/", 301)
-
 	}
 }
