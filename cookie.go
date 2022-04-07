@@ -40,6 +40,9 @@ func Cookies(w http.ResponseWriter, r *http.Request) {
 			UserLogin = User{Id: id, Uid: uid, Email: email, Passwd: passwd, Username: username}
 
 		}
+
+
+
 	}
 }
 
