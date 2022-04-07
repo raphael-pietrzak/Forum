@@ -1,6 +1,7 @@
 
 
 function NewComment(id) {
+  console.log(id)
   //add input div
   var input = document.createElement("div");
   input.className = "input";

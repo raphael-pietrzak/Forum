@@ -38,6 +38,7 @@ func GetUserByCookies(w http.ResponseWriter, r *http.Request) User{
 		// }
 
 		rows, err := db.Query("SELECT * FROM user WHERE uid='" + cookie.Value + "'")
+
 		Debug(err)
 
 		for rows.Next() {
@@ -45,10 +46,6 @@ func GetUserByCookies(w http.ResponseWriter, r *http.Request) User{
 			Debug(err)
 
 			fmt.Println("On vous a bien trouvé Monsieur", username)
-			fmt.Println("Votre id est :", id)
-			fmt.Println("Votre uid est :", uid)
-			fmt.Println("Votre mail est :", email)
-			fmt.Println("Votre passwd est :", passwd)
 
 		}
 	}
