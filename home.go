@@ -11,5 +11,5 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	Cookies(w,r)
 
 	tmpl := template.Must(template.ParseFiles("static/index.html"))
-	tmpl.Execute(w, Send{Post: Posts})
+	tmpl.Execute(w, Send{Post: Posts, User: UserLogin})
 }
