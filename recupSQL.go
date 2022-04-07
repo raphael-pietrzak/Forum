@@ -17,13 +17,14 @@ func RecupUser() []User {
 	Debug(err)
 	var newTab []User
 	for rows.Next() {
-		var uid int
+		var id int
+		var uid string
 		var username string
 		var email string
 		var passwd string
-		err = rows.Scan(&uid, &username, &email, &passwd)
+		err = rows.Scan(&id, &uid, &username, &email, &passwd)
 		Debug(err)
-		newTab = append(newTab, User{Uid: uid, Email: email, Username: username, Passwd: passwd})
+		newTab = append(newTab, User{Id: id, Uid: uid, Email: email, Username: username, Passwd: passwd})
 	}
 	err = rows.Err()
 	Debug(err)

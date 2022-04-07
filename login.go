@@ -10,12 +10,57 @@ import (
 )
 
 func Login(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(RecupUser())
+	fmt.Println(r.Method)
+	switch r.Method {
+	case "GET":
+		tmpl := template.Must(template.ParseFiles("static/login.html"))
+		tmpl.Execute(w, Posts)
+	case "POST":
+		db, _ := sql.Open("sqlite3", "./database.db")
+		if err := r.ParseForm(); err != nil {
+			fmt.Fprintf(w, "ParseForm() err: %v", err)
+			return
+		}
 
-	//mail := r.Form.Get("mail")
-	//password := r.Form.Get("password")
+		mail := r.Form.Get("mail")
+		password := r.Form.Get("password")
+		fmt.Println(mail, password)
 
-	tmpl := template.Must(template.ParseFiles("static/login.html"))
-	tmpl.Execute(w, Posts)
+		rows, err := db.Query("SELECT * FROM user WHERE email='" + mail + "' AND passwd='" + password + "'")
+		Debug(err)
+
+		for rows.Next() {
+			var id int
+			var uid string
+			var username string
+			var email string
+			var passwd string
+			err = rows.Scan(&id, &uid, &username, &email, &passwd)
+			Debug(err)
+
+			fmt.Println("On vous a bien trouvé Monsieur", username)
+			fmt.Println("Votre id est :", id)
+			fmt.Println("Votre uid est :", uid)
+			fmt.Println("Votre mail est :", email)
+			fmt.Println("Votre passwd est :", passwd)
+
+			cookie := &http.Cookie{
+				Name:  "session",
+				Value: uid,
+			}
+		
+			// Create a new cookie
+			fmt.Println("Cookie created")
+			fmt.Println(cookie)
+			http.SetCookie(w, cookie)
+
+			tmpl := template.Must(template.ParseFiles("static/index.html"))
+			tmpl.Execute(w, Send{Post: Posts, User: User{Username: username}})
+		}
+
+		http.Redirect(w, r, "/login", 301)
+	}
 }
 
 func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
@@ -41,25 +86,3 @@ func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func Sign_up(w http.ResponseWriter, r *http.Request) {
-	switch r.Method {
-	case "GET":
-		tmpl := template.Must(template.ParseFiles("static/sign_up.html"))
-		tmpl.Execute(w, Posts)
-	case "POST":
-		db, _ := sql.Open("sqlite3", "./database.db")
-		if err := r.ParseForm(); err != nil {
-			fmt.Fprintf(w, "ParseForm() err: %v", err)
-			return
-		}
-
-		username := r.Form.Get("user_name")
-		mail := r.Form.Get("mail")
-		password := r.Form.Get("password")
-
-		_, err := db.Exec("INSERT INTO user ('username','email', 'passwd') VALUES ('" + username + "', '" + mail + "', '" + password + "')")
-		Debug(err)
-
-		http.Redirect(w, r, "/", 301)
-	}
-}
