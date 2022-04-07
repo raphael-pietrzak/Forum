@@ -39,7 +39,6 @@ function NewComment(id) {
 }
 
 
-
 function UserProfile(username) {
   if (username != "") {
   document.getElementById("user-profile").style.display = "none";

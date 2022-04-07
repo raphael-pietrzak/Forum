@@ -1,15 +1,31 @@
 package forum
 
 import (
+	"fmt"
 	"net/http"
 	"text/template"
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
-
 	// Check Cookie
-	Cookies(w,r)
+	UserLogin := GetUserByCookies(w, r)
 
 	tmpl := template.Must(template.ParseFiles("static/index.html"))
-	tmpl.Execute(w, Send{Post: Posts})
+	tmpl.Execute(w, Send{Post: Posts, User: UserLogin})
+}
+
+func LogOut(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("test")
+
+	//delete cookie
+	// cookie, err := r.Cookie("session")
+	cookie := &http.Cookie{
+		Name:   "session",
+		Value:  "",
+		MaxAge: -1,
+	}
+	// Debug(err)
+	http.SetCookie(w, cookie)
+
+	http.Redirect(w, r, "/", 301)
 }

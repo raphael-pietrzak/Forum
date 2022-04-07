@@ -45,15 +45,8 @@ func Login(w http.ResponseWriter, r *http.Request) {
 			fmt.Println("Votre mail est :", email)
 			fmt.Println("Votre passwd est :", passwd)
 
-			cookie := &http.Cookie{
-				Name:  "session",
-				Value: uid,
-			}
-		
 			// Create a new cookie
-			fmt.Println("Cookie created")
-			fmt.Println(cookie)
-			http.SetCookie(w, cookie)
+			CreateCookie(w, r, uid)
 
 			tmpl := template.Must(template.ParseFiles("static/index.html"))
 			tmpl.Execute(w, Send{Post: Posts, User: User{Username: username}})
@@ -85,4 +78,6 @@ func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/login", 301)
 	}
 }
+
+
 
