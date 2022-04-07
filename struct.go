@@ -9,25 +9,17 @@ import (
 
 var Posts []Post
 var Users []User
-var Coment []Comment
+var Comments []Comment
 var Data Send
-var UserLogin User
-
 
 type Send struct {
 	Post []Post
 	User User
 }
 
-type User struct {
-	Id       int
-	Uid      string
-	Email    string
-	Passwd   string
-	Username string
-}
 
 type Post struct {
+	// User User
 	Pid      int
 	Content  string
 	Comments []string
@@ -36,6 +28,15 @@ type Post struct {
 type Comment struct {
 	Cid     int
 	Content string
+	Pid    int
+}
+
+type User struct {
+	Id       int
+	Uid      string
+	Email    string
+	Passwd   string
+	Username string
 }
 
 type Cookie struct {

@@ -27,12 +27,6 @@ func AddComment(w http.ResponseWriter, r *http.Request) {
 
 	Posts[id_post].Comments = append(Posts[id_post].Comments, comment_content)
 	http.Redirect(w, r, "/", 301)
-}
 
-
-//create cookie
-func CreateCookie(w http.ResponseWriter, r *http.Request) {
-	cookie := http.Cookie{Name: "user_id", Value: "1"}
-	http.SetCookie(w, &cookie)
 }
 

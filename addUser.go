@@ -28,14 +28,14 @@ func Sign_up(w http.ResponseWriter, r *http.Request) {
 		mail := r.Form.Get("mail")
 		password := r.Form.Get("password")
 		uuid := uuid.New()
-		fmt.Println("le nouvel uuid est :",uuid)
-
+		fmt.Println("le nouvel uuid est :", uuid)
 
 		_, err := db.Exec("INSERT INTO user ('uid','username','email', 'passwd') VALUES ('" + uuid.String() + "', '" + username + "', '" + mail + "', '" + password + "')")
 		Debug(err)
 
+		CreateCookie(w, r, uuid.String())
+
 		http.Redirect(w, r, "/", 301)
-		fmt.Println(username, mail, password)
-		fmt.Println(RecupUser())
+
 	}
 }

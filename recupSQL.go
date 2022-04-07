@@ -2,9 +2,10 @@ package forum
 
 import (
 	"database/sql"
+	"fmt"
+
 	_ "github.com/mattn/go-sqlite3"
 )
-
 
 func RecupUser() []User {
 	db, err := sql.Open("sqlite3", "./database.db")
@@ -32,45 +33,46 @@ func RecupUser() []User {
 }
 
 func RecupPost() []Post {
+
+	var newTab []Post
+
+
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
-	selection := "SELECT * FROM posts"
+
+	selection := "SELECT * FROM posts JOIN comments ON posts.pid = comments.pid"
 	rows, err := db.Query(selection)
 	Debug(err)
 
 	err = rows.Err()
 	Debug(err)
-	var newTab []Post
+
+
 	for rows.Next() {
+
 		var pid int
 		var content string
-		
-		err = rows.Scan(&pid, &content)
-		Debug(err)
-		newTab = append(newTab, Post{Pid: pid, Content: content})
-	}
-	err = rows.Err()
-	Debug(err)
-	return newTab
-}
-
-func RecupComment() []Comment {
-	db, err := sql.Open("sqlite3", "./database.db")
-	Debug(err)
-	selection := "SELECT * FROM comment"
-	rows, err := db.Query(selection)
-	Debug(err)
-
-	err = rows.Err()
-	Debug(err)
-	var newTab []Comment
-	for rows.Next() {
 		var cid int
-		var content string
-		err = rows.Scan(&cid, &content)
+		var comment string
+		var pid2 int
+
+		err = rows.Scan(&pid, &content, &cid, &comment, &pid2)
+		notfind := true
+
+		for i := range newTab {
+			if newTab[i].Pid == pid {
+				notfind = false
+				newTab[i].Comments = append(newTab[i].Comments, comment)
+			}
+		}
+
+		if notfind {
+			newTab = append(newTab, Post{Pid: pid, Content: content, Comments: []string{comment}})
+		}
 		Debug(err)
-		newTab = append(newTab, Comment{Cid: cid, Content: content})
+		
 	}
+	fmt.Println(newTab)
 	err = rows.Err()
 	Debug(err)
 	return newTab
