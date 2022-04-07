@@ -14,6 +14,7 @@ var Data Send
 
 type Send struct {
 	Post []Post
+	User_data User
 }
 
 type User struct {
