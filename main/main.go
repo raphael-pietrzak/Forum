@@ -4,10 +4,12 @@ import (
 	"fmt"
 	f "forum"
 	"net/http"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
 var PostContent string
+var Category string
 
 func main() {
 
@@ -16,6 +18,7 @@ func main() {
 	f.Posts = f.RecupPost()
 	// Cookie
 
+	Category = f.r.Form.Get("category")
 
 	http.HandleFunc("/", f.Home)
 	http.HandleFunc("/addpost", f.AddPost)
