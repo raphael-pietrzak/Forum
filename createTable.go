@@ -13,9 +13,9 @@ func TableCreation() {
 	_, err = db.Exec("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY, uid TEXT, username TEXT, email TEXT, passwd TEXT);")
 	Debug(err)
 
-	_, err = db.Exec("CREATE TABLE IF NOT EXISTS posts (pid INTEGER PRIMARY KEY, content TEXT, id int, FOREIGN KEY(id) REFERENCES posts(pid));")
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS posts (pid INTEGER PRIMARY KEY, content TEXT);")
 	Debug(err)
 
-	_, err = db.Exec("CREATE TABLE IF NOT EXISTS comments (cid INTEGER PRIMARY KEY, content TEXT, FOREIGN KEY(id) REFERENCES comments(cid));")
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS comments (cid INTEGER PRIMARY KEY, content TEXT);")
 	Debug(err)
 }

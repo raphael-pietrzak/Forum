@@ -10,8 +10,7 @@ import (
 )
 
 func Login(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(RecupUser())
-	fmt.Println(r.Method)
+
 	switch r.Method {
 	case "GET":
 		tmpl := template.Must(template.ParseFiles("static/login.html"))
@@ -40,10 +39,6 @@ func Login(w http.ResponseWriter, r *http.Request) {
 			Debug(err)
 
 			fmt.Println("On vous a bien trouvé Monsieur", username)
-			fmt.Println("Votre id est :", id)
-			fmt.Println("Votre uid est :", uid)
-			fmt.Println("Votre mail est :", email)
-			fmt.Println("Votre passwd est :", passwd)
 
 			cookie := &http.Cookie{
 				Name:  "session",
@@ -64,7 +59,9 @@ func Login(w http.ResponseWriter, r *http.Request) {
 }
 
 func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
+
 	switch r.Method {
+		
 	case "GET":
 		tmpl := template.Must(template.ParseFiles("static/passwd_forgot.html"))
 		tmpl.Execute(w, Posts)
