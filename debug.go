@@ -1,6 +1,8 @@
 package forum
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func Debug(err error) {
 	if err != nil {

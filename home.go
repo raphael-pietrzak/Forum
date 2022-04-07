@@ -5,8 +5,11 @@ import (
 	"text/template"
 )
 
-func Forum(w http.ResponseWriter, r *http.Request) {
-	Posts = RecupPost()
+func Home(w http.ResponseWriter, r *http.Request) {
+
+	// Check Cookie
+	Cookies(w,r)
+
 	tmpl := template.Must(template.ParseFiles("static/index.html"))
 	tmpl.Execute(w, Send{Post: Posts})
 }

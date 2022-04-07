@@ -10,12 +10,14 @@ import (
 var PostContent string
 
 func main() {
-	// f.SqlDatabase()
 
 	f.TableCreation()
-	fmt.Println(f.RecupUser())
 
-	http.HandleFunc("/", f.Forum)
+	f.Posts = f.RecupPost()
+	// Cookie
+
+
+	http.HandleFunc("/", f.Home)
 	http.HandleFunc("/addpost", f.AddPost)
 	http.HandleFunc("/addcomment", f.AddComment)
 	http.HandleFunc("/login", f.Login)
