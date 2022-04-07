@@ -20,8 +20,11 @@
                 <button class="button_sign_up">Sign up</button>
             </form>
         </div>
-        <div id="name">
-            <p>{{.User.Username}}</p>
+        <div class="dropdown" id="name">
+            <button class="button_profil" >{{.User.Username}}</button>
+            <div class="dropdown-content">
+                <a href="/logout">Log out</a>
+            </div>
         </div>
 
     </header>

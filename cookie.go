@@ -1,11 +1,28 @@
 package forum
 
 import (
+	"database/sql"
 	"fmt"
 	"net/http"
 )
 
-func Cookies(w http.ResponseWriter, r *http.Request) {
+func CreateCookie(w http.ResponseWriter, r *http.Request, uid string) {
+	cookie := &http.Cookie{
+		Name: "session",
+		Value: uid,
+	}
+	fmt.Println("Cookie created")
+	fmt.Println(cookie)
+	http.SetCookie(w, cookie)
+}
+
+func GetUserByCookies(w http.ResponseWriter, r *http.Request) User{
+	var id int
+	var uid string
+	var username string
+	var email string
+	var passwd string
+
 	cookie, err := r.Cookie("session")
 	if err != nil {
 		fmt.Println("Cookie not found")
@@ -14,45 +31,24 @@ func Cookies(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Cookie found")
 		fmt.Println("Cookie : ", cookie)
 
-		// db, _ := sql.Open("sqlite3", "./database.db")
+		db, _ := sql.Open("sqlite3", "./database.db")
 		// if err := r.ParseForm(); err != nil {
 		// 	fmt.Fprintf(w, "ParseForm() err: %v", err)
 		// 	return
 		// }
 
-		// rows, err := db.Query("SELECT * FROM user WHERE uid='" + cookie.Value + "'")
-		// Debug(err)
+		rows, err := db.Query("SELECT * FROM user WHERE uid='" + cookie.Value + "'")
 
-		// for rows.Next() {
-		// 	var id int
-		// 	var uid string
-		// 	var username string
-		// 	var email string
-		// 	var passwd string
-		// 	err = rows.Scan(&id, &uid, &username, &email, &passwd)
-		// 	Debug(err)
+		Debug(err)
 
-		// 	fmt.Println("On vous a bien trouvé Monsieur", username)
-		// 	fmt.Println("Votre id est :", id)
-		// 	fmt.Println("Votre uid est :", uid)
-		// 	fmt.Println("Votre mail est :", email)
-		// 	fmt.Println("Votre passwd est :", passwd)
+		for rows.Next() {
+			err = rows.Scan(&id, &uid, &username, &email, &passwd)
+			Debug(err)
 
-		// 	tmpl := template.Must(template.ParseFiles("static/index.html"))
-		// 	tmpl.Execute(w, Send{Post: Posts, User: User{Username: username}})
-		// }
+			fmt.Println("On vous a bien trouvé Monsieur", username)
+
+		}
 	}
+	return User{Id: id, Uid: uid, Email: email, Passwd: passwd, Username: username}
 }
 
-func Create_Cookie(w http.ResponseWriter, r *http.Request) {
-
-	cookie := &http.Cookie{
-		Name:  "session",
-		Value: "cookie-value",
-	}
-
-	// Create a new cookie
-	fmt.Println("Cookie created")
-	fmt.Println(cookie)
-	http.SetCookie(w, cookie)
-}

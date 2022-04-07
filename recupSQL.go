@@ -43,6 +43,7 @@ func RecupPost() []Post {
 	for rows.Next() {
 		var pid int
 		var content string
+		
 		err = rows.Scan(&pid, &content)
 		Debug(err)
 		newTab = append(newTab, Post{Pid: pid, Content: content})

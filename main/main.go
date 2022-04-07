@@ -18,14 +18,13 @@ func main() {
 	f.Posts = f.RecupPost()
 	// Cookie
 
-	Category = f.r.Form.Get("category")
-
 	http.HandleFunc("/", f.Home)
 	http.HandleFunc("/addpost", f.AddPost)
 	http.HandleFunc("/addcomment", f.AddComment)
 	http.HandleFunc("/login", f.Login)
 	http.HandleFunc("/sign_up", f.Sign_up)
 	http.HandleFunc("/forgot", f.Passwd_forgot)
+	http.HandleFunc("/logout", f.LogOut)
 
 	//Show #CSS
 	fs := http.FileServer(http.Dir("./views"))
