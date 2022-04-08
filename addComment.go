@@ -27,7 +27,7 @@ func AddComment(w http.ResponseWriter, r *http.Request) {
 	}
 
 
-	_, err := db.Exec("INSERT INTO comments ('content', 'pid', 'uid') VALUES ('" + comment_content + "','" + r.Form.Get("post_id") + "','" + UserLogin.Uid + "');")
+	_, err := db.Exec("INSERT INTO comments ('content', 'pid') VALUES ('" + comment_content + "','" + r.Form.Get("post_id") + "');")
 	Debug(err)
 
 	Posts[id_post].Comments = append(Posts[id_post].Comments, comment_content)

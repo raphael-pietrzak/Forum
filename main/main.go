@@ -13,15 +13,24 @@ var Category string
 
 
 func main() {
-	f.Category = []string{"Sport", "Jeux", "Nourriture"}
 
 	f.TableCreation()
+
+	//Recup Data
+	f.Category = []string{"Sport", "Jeux", "Nourriture"}
 	f.Posts = f.RecupPost()
-	f.Hash("Audran")
+	f.Comments = f.RecupComment()
 
+	for _,comment := range f.Comments {
+		for post := range f.Posts {
+			if comment.Pid == f.Posts[post].Pid {
+				f.Posts[post].Comments = append(f.Posts[post].Comments, comment.Content)
+			}
+		}
+	}
+	fmt.Println(f.Posts)
 
-	// Cookie
-
+	//HandleFunc
 	http.HandleFunc("/", f.Home)
 	http.HandleFunc("/addpost", f.AddPost)
 	http.HandleFunc("/addcomment", f.AddComment)

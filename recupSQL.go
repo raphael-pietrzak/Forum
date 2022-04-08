@@ -2,19 +2,23 @@ package forum
 
 import (
 	"database/sql"
-	"fmt"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
 func RecupUser() []User {
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
+
 	selection := "SELECT * FROM user"
 	rows, err := db.Query(selection)
 	Debug(err)
+
 	err = rows.Err()
 	Debug(err)
+
 	var newTab []User
+
 	for rows.Next() {
 		var id int
 		var uid string
@@ -27,7 +31,6 @@ func RecupUser() []User {
 	}
 	err = rows.Err()
 	Debug(err)
-	db.Close()
 
 	return newTab
 }
@@ -36,47 +39,65 @@ func RecupPost() []Post {
 	var newTab []Post
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
-	selection := "SELECT * FROM posts JOIN comments ON posts.pid = comments.pid"
+	selection := "SELECT * FROM posts"
+	rows, err := db.Query(selection)
+	Debug(err)
+	err = rows.Err()
+	Debug(err)
+
+	for rows.Next() {
+
+		//posts
+		var pid int
+		var content string
+
+		err = rows.Scan(&pid, &content)
+		Debug(err)
+		newTab = append(newTab, Post{Pid: pid, Content: content})
+	}
+
+	err = rows.Err()
+	Debug(err)
+
+	return newTab
+}
+
+func RecupComment() []Comment {
+	var newTab []Comment
+	db, err := sql.Open("sqlite3", "./database.db")
+	Debug(err)
+	selection := "SELECT * FROM comments"
 	rows, err := db.Query(selection)
 	Debug(err)
 	err = rows.Err()
 	Debug(err)
 	for rows.Next() {
 
-		//posts
-		var pid int
-		var uid string
-		var content string
-
 		//comments
 		var cid int
-		var pid2 int
-		var uid2 string
+		var pid int
 		var comment string
 
-
-
-		err = rows.Scan(&pid, &uid, &content, &cid, &pid2, &uid2, &comment)
-		notfind := true
-		fmt.Println(pid, content, cid, comment, pid2, uid, uid2)
-
-		for i := range newTab {
-			if newTab[i].Pid == pid {
-				notfind = false
-				newTab[i].Comments = append(newTab[i].Comments, comment)
-			}
-		}
-		if notfind {
-			newTab = append(newTab, Post{Pid: pid, Content: content, Comments: []string{comment}})
-		}
-
+		err = rows.Scan(&cid, &pid, &comment)
 		Debug(err)
+		newTab = append(newTab, Comment{Cid: cid, Pid: pid, Content: comment})
+		// notfind := true
+		// fmt.Println(newTab)
+
+		// // for i := range newTab {
+		// // 	if newTab[i].Pid == pid {
+		// // 		notfind = false
+		// // 		newTab[i].Comments = append(newTab[i].Comments, comment)
+		// // 	}
+		// // }
+		// // if notfind {
+		// // 	newTab = append(newTab, Post{Pid: pid, Content: content, Comments: []string{comment}})
+		// // }
+
 	}
 
-	fmt.Println(newTab)
 	err = rows.Err()
 	Debug(err)
-	db.Close()
 
 	return newTab
 }

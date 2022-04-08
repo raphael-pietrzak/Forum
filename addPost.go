@@ -28,12 +28,8 @@ func AddPost(w http.ResponseWriter, r *http.Request) {
 		post_content := r.Form.Get("post_content")
 		categorie := r.Form.Get("Sport")
 		fmt.Println(categorie)
-		UserLogin := GetUserByCookies(w, r)
-		if UserLogin.Uid == "" {
-			UserLogin.Uid = "0"
-		}
 
-		_, err := db.Exec("INSERT INTO posts ('content', 'uid') VALUES ('" + post_content + "','"+ UserLogin.Uid + "');")
+		_, err := db.Exec("INSERT INTO posts ('content') VALUES ('" + post_content + "');")
 		Debug(err)
 
 		Posts = append(Posts, Post{Pid: len(Posts) + 1 , Content: post_content, Category: categorie})

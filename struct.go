@@ -21,11 +21,10 @@ type Send struct {
 
 type Post struct {
 	User User
-	Pid      int
 	Category string
 	Content  string
 	Comments []string
-	Id       int
+	Pid       int
 }
 
 type Comment struct {
