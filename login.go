@@ -16,38 +16,25 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		tmpl := template.Must(template.ParseFiles("static/login.html"))
 		tmpl.Execute(w, Posts)
 	case "POST":
-		db, _ := sql.Open("sqlite3", "./database.db")
+
 		if err := r.ParseForm(); err != nil {
 			fmt.Fprintf(w, "ParseForm() err: %v", err)
 			return
 		}
 
-		mail := r.Form.Get("mail")
-		password := r.Form.Get("password")
-		fmt.Println(mail, password)
+		Users = RecupUser()
+		fmt.Println("Users :", Users)
 
-		rows, err := db.Query("SELECT * FROM user WHERE email='" + mail + "' AND passwd='" + password + "'")
-		Debug(err)
-
-		for rows.Next() {
-			var id int
-			var uid string
-			var username string
-			var email string
-			var passwd string
-			err = rows.Scan(&id, &uid, &username, &email, &passwd)
-			Debug(err)
-
-			fmt.Println("On vous a bien trouvé Monsieur", username)
-
-			// Create a new cookie
-			CreateCookie(w, r, uid)
-
-			tmpl := template.Must(template.ParseFiles("static/index.html"))
-			tmpl.Execute(w, Send{Post: Posts, User: User{Username: username}})
+		for i := range Users {
+			if Users[i].Email == r.Form.Get("mail") && Users[i].Passwd == r.Form.Get("password") {
+				CreateCookie(w, r, Users[i].Uid)
+				http.Redirect(w, r, "/", 301)
+			}
 		}
 
-		http.Redirect(w, r, "/login", 301)
+		tmpl := template.Must(template.ParseFiles("static/login.html"))
+		tmpl.Execute(w, Posts)
+
 	}
 }
 
@@ -75,6 +62,5 @@ func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/login", 301)
 	}
 }
-
 
 

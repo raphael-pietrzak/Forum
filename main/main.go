@@ -16,8 +16,9 @@ func main() {
 	f.Category = []string{"Sport", "Jeux", "Nourriture"}
 
 	f.TableCreation()
-
 	f.Posts = f.RecupPost()
+
+
 	// Cookie
 
 	http.HandleFunc("/", f.Home)
