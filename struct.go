@@ -8,7 +8,7 @@ import (
 
 var Posts []Post
 var Users []User
-var Coment []Comment
+var Comments []Comment
 var Data Send
 var Category []string
 
@@ -18,15 +18,9 @@ type Send struct {
 	PostCategory []string
 }
 
-type User struct {
-	Id       int
-	Uid      string
-	Email    string
-	Passwd   string
-	Username string
-}
 
 type Post struct {
+	// User User
 	Pid      int
 	Category string
 	Content  string
@@ -37,7 +31,15 @@ type Post struct {
 type Comment struct {
 	Cid     int
 	Content string
-	Id      int
+	Pid    int
+}
+
+type User struct {
+	Id       int
+	Uid      string
+	Email    string
+	Passwd   string
+	Username string
 }
 
 type Cookie struct {
@@ -48,4 +50,5 @@ type Cookie struct {
 
 func DataToStruct(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello from API")
+
 }

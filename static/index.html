@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <script src="/views/script.js"></script>
     <title>Accueil</title>
 </head>
+
 <body>
 
     <header>
@@ -32,7 +34,7 @@
 
 
         <div id="user-profile">
-            <form action="/login"  >
+            <form action="/login">
                 <button class="button_login">Login</button>
             </form>
             <form action="/sign_up">
@@ -40,9 +42,7 @@
             </form>
         </div>
         <div class="dropdown" id="name">
-            <form action="/profil">
-                <button class="button_profil" >{{.User.Username}}</button>
-            </form>
+            <button class="button_profil" >{{.User.Username}}</button>
             <div class="dropdown-content">
                 <form action="/logout">
                     <button>Log out</button>
@@ -51,14 +51,25 @@
         </div>
 
     </header>
-    
+
     <main>
         <posts>
             <div class="container">
                 {{range .Post}}
-                <form id ="addNewComment">  
-                    <button onclick="NewComment(id)"  id="{{.Pid}}" type="button">{{.Content}}</button>
-                    <!-- <div>
+                    <div class="test">
+                        <div class="button-container">
+                            <a href="#"></a>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Facebook_Thumb_icon.svg/1280px-Facebook_Thumb_icon.svg.png"/>
+                        </div>
+                        <div class="button-container2">
+                            <a href="#"></a>
+                            <img src="https://thecloudlawyer.files.wordpress.com/2019/08/1200px-facebook_thumb_icon.svg_-1.png">
+                        </div>
+                    </div>
+
+                    <form id="addNewComment">
+                        <button onclick="NewComment(id)" id="{{.Pid}}" type="button">{{.Content}}</button>
+                        <!-- <div>
                         <form action="/addcomment">
                             <input type="text">
                             <input type="hidden" name="pid" value="{{.Pid}}">
@@ -67,18 +78,25 @@
                             </button>
                         </form>
                     </div> -->
-                    <div>
-                        {{range .Comments}}
-                        {{.}}
-                        {{end}}
+                        <div>
+                            {{range .Comments}}
+                            {{.}}
+                            {{end}}
+                        </div>
+                        <div id="comment{{.Pid}}" class="comment"></div>
+                    </form>
+                    <div name="category">
+                        {{.Category}}
                     </div>
-                    <div id="comment{{.Pid}}" class="comment"></div>
+                <form action="/addpost">
+                    <button>Post</button>
                 </form>
                 {{end}}
-                <div name="category">
-                    {{.Category}}
-                </div>
             </div>
+            <br>
+            <br>
+            <br>
+            <br>
             <form action="/addpost" >
                 <button>Post</button> 
             </form>

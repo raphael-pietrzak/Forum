@@ -14,18 +14,20 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, Send{Post: Posts, User: UserLogin, PostCategory: Category})
 }
 
+
 func LogOut(w http.ResponseWriter, r *http.Request) {
+
 	fmt.Println("test")
 
 	//delete cookie
 	// cookie, err := r.Cookie("session")
 	cookie := &http.Cookie{
-		Name:     "session",
-		Value:    "",
-		MaxAge:   -1,
+		Name:   "session",
+		Value:  "",
+		MaxAge: -1,
 	}
 	// Debug(err)
 	http.SetCookie(w, cookie)
-
 	http.Redirect(w, r, "/", 301)
+
 }

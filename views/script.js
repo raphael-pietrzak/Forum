@@ -1,5 +1,4 @@
 
-
 function NewComment(id) {
   console.log(id)
   //add input div
