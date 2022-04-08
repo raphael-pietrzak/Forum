@@ -17,7 +17,6 @@ func main() {
 
 	f.TableCreation()
 	f.Posts = f.RecupPost()
-	f.Hash("Audran")
 
 
 	// Cookie

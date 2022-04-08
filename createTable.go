@@ -22,7 +22,7 @@ func TableCreation() {
 	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS posts 
 	(
 		pid INTEGER PRIMARY KEY, 
-		like INT, 
+		like INT NOT NULL, 
 		content TEXT
 	);`)
 

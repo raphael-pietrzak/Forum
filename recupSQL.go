@@ -3,6 +3,7 @@ package forum
 import (
 	"database/sql"
 	"fmt"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -43,12 +44,13 @@ func RecupPost() []Post {
 	Debug(err)
 	for rows.Next() {
 		var pid int
-		var like int 
+		var like int
 		var content string
 		var cid int
 		var comment string
 		var pid2 int
-		err = rows.Scan(&pid, &like, &content, &cid, &comment, &pid2)
+		var likecom int
+		err = rows.Scan(&pid, &like, &content, &cid, &likecom, &comment, &pid2)
 		notfind := true
 		for i := range newTab {
 			if newTab[i].Pid == pid {
