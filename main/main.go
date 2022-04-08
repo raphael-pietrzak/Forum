@@ -30,7 +30,7 @@ func main() {
 	http.HandleFunc("/sign_up", f.Sign_up)
 	http.HandleFunc("/forgot", f.Passwd_forgot)
 	http.HandleFunc("/logout", f.LogOut)
-	http.HandleFunc("/profil", f.Profil)
+	http.HandleFunc("/profile", f.Profile)
 
 	//Show #CSS
 	fs := http.FileServer(http.Dir("./views"))

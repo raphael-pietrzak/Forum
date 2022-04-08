@@ -3,6 +3,7 @@ package forum
 import (
 	"fmt"
 	"net/http"
+
 	_ "github.com/google/uuid"
 )
 
@@ -13,14 +14,13 @@ var Data Send
 var Category []string
 
 type Send struct {
-	Post []Post
-	User User
+	Post         []Post
+	User         User
 	PostCategory []string
 }
 
-
 type Post struct {
-	// User User
+	User User
 	Pid      int
 	Category string
 	Content  string
@@ -31,7 +31,7 @@ type Post struct {
 type Comment struct {
 	Cid     int
 	Content string
-	Pid    int
+	Pid     int
 }
 
 type User struct {
@@ -50,5 +50,4 @@ type Cookie struct {
 
 func DataToStruct(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello from API")
-
 }
