@@ -52,14 +52,22 @@ func RecupPost() []Post {
 
 	for rows.Next() {
 
+		//posts
 		var pid int
+		var uid string
 		var content string
-		var cid int
-		var comment string
-		var pid2 int
 
-		err = rows.Scan(&pid, &content, &cid, &comment, &pid2)
+		//comments
+		var cid int
+		var pid2 int
+		var uid2 string
+		var comment string
+
+
+
+		err = rows.Scan(&pid, &uid, &content, &cid, &pid2, &uid2, &comment)
 		notfind := true
+		fmt.Println(pid, content, cid, comment, pid2, uid, uid2)
 
 		for i := range newTab {
 			if newTab[i].Pid == pid {
@@ -71,9 +79,10 @@ func RecupPost() []Post {
 		if notfind {
 			newTab = append(newTab, Post{Pid: pid, Content: content, Comments: []string{comment}})
 		}
+
 		Debug(err)
-		
 	}
+
 	fmt.Println(newTab)
 	err = rows.Err()
 	Debug(err)

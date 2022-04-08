@@ -20,7 +20,7 @@ type Send struct {
 
 
 type Post struct {
-	// User User
+	User User
 	Pid      int
 	Category string
 	Content  string

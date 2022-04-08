@@ -23,7 +23,9 @@
             </form>
         </div>
         <div class="dropdown" id="name">
-            <button class="button_profil">{{.User.Username}}</button>
+            <form action="/profile" method="post">
+                <button class="button_profil">{{.User.Username}}</button>
+            </form>
             <form action="/logout" method="POST" class="dropdown-content">
                 <button>Log out</button>
             </form>
@@ -56,9 +58,6 @@
                     <div name="category">
                         {{.Category}}
                     </div>
-                <form action="/addpost">
-                    <button>Post</button>
-                </form>
                 {{end}}
             </div>
             <br>
