@@ -12,6 +12,7 @@ function NewComment(id) {
   var inputText = document.createElement("input");
   inputText.type = "text";
   inputText.name = "comment_content";
+  inputText.autofocus = true;
   inputText.placeholder = "Add a comment...";
   formCom.appendChild(inputText);
 
@@ -46,4 +47,8 @@ function UserProfile(username) {
   } else {
     document.getElementById("name").style.display = "none";
   }
+}
+
+function SelectFilters() {
+  document.getElementsByClassName("choiceCategory")[0].style.display = "block"
 }

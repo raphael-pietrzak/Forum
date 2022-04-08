@@ -15,23 +15,23 @@
     <header>
         <h1>Forum</h1>
 
-        <div class="SelectFilters">
-            <button class="button_profil">Filters</button>
+        <div class="page">
+            <div class="SelectFilters">
+                <button onclick="SelectFilters()" class="button_profil">Filters</button>
 
-            <div id="FiltersContent">
-                <label for="pet-select">Category</label>
-                <select class="choiceCategory" name="Category">
-                    <option value="">None</option>
-                    {{range .PostCategory}}
-                    <option value={{.}}>{{.}}</option>
-                    {{end}}
-                </select>
+                
+                <div class="choiceCategory" name="Category">
+                    <form action="/filters" method="post">
+                        <select name="categ">
+                            {{range .PostCategory}}
+                            <option value="{{.}}">{{.}}</option>
+                            {{end}}
+                        </select>
+                        <button name="Confirm">Apply</button>
+                    </form>
+                </div>
             </div>
         </div>
-
-
-       
-
 
         <div id="user-profile">
             <form action="/login">
@@ -42,12 +42,10 @@
             </form>
         </div>
         <div class="dropdown" id="name">
-            <button class="button_profil" >{{.User.Username}}</button>
-            <div class="dropdown-content">
-                <form action="/logout">
-                    <button>Log out</button>
-                </form>
-            </div>
+            <button class="button_profil">{{.User.Username}}</button>
+            <form action="/logout" method="POST" class="dropdown-content">
+                <button>Log out</button>
+            </form>
         </div>
 
     </header>
@@ -56,20 +54,9 @@
         <posts>
             <div class="container">
                 {{range .Post}}
-                    <div class="test">
-                        <div class="button-container">
-                            <a href="#"></a>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Facebook_Thumb_icon.svg/1280px-Facebook_Thumb_icon.svg.png"/>
-                        </div>
-                        <div class="button-container2">
-                            <a href="#"></a>
-                            <img src="https://thecloudlawyer.files.wordpress.com/2019/08/1200px-facebook_thumb_icon.svg_-1.png">
-                        </div>
-                    </div>
-
-                    <form id="addNewComment">
-                        <button onclick="NewComment(id)" id="{{.Pid}}" type="button">{{.Content}}</button>
-                        <!-- <div>
+                <form id="addNewComment">
+                    <button onclick="NewComment(id)" id="{{.Pid}}" type="button">{{.Content}}</button>
+                    <!-- <div>
                         <form action="/addcomment">
                             <input type="text">
                             <input type="hidden" name="pid" value="{{.Pid}}">
@@ -85,20 +72,14 @@
                         </div>
                         <div id="comment{{.Pid}}" class="comment"></div>
                     </form>
-                    <div name="category">
-                        {{.Category}}
-                    </div>
-                <form action="/addpost">
-                    <button>Post</button>
-                </form>
                 {{end}}
             </div>
             <br>
             <br>
             <br>
             <br>
-            <form action="/addpost" >
-                <button>Post</button> 
+            <form action="/addpost">
+                <button>Post</button>
             </form>
         </posts>
     </main>
@@ -108,4 +89,5 @@
     </footer>
     <script> UserProfile("{{.User.Username}}");</script>
 </body>
+
 </html>
