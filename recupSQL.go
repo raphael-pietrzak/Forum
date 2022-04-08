@@ -67,7 +67,7 @@ func RecupPost() []Post {
 			}
 		}
 		if notfind {
-			newTab = append(newTab, Post{Pid: pid, Like: like, Content: content, Comments: []string{comment}})
+			newTab = append(newTab, Post{Pid: pid, Content: content, Comments: []string{comment}})
 		}
 
 		Debug(err)

@@ -22,7 +22,6 @@ type Send struct {
 type Post struct {
 	User User
 	Pid      int
-	Like     int
 	Category string
 	Content  string
 	Comments []string
@@ -33,7 +32,6 @@ type Comment struct {
 	Cid     int
 	Content string
 	Pid     int
-	Like    int
 }
 
 type User struct {

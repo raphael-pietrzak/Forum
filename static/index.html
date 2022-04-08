@@ -34,7 +34,7 @@
         <posts>
             <div class="container">
                 {{range .Post}}
-                    <div class="test">
+                    <!-- <div class="test">
                         <div class="button-container">
                             <a href="#"></a>
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Facebook_Thumb_icon.svg/1280px-Facebook_Thumb_icon.svg.png"/>
@@ -44,11 +44,11 @@
                             <a href="#"></a>
                             <img src="https://thecloudlawyer.files.wordpress.com/2019/08/1200px-facebook_thumb_icon.svg_-1.png">
                         </div>
-                    </div>
+                    </div> -->
                     <form id="addNewComment">
                         <button onclick="NewComment(id)" id="{{.Pid}}" type="button">{{.Content}}</button>
                         <div class="test">
-                            <div class="button-container">
+                            <!-- <div class="button-container">
                                 <a href="#"></a>
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Facebook_Thumb_icon.svg/1280px-Facebook_Thumb_icon.svg.png"/>
     
@@ -56,12 +56,12 @@
                             <div class="button-container2">
                                 <a href="#"></a>
                                 <img src="https://thecloudlawyer.files.wordpress.com/2019/08/1200px-facebook_thumb_icon.svg_-1.png">
-                            </div>
+                            </div> -->
                         </div>
                         <!-- <div>
                 <form id="addNewComment">
                     <button onclick="NewComment(id)" id="{{.Pid}}" type="button">{{.Content}}</button>
-                    <!-- <div>
+                    <! <div>
                         <form action="/addcomment">
                             <input type="text">
                             <input type="hidden" name="pid" value="{{.Pid}}">
@@ -76,10 +76,6 @@
                             {{end}}
                         </div>
                         <div id="comment{{.Pid}}" class="comment"></div>
-                    </form>
-                    {{end}}
-                    <form action="/addpost">
-                        <button>Post</button>
                     </form>
                     <div name="category">
                         {{.Category}}
