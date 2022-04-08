@@ -24,7 +24,10 @@ func TableCreation() {
 	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS posts 
 	(
 		pid INTEGER PRIMARY KEY, 
-		content TEXT
+		content TEXT,
+		category TEXT,
+		uid TEXT
+
 	);`)
 
 	Debug(err)
@@ -33,12 +36,9 @@ func TableCreation() {
 	(
 		cid INTEGER PRIMARY KEY,
 		pid INTEGER,
-		content TEXT
+		content TEXT,
+		uid TEXT
 	); `)
 
 	Debug(err)
 }
-
-		// CONSTRAINT fk_pid 
-		// FOREIGN KEY (pid) 
-		// REFERENCES  posts(pid)

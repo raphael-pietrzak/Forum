@@ -2,8 +2,8 @@ package forum
 
 import (
 	"database/sql"
-	"fmt"
 	"net/http"
+	"strconv"
 	"text/template"
 )
 
@@ -20,19 +20,21 @@ func AddPost(w http.ResponseWriter, r *http.Request) {
 
 		db, _ := sql.Open("sqlite3", "./database.db")
 
-		if err := r.ParseForm(); err != nil {
-			fmt.Fprintf(w, "ParseForm() err: %v", err)
-			return
-		}
+		ErrParseForm(w, r)
 
 		post_content := r.Form.Get("post_content")
+		post_id,_ := strconv.Atoi(r.Form.Get("post_id"))
 		categorie := r.Form.Get("Sport")
-		fmt.Println(categorie)
 
-		_, err := db.Exec("INSERT INTO posts ('content') VALUES ('" + post_content + "');")
+		UserLogin := GetUserByCookies(w, r)
+		// fmt.Println(categorie)
+		SqlExec := `INSERT INTO posts ('content', 'category', 'uid') 
+		VALUES ('` + post_content + `', '` + categorie + `', '` + UserLogin.Uid + `');`
+
+		_, err := db.Exec(SqlExec)
 		Debug(err)
 
-		Posts = append(Posts, Post{Pid: len(Posts) + 1 , Content: post_content, Category: categorie})
+		Posts = append(Posts, Post{Pid: post_id, Content: post_content, Category: categorie, Uid: UserLogin.Uid, Username: UserLogin.Username})
 		http.Redirect(w, r, "/", 301)
 	}
 }

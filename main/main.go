@@ -18,27 +18,19 @@ func main() {
 
 	//Recup Data
 	f.Category = []string{"Sport", "Jeux", "Nourriture"}
+	f.Users = f.RecupUser()
 	f.Posts = f.RecupPost()
 	f.Comments = f.RecupComment()
-
-	for _,comment := range f.Comments {
-		for post := range f.Posts {
-			if comment.Pid == f.Posts[post].Pid {
-				f.Posts[post].Comments = append(f.Posts[post].Comments, comment.Content)
-			}
-		}
-	}
-	fmt.Println(f.Posts)
 
 	//HandleFunc
 	http.HandleFunc("/", f.Home)
 	http.HandleFunc("/addpost", f.AddPost)
 	http.HandleFunc("/addcomment", f.AddComment)
+	http.HandleFunc("/adduser", f.AddUser)
 	http.HandleFunc("/filters", f.Filters)
 	http.HandleFunc("/login", f.Login)
-	http.HandleFunc("/sign_up", f.Sign_up)
 	http.HandleFunc("/forgot", f.Passwd_forgot)
-	http.HandleFunc("/logout", f.LogOut)
+	http.HandleFunc("/logout", f.Logout)
 	http.HandleFunc("/profile", f.Profile)
 
 	//Show #CSS
