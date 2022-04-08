@@ -3,7 +3,6 @@ package forum
 import (
 	"database/sql"
 	"fmt"
-
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -13,7 +12,6 @@ func RecupUser() []User {
 	selection := "SELECT * FROM user"
 	rows, err := db.Query(selection)
 	Debug(err)
-
 	err = rows.Err()
 	Debug(err)
 	var newTab []User
@@ -33,44 +31,33 @@ func RecupUser() []User {
 }
 
 func RecupPost() []Post {
-
 	var newTab []Post
-
-
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
-
 	selection := "SELECT * FROM posts JOIN comments ON posts.pid = comments.pid"
 	rows, err := db.Query(selection)
 	Debug(err)
-
 	err = rows.Err()
 	Debug(err)
-
-
 	for rows.Next() {
-
 		var pid int
+		var like int 
 		var content string
 		var cid int
 		var comment string
 		var pid2 int
-
-		err = rows.Scan(&pid, &content, &cid, &comment, &pid2)
+		err = rows.Scan(&pid, &like, &content, &cid, &comment, &pid2)
 		notfind := true
-
 		for i := range newTab {
 			if newTab[i].Pid == pid {
 				notfind = false
 				newTab[i].Comments = append(newTab[i].Comments, comment)
 			}
 		}
-
 		if notfind {
-			newTab = append(newTab, Post{Pid: pid, Content: content, Comments: []string{comment}})
+			newTab = append(newTab, Post{Pid: pid, Like: like, Content: content, Comments: []string{comment}})
 		}
 		Debug(err)
-		
 	}
 	fmt.Println(newTab)
 	err = rows.Err()

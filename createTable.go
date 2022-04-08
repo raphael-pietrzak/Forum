@@ -22,6 +22,7 @@ func TableCreation() {
 	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS posts 
 	(
 		pid INTEGER PRIMARY KEY, 
+		like INT, 
 		content TEXT
 	);`)
 
@@ -30,10 +31,11 @@ func TableCreation() {
 	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS comments 
 	(
 		cid INTEGER PRIMARY KEY,
+		like INT,
 		content TEXT,
 		pid INTEGER,
 		CONSTRAINT fk_pid 
-		FOREIGN KEY (pid) 
+		FOREIGN KEY (pid)
 		REFERENCES  posts(pid)
 	); `)
 
