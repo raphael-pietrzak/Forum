@@ -2,12 +2,25 @@ body {
     background-color: rgb(42, 44, 46);
 }
 
+.page {
+    justify-content: center;
+}
+
+.choiceCategory {
+    display: none;
+    width: 300px;
+    height: 200px;
+    background-color: greenyellow;
+    position: absolute;
+}
+
 header{
     display: flex;
     color: white;
     flex-direction: row;
     justify-content: space-between;
 }
+
 
 .dropdown {
     position: relative;

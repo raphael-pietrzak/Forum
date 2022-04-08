@@ -13,6 +13,25 @@
 <body>
     <header>
         <h1>Forum</h1>
+
+        <div class="page">
+            <div class="SelectFilters">
+                <button onclick="SelectFilters()" class="button_profil">Filters</button>
+
+                
+                <div class="choiceCategory" name="Category">
+                    <form action="/filters" method="post">
+                        <select name="categ">
+                            {{range .PostCategory}}
+                            <option value="{{.}}">{{.}}</option>
+                            {{end}}
+                        </select>
+                        <button name="Confirm">Apply</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <div id="user-profile">
             <form action="/login">
                 <button class="button_login">Login</button>

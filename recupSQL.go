@@ -44,7 +44,6 @@ func RecupPost() []Post {
 	Debug(err)
 	err = rows.Err()
 	Debug(err)
-
 	for rows.Next() {
 
 		//posts
