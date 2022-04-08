@@ -33,10 +33,10 @@ func Sign_up(w http.ResponseWriter, r *http.Request) {
 
 		_, err := db.Exec("INSERT INTO user ('uid','username','email', 'passwd') VALUES ('" + uuid.String() + "', '" + username + "', '" + mail + "', '" + password + "')")
 		Debug(err)
+		db.Close()
 
 		CreateCookie(w, r, uuid.String())
 
 		http.Redirect(w, r, "/", 301)
-
 	}
 }
