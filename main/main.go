@@ -9,6 +9,7 @@ import (
 )
 
 var PostContent string
+var Category string
 
 
 func main() {

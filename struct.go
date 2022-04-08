@@ -3,7 +3,6 @@ package forum
 import (
 	"fmt"
 	"net/http"
-
 	_ "github.com/google/uuid"
 )
 
@@ -32,11 +31,13 @@ type Post struct {
 	Category string
 	Content  string
 	Comments []string
+	Id       int
 }
 
 type Comment struct {
 	Cid     int
 	Content string
+	Id      int
 }
 
 type Cookie struct {
@@ -46,6 +47,5 @@ type Cookie struct {
 }
 
 func DataToStruct(w http.ResponseWriter, r *http.Request) {
-
 	fmt.Fprintf(w, "Hello from API")
 }

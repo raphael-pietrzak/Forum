@@ -5,7 +5,6 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-
 func RecupUser() []User {
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
@@ -34,7 +33,7 @@ func RecupUser() []User {
 func RecupPost() []Post {
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
-	selection := "SELECT * FROM posts"
+	selection := "SELECT * FROM posts" 
 	rows, err := db.Query(selection)
 	Debug(err)
 
