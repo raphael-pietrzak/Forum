@@ -21,16 +21,14 @@
             </form>
         </div>
         <div class="dropdown" id="name">
-            <form action="/profil">
-                <button class="button_profil" >{{.User.Username}}</button>
-            </form>
+            <button class="button_profil" >{{.User.Username}}</button>
             <div class="dropdown-content">
                 <a href="/logout">Log out</a>
             </div>
         </div>
 
     </header>
-
+    
     <main>
         <posts>
             <div class="container">
@@ -58,12 +56,7 @@
             <br>
             <br>
             <br>
-
-            <div name="category">
-                {{.Category}}
-            </div>
-            
-            </div>
+            <br>
             <form action="/addpost" >
                 <button>Post</button> 
             </form>
@@ -74,5 +67,6 @@
         <p>All rights reserved</p>
     </footer>
     <script> UserProfile("{{.User.Username}}");</script>
+
 </body>
 </html>

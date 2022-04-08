@@ -34,7 +34,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 		tmpl := template.Must(template.ParseFiles("static/login.html"))
 		tmpl.Execute(w, Posts)
-		
+
 	}
 }
 
@@ -61,20 +61,6 @@ func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
 
 		http.Redirect(w, r, "/login", 301)
 	}
-}
-
-func Logout(w http.ResponseWriter, r *http.Request) {
-
-	fmt.Println("Logout")
-	
-	// Delete the cookie
-	cookie := &http.Cookie{
-		Name:   "session",
-		Value:  "",
-		MaxAge: -1,
-	}
-	http.SetCookie(w, cookie)
-
 }
 
 

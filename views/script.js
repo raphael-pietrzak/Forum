@@ -1,5 +1,4 @@
 
-
 function NewComment(id) {
   console.log(id)
   //add input div
@@ -22,7 +21,7 @@ function NewComment(id) {
   inputhidden.type = "hidden";
   inputhidden.value = id;
   formCom.appendChild(inputhidden);
-
+  
   var inputButton = document.createElement("button");
   inputButton.innerHTML = "Post";
   formCom.appendChild(inputButton);
@@ -42,7 +41,7 @@ function NewComment(id) {
 
 function UserProfile(username) {
   if (username != "") {
-    document.getElementById("user-profile").style.display = "none";
+  document.getElementById("user-profile").style.display = "none";
   } else {
     document.getElementById("name").style.display = "none";
   }

@@ -14,7 +14,9 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, Send{Post: Posts, User: UserLogin})
 }
 
+
 func LogOut(w http.ResponseWriter, r *http.Request) {
+
 	fmt.Println("test")
 
 	//delete cookie
@@ -26,5 +28,6 @@ func LogOut(w http.ResponseWriter, r *http.Request) {
 	}
 	// Debug(err)
 	http.SetCookie(w, cookie)
+	http.Redirect(w, r, "/", 301)
 
 }
