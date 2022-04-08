@@ -48,4 +48,5 @@ type Cookie struct {
 func DataToStruct(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintf(w, "Hello from API")
+	
 }

@@ -21,14 +21,16 @@
             </form>
         </div>
         <div class="dropdown" id="name">
-            <button class="button_profil" >{{.User.Username}}</button>
+            <form action="/profil">
+                <button class="button_profil" >{{.User.Username}}</button>
+            </form>
             <div class="dropdown-content">
                 <a href="/logout">Log out</a>
             </div>
         </div>
 
     </header>
-    
+
     <main>
         <posts>
             <div class="container">

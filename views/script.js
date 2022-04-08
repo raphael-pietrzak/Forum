@@ -22,7 +22,7 @@ function NewComment(id) {
   inputhidden.type = "hidden";
   inputhidden.value = id;
   formCom.appendChild(inputhidden);
-  
+
   var inputButton = document.createElement("button");
   inputButton.innerHTML = "Post";
   formCom.appendChild(inputButton);
