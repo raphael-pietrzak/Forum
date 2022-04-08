@@ -48,8 +48,9 @@ function UserProfile(username) {
   }
 }
 
-
-
+function SelectFilters() {
+  document.getElementsByClassName("choiceCategory")[0].style.display = "block"
+}
 
 
 

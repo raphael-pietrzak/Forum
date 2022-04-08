@@ -3,6 +3,7 @@ package forum
 import (
 	"database/sql"
 	"fmt"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -41,6 +42,7 @@ func RecupPost() []Post {
 	Debug(err)
 	err = rows.Err()
 	Debug(err)
+	fmt.Print("test : ")
 	for rows.Next() {
 
 		//posts
@@ -54,10 +56,9 @@ func RecupPost() []Post {
 		var uid2 string
 		var comment string
 
-
-
 		err = rows.Scan(&pid, &uid, &content, &cid, &pid2, &uid2, &comment)
 		notfind := true
+
 		fmt.Println(pid, content, cid, comment, pid2, uid, uid2)
 
 		for i := range newTab {
