@@ -46,12 +46,18 @@
                             </button>
                         </form>
                     </div> -->
-                    <div>
-                        {{range .Comments}}
-                        {{.}}
-                        {{end}}
+                        <div>
+                            {{range .Comments}}
+                            {{.}}
+                            {{end}}
+                        </div>
+                        <div id="comment{{.Pid}}" class="comment"></div>
+                    </form>
+                    <div name="category">
+                        {{.Category}}
                     </div>
-                    <div id="comment{{.Pid}}" class="comment"></div>
+                <form action="/addpost">
+                    <button>Post</button>
                 </form>
                 {{end}}
             </div>
@@ -69,7 +75,6 @@
         <p>All rights reserved</p>
     </footer>
     <script> UserProfile("{{.User.Username}}");</script>
-
 </body>
 
 </html>
