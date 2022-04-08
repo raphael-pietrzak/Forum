@@ -12,6 +12,25 @@
 
     <header>
         <h1>Forum</h1>
+
+        <div class="SelectFilters">
+            <button class="button_profil">Filters</button>
+
+            <div id="FiltersContent">
+                <label for="pet-select">Category</label>
+                <select class="choiceCategory" name="Category">
+                    <option value="">None</option>
+                    {{range .PostCategory}}
+                    <option value={{.}}>{{.}}</option>
+                    {{end}}
+                </select>
+            </div>
+        </div>
+
+
+       
+
+
         <div id="user-profile">
             <form action="/login"  >
                 <button class="button_login">Login</button>
@@ -25,7 +44,9 @@
                 <button class="button_profil" >{{.User.Username}}</button>
             </form>
             <div class="dropdown-content">
-                <a href="/logout">Log out</a>
+                <form action="/logout">
+                    <button>Log out</button>
+                </form>
             </div>
         </div>
 

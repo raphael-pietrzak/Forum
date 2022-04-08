@@ -43,8 +43,9 @@ func Login(w http.ResponseWriter, r *http.Request) {
 			// Create a new cookie
 			CreateCookie(w, r, uid)
 
-			tmpl := template.Must(template.ParseFiles("static/index.html"))
-			tmpl.Execute(w, Send{Post: Posts, User: User{Username: username}})
+			// tmpl := template.Must(template.ParseFiles("static/index.html"))
+			// tmpl.Execute(w, Send{Post: Posts, User: User{Username: username}, PostCategory: Category})
+			http.Redirect(w,r,"/",301)
 		}
 
 		http.Redirect(w, r, "/login", 301)
