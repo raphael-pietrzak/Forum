@@ -27,6 +27,8 @@ func RecupUser() []User {
 	}
 	err = rows.Err()
 	Debug(err)
+	db.Close()
+
 	return newTab
 }
 
@@ -62,5 +64,7 @@ func RecupPost() []Post {
 	fmt.Println(newTab)
 	err = rows.Err()
 	Debug(err)
+	db.Close()
+
 	return newTab
 }
