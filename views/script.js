@@ -42,7 +42,7 @@ function NewComment(id) {
 
 function UserProfile(username) {
   if (username != "") {
-  document.getElementById("user-profile").style.display = "none";
+    document.getElementById("user-profile").style.display = "none";
   } else {
     document.getElementById("name").style.display = "none";
   }

@@ -8,15 +8,17 @@ import (
 
 func CreateCookie(w http.ResponseWriter, r *http.Request, uid string) {
 	cookie := &http.Cookie{
-		Name: "session",
-		Value: uid,
+		Name:     "session",
+		Value:    uid,
+		MaxAge:   500,
+		SameSite: 0,
 	}
 	fmt.Println("Cookie created")
 	fmt.Println(cookie)
 	http.SetCookie(w, cookie)
 }
 
-func GetUserByCookies(w http.ResponseWriter, r *http.Request) User{
+func GetUserByCookies(w http.ResponseWriter, r *http.Request) User {
 	var id int
 	var uid string
 	var username string
@@ -42,4 +44,3 @@ func GetUserByCookies(w http.ResponseWriter, r *http.Request) User{
 	}
 	return User{Id: id, Uid: uid, Email: email, Passwd: passwd, Username: username}
 }
-

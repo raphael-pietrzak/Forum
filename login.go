@@ -29,13 +29,12 @@ func Login(w http.ResponseWriter, r *http.Request) {
 			if Users[i].Email == r.Form.Get("mail") && Users[i].Passwd == r.Form.Get("password") {
 				CreateCookie(w, r, Users[i].Uid)
 				http.Redirect(w, r, "/", 301)
-
-				
 			}
 		}
 
 		tmpl := template.Must(template.ParseFiles("static/login.html"))
 		tmpl.Execute(w, Posts)
+		
 	}
 }
 
@@ -76,7 +75,6 @@ func Logout(w http.ResponseWriter, r *http.Request) {
 	}
 	http.SetCookie(w, cookie)
 
-	// http.Redirect(w, r, "/", 301)
 }
 
 

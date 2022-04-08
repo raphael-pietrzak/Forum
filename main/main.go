@@ -9,8 +9,11 @@ import (
 )
 
 var PostContent string
+var Category string
+
 
 func main() {
+	f.Category = []string{"Sport", "Jeux", "Nourriture"}
 
 	f.TableCreation()
 	f.Posts = f.RecupPost()
@@ -24,12 +27,13 @@ func main() {
 	http.HandleFunc("/login", f.Login)
 	http.HandleFunc("/sign_up", f.Sign_up)
 	http.HandleFunc("/forgot", f.Passwd_forgot)
-	http.HandleFunc("/logout", f.Logout)
+	http.HandleFunc("/logout", f.LogOut)
+	http.HandleFunc("/profil", f.Profil)
 
 	//Show #CSS
 	fs := http.FileServer(http.Dir("./views"))
 	http.Handle("/views/", http.StripPrefix("/views/", fs))
 
-	fmt.Println("Listening at http://localhost:5500")
+	fmt.Println("Listening at http://127.0.0.1:5500")
 	http.ListenAndServe("localhost:5500", nil)
 }

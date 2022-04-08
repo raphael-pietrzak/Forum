@@ -54,11 +54,16 @@
                     <div id="comment{{.Pid}}" class="comment"></div>
                 </form>
                 {{end}}
-            
             </div>
             <br>
             <br>
             <br>
+
+            <div name="category">
+                {{.Category}}
+            </div>
+            
+            </div>
             <form action="/addpost" >
                 <button>Post</button> 
             </form>
@@ -69,6 +74,5 @@
         <p>All rights reserved</p>
     </footer>
     <script> UserProfile("{{.User.Username}}");</script>
-
 </body>
 </html>

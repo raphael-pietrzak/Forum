@@ -10,6 +10,14 @@
     <form action="/addpost" method="post" >
         <p><input placeholder="Write something..." name="post_content" required></p>
         <button>Post</button>
+        <div>
+            {{range .PostCategory}}
+            <p><input type="checkbox" name="Sport" value="{{.}}"> {{.}}</p>
+            {{end}}
+        </div>
     </form>
+
+
+    
 </body>
 </html>
