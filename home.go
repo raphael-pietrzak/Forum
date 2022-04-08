@@ -20,9 +20,9 @@ func LogOut(w http.ResponseWriter, r *http.Request) {
 	//delete cookie
 	// cookie, err := r.Cookie("session")
 	cookie := &http.Cookie{
-		Name:   "session",
-		Value:  "",
-		MaxAge: -1,
+		Name:     "session",
+		Value:    "",
+		MaxAge:   -1,
 	}
 	// Debug(err)
 	http.SetCookie(w, cookie)

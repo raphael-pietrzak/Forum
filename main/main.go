@@ -10,7 +10,9 @@ import (
 
 var PostContent string
 
+
 func main() {
+	f.Category = []string{"Sport", "Jeux", "Nourriture"}
 
 	f.TableCreation()
 
@@ -24,11 +26,12 @@ func main() {
 	http.HandleFunc("/sign_up", f.Sign_up)
 	http.HandleFunc("/forgot", f.Passwd_forgot)
 	http.HandleFunc("/logout", f.LogOut)
+	http.HandleFunc("/profil", f.Profil)
 
 	//Show #CSS
 	fs := http.FileServer(http.Dir("./views"))
 	http.Handle("/views/", http.StripPrefix("/views/", fs))
 
-	fmt.Println("Listening at http://localhost:5500")
+	fmt.Println("Listening at http://127.0.0.1:5500")
 	http.ListenAndServe("localhost:5500", nil)
 }

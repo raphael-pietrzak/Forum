@@ -11,10 +11,12 @@ var Posts []Post
 var Users []User
 var Coment []Comment
 var Data Send
+var Category []string
 
 type Send struct {
 	Post []Post
 	User User
+	PostCategory []string
 }
 
 type User struct {
@@ -27,6 +29,7 @@ type User struct {
 
 type Post struct {
 	Pid      int
+	Category string
 	Content  string
 	Comments []string
 }
