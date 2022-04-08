@@ -26,7 +26,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Users :", Users)
 
 		for i := range Users {
-			if Users[i].Email == r.Form.Get("mail") && Users[i].Passwd == r.Form.Get("password") {
+			if Users[i].Email == r.Form.Get("mail") && Users[i].Passwd == Hash(r.Form.Get("password")) {
 				CreateCookie(w, r, Users[i].Uid)
 				http.Redirect(w, r, "/", 301)
 			}

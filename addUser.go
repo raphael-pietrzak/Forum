@@ -31,7 +31,7 @@ func Sign_up(w http.ResponseWriter, r *http.Request) {
 		
 		fmt.Println("le nouvel uuid est :", uuid)
 
-		_, err := db.Exec("INSERT INTO user ('uid','username','email', 'passwd') VALUES ('" + uuid.String() + "', '" + username + "', '" + mail + "', '" + password + "')")
+		_, err := db.Exec("INSERT INTO user ('uid','username','email', 'passwd') VALUES ('" + uuid.String() + "', '" + username + "', '" + mail + "', '" + Hash(password) + "')")
 		Debug(err)
 		db.Close()
 
