@@ -25,9 +25,10 @@ func RecupUser() []User {
 		var username string
 		var email string
 		var passwd string
-		err = rows.Scan(&id, &uid, &username, &email, &passwd)
+		var avatar string
+		err = rows.Scan(&id, &uid, &username, &email, &passwd, &avatar)
 		Debug(err)
-		newTab = append(newTab, User{Id: id, Uid: uid, Email: email, Username: username, Passwd: passwd})
+		newTab = append(newTab, User{Id: id, Uid: uid, Email: email, Username: username, Passwd: passwd, Avatar: avatar})
 	}
 	err = rows.Err()
 	Debug(err)

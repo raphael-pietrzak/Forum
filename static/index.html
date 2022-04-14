@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="views/style.css">
     <script src="/views/script.js"></script>
     <title>Accueil</title>
+
 </head>
 
 
@@ -54,18 +55,35 @@
     <main>
         <div class="container">
             {{range .Post}}
-                <form id="addNewComment">
-                    <input type="hidden" name="post_id" value="{{.Pid}}">
-                    <button onclick="NewComment(id)" id="{{.Pid}}" type="button" class="post">
-                        <div id="cercle"></div>
-                        <div class="post-text">
+                <div class="post-comment">
+                    <form id="addNewComment">
+                        <input type="hidden" name="post_id" value="{{.Pid}}">
+                        <button onclick="NewComment(id)" id="{{.Pid}}" type="button" class="post">
+                            <div class="info-user-post">
+                                <div id="cercle"></div>
+                                <p>{{.Username}}</p>
+                                <i class="fa fa-heart unlike"></i>
+                            </div>
+                            <div class="post-content">
+                                <p>{{.Content}}</p>
+                            </div>
+                        </button>
+                        <div id="comment{{.Pid}}" class="comment"></div>
+                    </form>
+
+                    {{range .Comments}}
+                    <button class="comments">
+                        <div class="info-user-post">
+                            <div id="cercle"></div>
                             <p>{{.Username}}</p>
-                            <p>{{.Content}}</p>
-                        </div>
-                        <div class="favorite-heart">
                             <i class="fa fa-heart unlike"></i>
                         </div>
+                        <div class="post-content">
+                            <p>{{.Content}}</p>
+                        </div>
                     </button>
+                    {{end}}
+
                     <!-- {{range .Comments}}
                     <div class="post">
                         <div id="cercle"></div>
@@ -76,11 +94,8 @@
                         <div class="like"></div>
                     </div>
                     {{end}} -->
-
-                    <div id="comment{{.Pid}}" class="comment"></div>
-                </form>
+                </div>
             {{end}}
-            
         </div>
         <div class="addpost">
             <form action="/addpost">

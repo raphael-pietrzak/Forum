@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/profil.css">
+    <script src="/views/script.js"></script>
     <title>Profil</title>
 </head>
 <body>
@@ -12,6 +13,14 @@
     <div> 
         {{.User.Username}}
     </div>
+
+    <form action="/avatar" method="post">
+        <div>
+            <label for="image_uploads">Changer sa photo</label>
+            <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple>
+        </div>
+        <button id="submit">Submit</button>
+    </form>
 
     
 </body>

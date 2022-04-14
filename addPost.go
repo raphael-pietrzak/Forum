@@ -3,7 +3,6 @@ package forum
 import (
 	"database/sql"
 	"net/http"
-	"strconv"
 	"text/template"
 )
 
@@ -23,7 +22,6 @@ func AddPost(w http.ResponseWriter, r *http.Request) {
 		ErrParseForm(w, r)
 
 		post_content := r.Form.Get("post_content")
-		post_id,_ := strconv.Atoi(r.Form.Get("post_id"))
 		categorie := r.Form.Get("Sport")
 
 		UserLogin := GetUserByCookies(w, r)
@@ -34,7 +32,7 @@ func AddPost(w http.ResponseWriter, r *http.Request) {
 		_, err := db.Exec(SqlExec)
 		Debug(err)
 
-		Posts = append(Posts, Post{Pid: post_id, Content: post_content, Category: categorie, Uid: UserLogin.Uid, Username: UserLogin.Username})
+		Posts = append(Posts, Post{Pid: len(Posts)+1, Content: post_content, Category: categorie, Uid: UserLogin.Uid, Username: UserLogin.Username})
 		http.Redirect(w, r, "/", 301)
 	}
 }
