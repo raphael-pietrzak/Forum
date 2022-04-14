@@ -20,17 +20,20 @@ type Send struct {
 }
 
 type Post struct {
-	User User
+	Username string
+	Uid 	 string
 	Category string
 	Content  string
-	Comments []string
+	Comments []Comment
 	Pid       int
 }
 
 type Comment struct {
+	Uid string
 	Cid     int
 	Content string
 	Pid     int
+	Username string
 }
 
 type User struct {
