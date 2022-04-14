@@ -48,12 +48,13 @@ func RecupPost() []Post {
 		//posts
 		var pid int
 		var content string
+		var like int
 		var category string
 		var uid string
 
-		err = rows.Scan(&pid, &content, &category, &uid)
+		err = rows.Scan(&pid, &content, &like, &category, &uid)
 		Debug(err)
-		newTab = append(newTab, Post{Pid: pid, Content: content, Category: category, Uid: uid})
+		newTab = append(newTab, Post{Pid: pid, Content: content, Like: like, Category: category, Uid: uid})
 	}
 
 	err = rows.Err()

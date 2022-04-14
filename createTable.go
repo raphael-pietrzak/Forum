@@ -24,9 +24,9 @@ func TableCreation() {
 	(
 		pid INTEGER PRIMARY KEY, 
 		content TEXT,
+		like INTEGER, 
 		category TEXT,
 		uid TEXT
-
 	);`)
 
 	Debug(err)
@@ -35,6 +35,7 @@ func TableCreation() {
 	(
 		cid INTEGER PRIMARY KEY,
 		pid INTEGER,
+		like INTEGER, 
 		content TEXT,
 		uid TEXT
 	); `)

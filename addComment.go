@@ -22,7 +22,6 @@ func AddComment(w http.ResponseWriter, r *http.Request) {
 	SqlExec := `INSERT INTO comments ('content', 'pid', 'uid') 
 	VALUES ('` + comment_content + "','" + r.Form.Get("post_id") + "','" + UserLogin.Uid + "');"
 
-
 	_, err := db.Exec(SqlExec)
 	Debug(err)
 

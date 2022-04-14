@@ -45,35 +45,49 @@
     </header>
     <main>
         <div class="container">
-            {{range .Post}}
+            <!-- {{range .Post}} -->
                 <div class="post-comment">
-                    <form id="addNewComment">
+                    <!-- <form id="addNewComment">
                         <input type="hidden" name="post_id" value="{{.Pid}}">
-                        <button onclick="NewComment(id)" id="{{.Pid}}" type="button" class="post">
+                        <button onclick="NewComment(id)" id="{{.Pid}}" type="button" class="post"> -->
                             <div class="info-user-post">
                                 <div id="cercle"></div>
-                                <p>{{.Username}}</p>
-                                <i class="fa fa-heart unlike"></i>
+                                 <p>{{.Username}}</p>
+                                 <form action="/unlike" method="POST">
+                                    <!--<button type="submit" name="unlike" value="like" >
+                                        <i class="fa fa-heart unlike"></i>
+                                    </button>-->
+                                    <button type="submit" class="unlike">
+                                        <i class="fa fa-heart unlike"></i>
+                                    </button>
+                                         <!--<button type="submit" name="unlike" value="like" >-->
+                                </form>
                             </div>
                             <div class="post-content">
-                                <p>{{.Content}}</p>
-                            </div>
-                        </button>
+                                 <p>{{.Content}}</p>
+                            </div> 
+                        <!-- </button>
                         <div id="comment{{.Pid}}" class="comment"></div>
-                    </form>
+                    </form> -->
 
-                    {{range .Comments}}
+                    <!-- {{range .Comments}} -->
+                </div id="toto">
                     <button class="comments">
                         <div class="info-user-post">
                             <div id="cercle"></div>
-                            <p>{{.Username}}</p>
-                            <i class="fa fa-heart unlike"></i>
+                            <!-- <p>{{.Username}}</p> -->
+                            <form action="/unlike" method="POST">
+                               
+
+                                <button type="submit" value="like">Like</button>
+                            </form>
                         </div>
                         <div class="post-content">
-                            <p>{{.Content}}</p>
+                            <!-- <p>{{.Content}}</p> -->
                         </div>
                     </button>
-                    {{end}}
+                </div>
+                    <!-- {{end}} -->
 
                     <!-- {{range .Comments}}
                     <div class="post">
@@ -86,7 +100,7 @@
                     </div>
                     {{end}} -->
                 </div>
-            {{end}}
+            <!-- {{end}} -->
         </div>
         <div class="addpost">
             <form action="/addpost">
@@ -105,9 +119,11 @@
         .forEach(function(el) {  
         el.addEventListener("click",
             function() {
-            if (this.classList.contains("unlike"))
+            if (this.classList.contains("unlike")) { 
                 this.classList.toggle("like");
-            else this.classList.toggle("unlike");
+                this.value = "like";
+            } else (this.classList.toggle("unlike"))
+                this.value = "unlike"
             });
         });
     </script>

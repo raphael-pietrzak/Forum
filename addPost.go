@@ -28,7 +28,7 @@ func AddPost(w http.ResponseWriter, r *http.Request) {
 
 		UserLogin := GetUserByCookies(w, r)
 		// fmt.Println(categorie)
-		SqlExec := `INSERT INTO posts ('content', 'category', 'uid') 
+		SqlExec := `INSERT INTO posts ('content', 'category', 'uid', 'like') 
 		VALUES ('` + post_content + `', '` + categorie + `', '` + UserLogin.Uid + `');`
 
 		_, err := db.Exec(SqlExec)
