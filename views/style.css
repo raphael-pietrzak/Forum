@@ -80,6 +80,12 @@ main {
     border-radius: 200px;
     background: #1dabb8;
 }
+#cercle-log {
+    height: 60px;
+    width: 60px;
+    border-radius: 200px;
+    background: #1dabb8;
+}
 
 .post {
     display: flex;

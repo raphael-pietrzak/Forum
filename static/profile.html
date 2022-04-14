@@ -5,13 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/profil.css">
+    <link rel="icon" type="image/x-icon" href="/views/i.ico">
+    <script src="/views/script.js"></script>
     <title>Profil</title>
 </head>
 <body>
-
-    <div> 
-        {{.User.Username}}
+    <div class="user-profile">
+        <div id="profile-picture"></div>
+        <h2>{{.User.Username}}</h2>
     </div>
+    <div class="my-posts">
+        <h2>Mes posts</h2>
+        {{range .Post}}
+        <button class="post">
+            <div class="post-content">
+                <p>{{.Content}}</p>
+                <i class="fa fa-heart unlike" name="like" value="unlike"></i>
+            </div>
+        </button>
+        {{end}}
+    </div>
+
+    <form action="/avatar" method="post">
+        <div>
+            <label for="image_uploads">Changer sa photo</label>
+            <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple>
+        </div>
+        <button id="submit">Submit</button>
+    </form>
 
     
 </body>

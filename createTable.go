@@ -15,7 +15,9 @@ func TableCreation() {
 		uid TEXT, 
 		username TEXT, 
 		email TEXT, 
-		passwd TEXT
+		passwd TEXT,
+		avatar TEXT
+
 	);`)
 
 	Debug(err)

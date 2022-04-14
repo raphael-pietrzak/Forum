@@ -13,8 +13,8 @@ func AddComment(w http.ResponseWriter, r *http.Request) {
 	ErrParseForm(w, r)
 
 	comment_content := r.Form.Get("comment_content")
-	id_post, e := strconv.Atoi(r.Form.Get("post_id")) 
-	id_post -= 1 
+	id_post, e := strconv.Atoi(r.Form.Get("post_id"))
+	id_post -= 1
 	Debug(e)
 
 	UserLogin := GetUserByCookies(w, r)

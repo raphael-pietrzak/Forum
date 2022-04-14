@@ -1,6 +1,5 @@
 
 function NewComment(id) {
-  console.log(document.querySelectorAll(".fa-heart"))
   // .forEach(function(el) {  
   // el.addEventListener("click",
   console.log(id)
@@ -87,5 +86,7 @@ function SelectFilters() {
 }
 
 
+// =============== Pour Audran ================================
 
+// ============================== Pour Audran =====================================
 

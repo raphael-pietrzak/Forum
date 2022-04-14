@@ -43,6 +43,7 @@ type User struct {
 	Email    string
 	Passwd   string
 	Username string
+	Avatar	 string
 }
 
 type Cookie struct {

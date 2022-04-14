@@ -33,6 +33,7 @@ func main() {
 	http.HandleFunc("/logout", f.Logout)
 	http.HandleFunc("/profile", f.Profile)
 	http.HandleFunc("/unlike",f.Mike)
+	http.HandleFunc("/avatar", f.ChangementAvatar)
 
 	//Show #CSS
 	fs := http.FileServer(http.Dir("./views"))
