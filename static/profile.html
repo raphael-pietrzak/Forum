@@ -8,11 +8,20 @@
     <title>Profil</title>
 </head>
 <body>
-
-    <div> 
-        {{.User.Username}}
+    <div class="user-profile">
+        <div id="profile-picture"></div>
+        <h2>{{.User.Username}}</h2>
     </div>
-
-    
+    <div class="my-posts">
+        <h2>Mes posts</h2>
+        {{range .Post}}
+        <button class="post">
+            <div class="post-content">
+                <p>{{.Content}}</p>
+                <i class="fa fa-heart unlike" name="like" value="unlike"></i>
+            </div>
+        </button>
+        {{end}}
+    </div>
 </body>
 </html>

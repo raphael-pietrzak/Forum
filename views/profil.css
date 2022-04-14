@@ -1,0 +1,70 @@
+
+body {
+    background-color: rgb(42, 44, 46);
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.my-posts {
+    background-color: white;
+    width: 100%;
+    height: 100vh;
+}
+
+.user-profile {
+    color: white;
+    width: 30%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#profile-picture {
+    height: 200px;
+    width: 200px;
+    border-radius: 200px;
+    background: #1dabb8;
+}
+
+#cercle {
+    height: 40px;
+    width: 40px;
+    border-radius: 200px;
+    background: #1dabb8;
+}
+
+
+.post {
+    border: none;
+    width: 50vw;
+    min-height: 10vh;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 20px;
+    font-size: large;
+}
+
+.post-content {
+    display: flex;
+    width: 100%;
+}
+.post-content p {
+    margin: 0px 0;
+    display: flex;
+    text-align: start;
+    width: 80%;
+    word-wrap : break-word;     
+}
+
+.fa-heart {
+    margin-left: auto;
+    cursor: pointer;
+}
+.unlike{
+    color:#ccc;
+    }
+  
+.like{
+    color: rgb(199, 0, 0);
+}
