@@ -53,10 +53,7 @@ func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
 		tmpl.Execute(w, Posts)
 	case "POST":
 		db, _ := sql.Open("sqlite3", "./database.db")
-		if err := r.ParseForm(); err != nil {
-			fmt.Fprintf(w, "ParseForm() err: %v", err)
-			return
-		}
+		ErrParseForm(w, r)
 
 		mail := r.Form.Get("mail")
 		password := r.Form.Get("new_password")

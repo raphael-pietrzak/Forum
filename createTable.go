@@ -2,7 +2,6 @@ package forum
 
 import (
 	"database/sql"
-
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -16,7 +15,9 @@ func TableCreation() {
 		uid TEXT, 
 		username TEXT, 
 		email TEXT, 
-		passwd TEXT
+		passwd TEXT,
+		avatar TEXT
+
 	);`)
 
 	Debug(err)

@@ -41,7 +41,6 @@ function NewComment(id) {
   document.getElementById("comment" + id).appendChild(input);
 }
 
-
 function UserProfile(username) {
   if (username != "") {
   document.getElementById("user-profile").style.display = "none";
@@ -50,10 +49,44 @@ function UserProfile(username) {
   }
 }
 
+function incrementValue()
+{
+  var value = parseInt(document.getElementById('number').value, 10);
+  value = isNaN(value) ? 0 : value;
+  value++;
+  document.getElementById('number').value = value;
+}
+
+function decrementValue()
+{
+  var value = parseInt(document.getElementById('number2').value, 10);
+  value = isNaN(value) ? 0 : value;
+  value++;
+  document.getElementById('number2').value = value;
+}
+
+
+function incrementValueC()
+{
+  var value = parseInt(document.getElementById('number3').value, 10);
+  value = isNaN(value) ? 0 : value;
+  value++;
+  document.getElementById('number3').value = value;
+}
+
+function decrementValueC()
+{
+  var value = parseInt(document.getElementById('number4').value, 10);
+  value = isNaN(value) ? 0 : value;
+  value++;
+  document.getElementById('number4').value = value;
+}
 function SelectFilters() {
   document.getElementsByClassName("choiceCategory")[0].style.display = "block"
 }
 
 
+// =============== Pour Audran ================================
 
+// ============================== Pour Audran =====================================
 

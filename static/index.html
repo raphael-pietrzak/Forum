@@ -3,21 +3,16 @@
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/style.css">
     <script src="/views/script.js"></script>
     <title>Accueil</title>
-
 </head>
-
-
 <body>
     <header>
         <h1>Forum</h1>
-
         <div class="SelectFilters">
             <button onclick="SelectFilters()" class="button_profil">Filters</button>
             
@@ -31,7 +26,6 @@
                 <button name="Confirm">Apply</button>
             </form>
         </div>
-
         <div id="user-profile">
             <form action="/login">
                 <button class="button_login">Login</button>
@@ -40,7 +34,6 @@
                 <button class="button_sign_up">Sign up</button>
             </form>
         </div>
-
         <div class="dropdown" id="name">
             <form action="/profile" method="post">
                 <button id="cercle-log"></button>
@@ -50,8 +43,6 @@
             </form>
         </div>
     </header>
-
-
     <main>
         <div class="container">
             {{range .Post}}
@@ -103,15 +94,10 @@
             </form>
         </div>
     </main>
-
-
     <footer>
         <p>Copyright © 2020</p>
         <p>All rights reserved</p>
     </footer>
-
-
-
     <script> UserProfile("{{.User.Username}}");</script>
     <script>
         //favorite heart like/unlike

@@ -38,6 +38,7 @@ func GetUserByCookies(w http.ResponseWriter, r *http.Request) User {
 	var username string
 	var email string
 	var passwd string
+	var avatar string
 
 	if err != nil {
 		//fmt.Println("Cookie not found")
@@ -51,9 +52,9 @@ func GetUserByCookies(w http.ResponseWriter, r *http.Request) User {
 		Debug(err)
 
 		for rows.Next() {
-			err = rows.Scan(&id, &uid, &username, &email, &passwd)
+			err = rows.Scan(&id, &uid, &username, &email, &passwd, &avatar)
 			Debug(err)
 		}
 	}
-	return User{Id: id, Uid: uid, Email: email, Passwd: passwd, Username: username}
+	return User{Id: id, Uid: uid, Email: email, Passwd: passwd, Username: username, Avatar: avatar}
 }
