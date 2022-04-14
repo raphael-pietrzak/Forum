@@ -12,40 +12,26 @@
     <title>Sign_up</title>
 </head>
 <body class="align">
-
     <div class="grid">
-  
       <form action="/adduser" method="post" class="form login">
-  
         <header class="login__header">
           <h3 class="login__title">Sign up</h3>
         </header>
-  
         <div class="login__body">
-
           <div class="form__field">
             <input type="text" placeholder="User name.." name="user_name" required>
           </div>
-  
           <div class="form__field">
             <input type="email" placeholder="Email.." name="mail" required>
           </div>
-  
           <div class="form__field">
             <input type="password" placeholder="Password.." name="password" required>
           </div>
-  
         </div>
-  
         <footer class="login__footer">
           <input type="submit" value="Sign up">
-
         </footer>
-
-        
-  
       </form>
-  
     </div>
     <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     <script>
@@ -58,7 +44,6 @@
         console.log('Family Name: ' + profile.getFamilyName());
         console.log("Image URL: " + profile.getImageUrl());
         console.log("Email: " + profile.getEmail());
-
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);

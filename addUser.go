@@ -25,10 +25,11 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 		mail := r.Form.Get("mail")
 		password := r.Form.Get("password")
 		uuid := uuid.New()
+		avatar := r.Form.Get("avatar")
 
 		// fmt.Println("le nouvel uuid est :", uuid)
 
-		_, err := db.Exec("INSERT INTO user ('uid','username','email', 'passwd') VALUES ('" + uuid.String() + "', '" + username + "', '" + mail + "', '" + Hash(password) + "')")
+		_, err := db.Exec("INSERT INTO user ('uid','username','email', 'passwd', 'avatar') VALUES ('" + uuid.String() + "', '" + username + "', '" + mail + "', '" + Hash(password) + avatar + "')")
 		Debug(err)
 
 		CreateCookie(w, r, uuid.String())

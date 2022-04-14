@@ -12,7 +12,7 @@
     <title>Accueil</title>
 </head>
 <body>
-    <header>
+<header>
         <h1>Forum</h1>
         <div class="SelectFilters">
             <button onclick="SelectFilters()" class="button_profil">Filters</button>
@@ -48,9 +48,9 @@
         <div class="container">
             <!-- {{range .Post}} -->
                 <div class="post-comment">
-                    <!-- <form id="addNewComment">
+                    <form id="addNewComment">
                         <input type="hidden" name="post_id" value="{{.Pid}}">
-                        <button onclick="NewComment(id)" id="{{.Pid}}" type="button" class="post"> -->
+                        <button onclick="NewComment(id)" id="{{.Pid}}" type="button" class="post">
                             <div class="info-user-post">
                                 <div id="cercle"></div>
                                  <p>{{.Username}}</p>
