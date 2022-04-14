@@ -2,7 +2,6 @@ package forum
 
 import (
 	"database/sql"
-
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -13,8 +12,10 @@ func TableCreation() {
 	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS user 
 	(
 		id INTEGER PRIMARY KEY, 
-		uid TEXT, username TEXT, 
-		email TEXT, passwd TEXT
+		uid TEXT, 
+		username TEXT, 
+		email TEXT, 
+		passwd TEXT
 	);`)
 
 	Debug(err)
@@ -22,7 +23,6 @@ func TableCreation() {
 	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS posts 
 	(
 		pid INTEGER PRIMARY KEY, 
-		like INT NOT NULL, 
 		content TEXT
 	);`)
 
@@ -31,13 +31,13 @@ func TableCreation() {
 	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS comments 
 	(
 		cid INTEGER PRIMARY KEY,
-		like INT,
-		content TEXT,
 		pid INTEGER,
-		CONSTRAINT fk_pid 
-		FOREIGN KEY (pid)
-		REFERENCES  posts(pid)
+		content TEXT
 	); `)
 
 	Debug(err)
 }
+
+		// CONSTRAINT fk_pid 
+		// FOREIGN KEY (pid) 
+		// REFERENCES  posts(pid)

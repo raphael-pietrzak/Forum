@@ -6,13 +6,13 @@ import (
 	"text/template"
 )
 
-func Profil(w http.ResponseWriter, r *http.Request) {
+func Profile(w http.ResponseWriter, r *http.Request) {
 	UserLogin := GetUserByCookies(w, r)
 
 	categorie := r.Form.Get("Sport")
 	fmt.Println(categorie)
 	
 
-	tmpl := template.Must(template.ParseFiles("static/profil.html"))
+	tmpl := template.Must(template.ParseFiles("static/profile.html"))
 	tmpl.Execute(w, Send{User: UserLogin})
 }

@@ -21,6 +21,11 @@ func AddComment(w http.ResponseWriter, r *http.Request) {
 	id_post = id_post - 1
 	Debug(e)
 
+	UserLogin := GetUserByCookies(w, r)
+	if UserLogin.Uid == "" {
+		UserLogin.Uid = "0"
+	}
+
 
 	_, err := db.Exec("INSERT INTO comments ('content', 'pid') VALUES ('" + comment_content + "','" + r.Form.Get("post_id") + "');")
 	Debug(err)

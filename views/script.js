@@ -79,3 +79,9 @@ function decrementValueC()
   value++;
   document.getElementById('number4').value = value;
 }
+function SelectFilters() {
+  document.getElementsByClassName("choiceCategory")[0].style.display = "block"
+}
+
+
+

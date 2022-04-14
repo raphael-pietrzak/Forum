@@ -29,7 +29,6 @@ func AddPost(w http.ResponseWriter, r *http.Request) {
 		categorie := r.Form.Get("Sport")
 		fmt.Println(categorie)
 
-
 		_, err := db.Exec("INSERT INTO posts ('content') VALUES ('" + post_content + "');")
 		Debug(err)
 
