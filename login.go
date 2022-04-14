@@ -23,7 +23,6 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		}
 
 		Users = RecupUser()
-		fmt.Println("Users :", Users)
 
 		for i := range Users {
 			if Users[i].Email == r.Form.Get("mail") && Users[i].Passwd == Hash(r.Form.Get("password")) {
@@ -37,6 +36,13 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	}
 }
+
+func Logout(w http.ResponseWriter, r *http.Request) {
+
+	DeleteCookie(w, r)
+	http.Redirect(w, r, "/", 301)
+}
+
 
 func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
 
@@ -62,5 +68,6 @@ func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/login", 301)
 	}
 }
+
 
 

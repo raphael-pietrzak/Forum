@@ -1,35 +1,28 @@
 package forum
 
 import (
-	"fmt"
 	"net/http"
+	"text/template"
 )
 
 func Filters(w http.ResponseWriter, r *http.Request) {
-	switch r.Method {
-	case "GET":
-		// UserLogin := GetUserByCookies(w, r)
-		// tmpl := template.Must(template.ParseFiles("static/index.html"))
-		// tmpl.Execute(w, Send{Post: Posts, User: UserLogin, PostCategory: Category})
-		Home(w, r)
-	case "POST":
-		if err := r.ParseForm(); err != nil {
-			fmt.Fprintf(w, "ParseForm() err: %v", err)
-			return
-		}
 
-		categ := r.Form.Get("categ")
-		fmt.Println(categ)
+	Posts2 := []Post{}
 
-		Posts2 := Posts
-		Posts = []Post{}
+	ErrParseForm(w, r)
 
-		for _, v := range Posts2 {
-			if v.Category == categ {
-				Posts = append(Posts, v)
+	category := r.Form.Get("categ")
+	if category == "None" {
+		http.Redirect(w, r, "/", 301)
+	} else {
+		for _, v := range Posts {
+			if v.Category == category {
+				Posts2 = append(Posts2, v)
 			}
 		}
-
-		http.Redirect(w, r, "/", 301)
 	}
+	UserLogin := GetUserByCookies(w, r)
+
+	tmpl := template.Must(template.ParseFiles("static/index.html"))
+	tmpl.Execute(w, Send{Post: Posts2, User: UserLogin, PostCategory: Category})
 }

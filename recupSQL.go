@@ -48,14 +48,24 @@ func RecupPost() []Post {
 		//posts
 		var pid int
 		var content string
+		var category string
+		var uid string
 
-		err = rows.Scan(&pid, &content)
+		err = rows.Scan(&pid, &content, &category, &uid)
 		Debug(err)
-		newTab = append(newTab, Post{Pid: pid, Content: content})
+		newTab = append(newTab, Post{Pid: pid, Content: content, Category: category, Uid: uid})
 	}
 
 	err = rows.Err()
 	Debug(err)
+
+	for post := range newTab {
+		for _, user := range Users {
+			if newTab[post].Uid == user.Uid {
+				newTab[post].Username = user.Username
+			}
+		}
+	}
 
 	return newTab
 }
@@ -75,27 +85,28 @@ func RecupComment() []Comment {
 		var cid int
 		var pid int
 		var comment string
+		var uid string
 
-		err = rows.Scan(&cid, &pid, &comment)
+		err = rows.Scan(&cid, &pid, &comment, &uid)
 		Debug(err)
-		newTab = append(newTab, Comment{Cid: cid, Pid: pid, Content: comment})
-		// notfind := true
-		// fmt.Println(newTab)
+		newTab = append(newTab, Comment{Cid: cid, Pid: pid, Content: comment, Uid: uid})
 
-		// // for i := range newTab {
-		// // 	if newTab[i].Pid == pid {
-		// // 		notfind = false
-		// // 		newTab[i].Comments = append(newTab[i].Comments, comment)
-		// // 	}
-		// // }
-		// // if notfind {
-		// // 	newTab = append(newTab, Post{Pid: pid, Content: content, Comments: []string{comment}})
-		// // }
-
+		
 	}
 
 	err = rows.Err()
 	Debug(err)
-
+	for _,comment := range newTab {
+		for _,user := range Users {
+			if comment.Uid == user.Uid {
+				comment.Username = user.Username
+			}
+		}
+		for post := range Posts {
+			if comment.Pid == Posts[post].Pid {
+				Posts[post].Comments = append(Posts[post].Comments, comment)
+			}
+		}
+	}
 	return newTab
 }

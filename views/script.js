@@ -1,5 +1,8 @@
 
 function NewComment(id) {
+  console.log(document.querySelectorAll(".fa-heart"))
+  // .forEach(function(el) {  
+  // el.addEventListener("click",
   console.log(id)
   //add input div
   var input = document.createElement("div");
@@ -82,6 +85,7 @@ function decrementValueC()
 function SelectFilters() {
   document.getElementsByClassName("choiceCategory")[0].style.display = "block"
 }
+
 
 
 

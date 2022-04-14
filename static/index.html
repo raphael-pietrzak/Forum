@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,32 +10,27 @@
     <script src="/views/script.js"></script>
     <title>Accueil</title>
 </head>
-
 <body>
     <header>
         <h1>Forum</h1>
-
-        <div class="page">
-            <div class="SelectFilters">
-                <button onclick="SelectFilters()" class="button_profil">Filters</button>
-                <div class="choiceCategory" name="Category">
-                    <form action="/filters" method="post">
-                        <select name="categ">
-                            {{range .PostCategory}}
-                            <option value="{{.}}">{{.}}</option>
-                            {{end}}
-                        </select>
-                        <button name="Confirm">Apply</button>
-                    </form>
-                </div>
-            </div>
+        <div class="SelectFilters">
+            <button onclick="SelectFilters()" class="button_profil">Filters</button>
+            
+            <form action="/filters" method="post" class="choiceCategory" name="Category">
+                <select name="categ">
+                    <option value="None">None</option>
+                    {{range .PostCategory}}
+                    <option value="{{.}}">{{.}}</option>
+                    {{end}}
+                </select>
+                <button name="Confirm">Apply</button>
+            </form>
         </div>
-
         <div id="user-profile">
             <form action="/login">
                 <button class="button_login">Login</button>
             </form>
-            <form action="/sign_up">
+            <form action="/adduser">
                 <button class="button_sign_up">Sign up</button>
             </form>
         </div>
@@ -48,77 +44,74 @@
         </div>
     </header>
     <main>
-        <posts>
-            <div class="container">
-                {{range .Post}}
-                <form id="addNewComment">
-                    <button onclick="NewComment(id)" id="{{.Pid}}" type="button">{{.Content}}</button>
-                </form>
-            <div>
-                <div class="test2">
-                    <form>
-                        <input type="text" id="number3" value="0" />
-                        <div class="button-container2">
-                            <button type="button" onclick="incrementValueC()" class="button-container2">
-                                <img
-                                    src="https://thecloudlawyer.files.wordpress.com/2019/08/1200px-facebook_thumb_icon.svg_-1.png">
-                            </button>
-                        </div>
+        <div class="container">
+            {{range .Post}}
+                <div class="post-comment">
+                    <form id="addNewComment">
+                        <input type="hidden" name="post_id" value="{{.Pid}}">
+                        <button onclick="NewComment(id)" id="{{.Pid}}" type="button" class="post">
+                            <div class="info-user-post">
+                                <div id="cercle"></div>
+                                <p>{{.Username}}</p>
+                                <i class="fa fa-heart unlike"></i>
+                            </div>
+                            <div class="post-content">
+                                <p>{{.Content}}</p>
+                            </div>
+                        </button>
+                        <div id="comment{{.Pid}}" class="comment"></div>
                     </form>
-                    <form>
-                        <input type="text" id="number4" value="0" />
-                        <div class="button-container2">
-                            <button type="button" onclick="decrementValueC()" class="button-container2">
-                                <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Facebook_Thumb_icon.svg/1280px-Facebook_Thumb_icon.svg.png">
-                            </button>
+
+                    {{range .Comments}}
+                    <button class="comments">
+                        <div class="info-user-post">
+                            <div id="cercle"></div>
+                            <p>{{.Username}}</p>
+                            <i class="fa fa-heart unlike"></i>
                         </div>
-                    </form>
+                        <div class="post-content">
+                            <p>{{.Content}}</p>
+                        </div>
+                    </button>
+                    {{end}}
+
+                    <!-- {{range .Comments}}
+                    <div class="post">
+                        <div id="cercle"></div>
+                        <div class="post-text">
+                            <p>{{.Username}}</p>
+                            <p>{{.Content}}</p>
+                        </div>
+                        <div class="like"></div>
+                    </div>
+                    {{end}} -->
                 </div>
-                {{range .Comments}}
-                {{.}}
-                <div class="test">
-                    <form>
-                        <input type="text" id="number" value="0" />
-                        <div class="button-container2">
-                            <button type="button" onclick="incrementValue()" class="button-container2">
-                                <img
-                                    src="https://thecloudlawyer.files.wordpress.com/2019/08/1200px-facebook_thumb_icon.svg_-1.png">
-                            </button>
-                        </div>
-                    </form>
-                    <form>
-                        <input type="text" id="number2" value="0" />
-                        <div class="button-container2">
-                            <button type="button" onclick="decrementValue()" class="button-container2">
-                                <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Facebook_Thumb_icon.svg/1280px-Facebook_Thumb_icon.svg.png">
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                
-                {{end}}
-                <div id="comment{{.Pid}}" class="comment"></div>
-                    
-                {{end}}
-            </div>
-            <br>
-            <br>
-            <br>
-            <br>
+            {{end}}
+        </div>
+        <div class="addpost">
             <form action="/addpost">
                 <button>Post</button>
             </form>
-        </posts>
+        </div>
     </main>
     <footer>
         <p>Copyright © 2020</p>
         <p>All rights reserved</p>
     </footer>
     <script> UserProfile("{{.User.Username}}");</script>
+    <script>
+        //favorite heart like/unlike
+        document.querySelectorAll(".fa-heart")
+        .forEach(function(el) {  
+        el.addEventListener("click",
+            function() {
+            if (this.classList.contains("unlike"))
+                this.classList.toggle("like");
+            else this.classList.toggle("unlike");
+            });
+        });
+    </script>
 </body>
-
 </html>
 
 
