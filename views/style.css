@@ -141,7 +141,9 @@ main {
     word-wrap : break-word; 
 }
 
+
 .comments {
+    display: none;
     border: none;
     width: 30vw;
     min-height: 10vh;

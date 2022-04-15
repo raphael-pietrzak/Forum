@@ -24,6 +24,7 @@ func DeleteCookie(w http.ResponseWriter, r *http.Request) {
 		Value:  "",
 		MaxAge: -1,
 	}
+
 	http.SetCookie(w, cookie)
 }
 
@@ -44,7 +45,7 @@ func GetUserByCookies(w http.ResponseWriter, r *http.Request) User {
 		//fmt.Println("Cookie not found")
 	} else {
 		//fmt.Println("Cookie found")
-
+		
 		db, _ := sql.Open("sqlite3", "./database.db")
 
 		rows, err := db.Query("SELECT * FROM user WHERE uid='" + cookie.Value + "'")

@@ -3,27 +3,13 @@ body {
     background-color: rgb(42, 44, 46);
     margin: 0;
     display: flex;
-    flex-direction: row;
-}
-
-.my-posts {
-    background-color: white;
-    width: 100%;
-    height: 100vh;
-    display: flex;
     flex-direction: column;
-    align-items: center;
-
 }
-
 
 .user-profile {
     color: white;
-    width: 40%;
-    height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
 #profile-picture {
     height: 200px;
@@ -39,6 +25,13 @@ body {
     background: #1dabb8;
 }
 
+.my-posts {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    min-height: 70vh;
+
+}
 
 .post {
     border: none;
@@ -75,61 +68,5 @@ body {
 }
 html {
     font-family: sans-serif;
-  }
-
-form {
-width: 600px;
-background: #ccc;
-margin: 0 auto;
-padding: 20px;
-border: 1px solid black;
 }
 
-form ol {
-padding-left: 0;
-}
-
-form li, div > p {
-background: #eee;
-display: flex;
-justify-content: space-between;
-margin-bottom: 10px;
-list-style-type: none;
-}
-
-input[type='file'] {
-    color: transparent;
-  }
-
-::-webkit-file-upload-button {
-    display: none;
- }
-
-form img {
-height: 64px;
-order: 1;
-}
-
-form p {
-line-height: 32px;
-padding-left: 10px;
-}
-
-form label, form button {
-background-color: #7F9CCB;
-padding: 5px 10px;
-border-radius: 5px;
-border: 1px ridge black;
-font-size: 0.8rem;
-height: auto;
-}
-
-form label:hover, form button:hover {
-background-color: #2D5BA3;
-color: white;
-}
-
-form label:active, form button:active {
-background-color: #0D3F8F;
-color: white;
-}

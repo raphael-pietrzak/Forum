@@ -47,6 +47,8 @@
         <div class="container">
             {{range .Post}}
                 <div class="post-comment">
+
+
                     <form id="addNewComment">
                         <input type="hidden" name="post_id" value="{{.Pid}}">
                         <button onclick="NewComment(id)" id="{{.Pid}}" type="button" class="post">
@@ -74,6 +76,8 @@
                         </div>
                     </button>
                     {{end}}
+
+
                 </div>
             {{end}}
         </div>

@@ -2,7 +2,6 @@ package forum
 
 import (
 	"database/sql"
-	"fmt"
 	"net/http"
 	"text/template"
 
@@ -26,7 +25,7 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 		mail := r.Form.Get("mail")
 		password := r.Form.Get("password")
 		uuid := uuid.New()
-		avatar := "default.png"
+		avatar := "user.png"
 		user := "user"
 
 		if mail == "r@r" {
@@ -34,11 +33,10 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 			user = "admin"
 		}
 
-		_, err := db.Exec(`INSERT INTO user ('uid', 'username', 'email', 'passwd', 'avatar', 'type') VALUES (?, ?, ?, ?, ?, ?)`, uuid.String(), username, mail, password, avatar, user)
+		_, err := db.Exec(`INSERT INTO user ('uid', 'username', 'email', 'passwd', 'avatar', 'type') VALUES (?, ?, ?, ?, ?, ?)`, uuid.String(), username, mail, Hash(password), avatar, user)
 		Debug(err)
 
 		CreateCookie(w, r, uuid.String())
-		fmt.Println(GetUserByCookies(w, r))
 		http.Redirect(w, r, "/", 301)
 	}
 }

@@ -3,7 +3,6 @@ package forum
 import (
 	"fmt"
 	"net/http"
-
 	_ "github.com/google/uuid"
 )
 
@@ -17,6 +16,7 @@ type Send struct {
 	Post         []Post
 	User         User
 	PostCategory []string
+	Comment      []Comment
 }
 
 type Post struct {
@@ -24,6 +24,7 @@ type Post struct {
 	Uid      string
 	Category string
 	Content  string
+	Like     int
 	Comments []Comment
 	Pid      int
 }
