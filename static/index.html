@@ -23,11 +23,11 @@
                     <option value="{{.}}">{{.}}</option>
                     {{end}}
                 </select>
-                <select>
+                <select  id="select-date" name="Date">
                     <option value="Croissante">Date Croissante</option>
                     <option value="Decroissante">Date Décroissante</option>
                 </select>
-                <button name="Confirm">Apply</button>
+                <button onclick="SelectDate()" name="Confirm">Apply</button>
             </form>
         </div>
         <div class="user-log" id="user-profile">

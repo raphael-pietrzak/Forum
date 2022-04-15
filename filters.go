@@ -12,10 +12,9 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 
 	ErrParseForm(w, r)
 
-	croissante := r.Form.Get("Croissante")
-	decroissante := r.Form.Get("Decroissante")
-	fmt.Println(croissante)
-	fmt.Println(decroissante)
+
+	date := r.Form.Get("Date")
+	fmt.Println(date)
 
 	category := r.Form.Get("categ")
 	fmt.Println(category)
