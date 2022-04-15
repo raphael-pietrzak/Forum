@@ -21,18 +21,18 @@ type Send struct {
 
 type Post struct {
 	Username string
-	Uid 	 string
+	Uid      string
 	Category string
 	Content  string
 	Comments []Comment
-	Pid       int
+	Pid      int
 }
 
 type Comment struct {
-	Uid string
-	Cid     int
-	Content string
-	Pid     int
+	Uid      string
+	Cid      int
+	Content  string
+	Pid      int
 	Username string
 }
 
@@ -42,7 +42,8 @@ type User struct {
 	Email    string
 	Passwd   string
 	Username string
-	Avatar	 string
+	Avatar   string
+	Type     string
 }
 
 type Cookie struct {

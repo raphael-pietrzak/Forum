@@ -12,9 +12,17 @@
     <div class="user-profile">
         <div id="profile-picture"></div>
         <h2>{{.User.Username}}</h2>
+        <form action="/avatar" method="post">
+            <div>
+                <label for="image_uploads">Changer sa photo</label>
+                <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple>
+            </div>
+            <button id="submit">Submit</button>
+        </form>
     </div>
     <div class="my-posts">
         <h2>Mes posts</h2>
+
         {{range .Post}}
         <button class="post">
             <div class="post-content">
@@ -25,13 +33,7 @@
         {{end}}
     </div>
 
-    <form action="/avatar" method="post">
-        <div>
-            <label for="image_uploads">Changer sa photo</label>
-            <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple>
-        </div>
-        <button id="submit">Submit</button>
-    </form>
+
 
     
 </body>

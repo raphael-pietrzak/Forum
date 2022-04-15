@@ -12,13 +12,13 @@
 </head>
 <body>
     <header>
-        <h1>Forum</h1>
+        <h1 class="forum">Forum</h1>
         <div class="SelectFilters">
-            <button onclick="SelectFilters()" class="button_profil">Filters</button>
+            <button onclick="SelectFilters()" class="button_filters">Filters</button>
             
-            <form action="/filters" method="post" class="choiceCategory" name="Category">
+            <form action="/filters" method="post" class="filters" name="Category" id="filters">
                 <select name="categ">
-                    <option value="None">None</option>
+                    <option value="None">Tout</option>
                     {{range .PostCategory}}
                     <option value="{{.}}">{{.}}</option>
                     {{end}}
@@ -26,7 +26,7 @@
                 <button name="Confirm">Apply</button>
             </form>
         </div>
-        <div id="user-profile">
+        <div class="user-log" id="user-profile">
             <form action="/login">
                 <button class="button_login">Login</button>
             </form>
@@ -34,12 +34,12 @@
                 <button class="button_sign_up">Sign up</button>
             </form>
         </div>
-        <div class="dropdown" id="name">
-            <form action="/profile" method="post">
+        <div class="picture-log" id="name">
+            <form action="/profile" method="post" class="pict-log-height">
                 <button id="cercle-log"></button>
             </form>
-            <form action="/logout" method="POST" class="dropdown-content">
-                <button>Log out</button>
+            <form action="/logout" method="POST" >
+                <button class="log-out">Log out</button>
             </form>
         </div>
     </header>
@@ -74,42 +74,23 @@
                         </div>
                     </button>
                     {{end}}
-
-                    <!-- {{range .Comments}}
-                    <div class="post">
-                        <div id="cercle"></div>
-                        <div class="post-text">
-                            <p>{{.Username}}</p>
-                            <p>{{.Content}}</p>
-                        </div>
-                        <div class="like"></div>
-                    </div>
-                    {{end}} -->
                 </div>
             {{end}}
         </div>
-        <div class="addpost">
+        <div class="addpost" id="addpost">
             <form action="/addpost">
                 <button>Post</button>
             </form>
         </div>
     </main>
     <footer>
-        <p>Copyright © 2020</p>
+        <p>Copyright © 2022</p>
         <p>All rights reserved</p>
     </footer>
-    <script> UserProfile("{{.User.Username}}");</script>
-    <script>
-        //favorite heart like/unlike
-        document.querySelectorAll(".fa-heart")
-        .forEach(function(el) {  
-        el.addEventListener("click",
-            function() {
-            if (this.classList.contains("unlike"))
-                this.classList.toggle("like");
-            else this.classList.toggle("unlike");
-            });
-        });
+    <script> 
+        UserPermissions("{{.User.Type}}");
+        Like();
+        document.querySelector('input').setAttribute('autofocus', 'autofocus');
     </script>
 </body>
 </html>

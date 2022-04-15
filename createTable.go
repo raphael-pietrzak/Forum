@@ -16,7 +16,8 @@ func TableCreation() {
 		username TEXT, 
 		email TEXT, 
 		passwd TEXT,
-		avatar TEXT
+		avatar TEXT,
+		type TEXT
 
 	);`)
 

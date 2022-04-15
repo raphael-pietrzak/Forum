@@ -6,7 +6,6 @@ import (
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
-	// Check Cookie
 	UserLogin := GetUserByCookies(w, r)
 
 	tmpl := template.Must(template.ParseFiles("static/index.html"))

@@ -19,15 +19,11 @@ func AddComment(w http.ResponseWriter, r *http.Request) {
 
 	UserLogin := GetUserByCookies(w, r)
 
-	SqlExec := `INSERT INTO comments ('content', 'pid', 'uid') 
-	VALUES ('` + comment_content + "','" + r.Form.Get("post_id") + "','" + UserLogin.Uid + "');"
-
-	_, err := db.Exec(SqlExec)
+	_, err := db.Exec(`INSERT INTO comments ('content', 'pid', 'uid') VALUES (?, ?, ?)`, comment_content, r.Form.Get("post_id"), UserLogin.Uid)
 	Debug(err)
 
 	NewComment := Comment{Cid: len(Posts[id_post].Comments) + 1, Content: comment_content, Uid: UserLogin.Uid, Username: UserLogin.Username}
 
 	Posts[id_post].Comments = append(Posts[id_post].Comments, NewComment)
 	http.Redirect(w, r, "/", 301)
-
 }
