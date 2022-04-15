@@ -147,7 +147,7 @@ main {
 
 
 .comments {
-    display: none;
+    /* display: none; */
     border: none;
     width: 30vw;
     min-height: 10vh;

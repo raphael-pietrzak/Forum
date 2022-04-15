@@ -17,9 +17,7 @@ func main() {
 
 	//Recup Data
 	f.Category = []string{"Sport", "Jeux", "Nourriture"}
-	f.Users = f.RecupUser()
-	f.Posts = f.RecupPost()
-	f.Comments = f.RecupComment()
+
 
 	//HandleFunc
 	http.HandleFunc("/", f.Home)

@@ -53,8 +53,8 @@
                         <input type="hidden" name="post_id" value="{{.Pid}}">
                         <button onclick="NewComment(id)" id="{{.Pid}}" type="button" class="post">
                             <div class="info-user-post">
-                                <div id="cercle"></div>
-                                <p>{{.Username}}</p>
+                                <div id="cercle" style="background-image: url('profil/{{.User.Avatar}}');"></div>
+                                <p>{{.User.Username}}</p>
                                 <i class="fa fa-heart unlike" name="like" value="unlike"></i>
                             </div>
                             <div class="post-content">
@@ -67,8 +67,8 @@
                     {{range .Comments}}
                     <button class="comments">
                         <div class="info-user-post">
-                            <div id="cercle"></div>
-                            <p>{{.Username}}</p>
+                            <div id="cercle" style="background-image: url('profil/{{.User.Avatar}}');"></div>
+                            <p>{{.User.Username}}</p>
                             <i class="fa fa-heart unlike"></i>
                         </div>
                         <div class="post-content">
