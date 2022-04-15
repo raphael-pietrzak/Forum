@@ -56,7 +56,6 @@ function SelectFilters() {
   } else {
     document.getElementById("filters").style.display = "none";
   }
-  // document.getElementsByClassName("choiceCategory")[0].style.display = "block"
 }
 
 

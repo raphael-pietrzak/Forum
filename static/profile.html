@@ -12,13 +12,16 @@
 <body>
     <div class="user-profile">
         <div id="profile-picture" class="profile-picture" style="background-image: url('profil/{{.User.Avatar}}');"></div>
-        <h2>{{.User.Username}}</h2>
+        <h2 class="username">{{.User.Username}}</h2>
         <form action="/avatar" method="post" enctype="multipart/form-data" class="change-picture" id="myForm">
             <div>
                 <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple >
             </div>
             <button id="submit">Submit</button>
         </form>
+        <div class="type">
+            <p>{{.User.Type}}</p>
+        </div>
     </div>
     <div class="my-posts">
         <h2>Mes posts</h2>
@@ -31,15 +34,7 @@
         </button>
         {{end}}
     </div>
-    <script>
-        var auto_refresh = setInterval(function() { submitform(); }, 10000);
-        
-        function submitform()
-        {
-          alert('test');
-          document.getElementById("myForm").submit();
-        }
-    </script>
+
 
     
 </body>
