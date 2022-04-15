@@ -60,6 +60,8 @@ header{
     border: none;
     margin-bottom: 20px;
     margin-top: 20px;
+    background-position: center center;
+    background-size: 110%;
 }
 
 .log-out  {
@@ -95,6 +97,8 @@ main {
     width: 40px;
     border-radius: 200px;
     background: #1dabb8;
+    background-position: center center;
+    background-size: 110%;
 }
 
 .post-comment{
@@ -143,7 +147,7 @@ main {
 
 
 .comments {
-    display: none;
+    /* display: none; */
     border: none;
     width: 30vw;
     min-height: 10vh;

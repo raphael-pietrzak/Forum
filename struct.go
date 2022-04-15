@@ -3,6 +3,7 @@ package forum
 import (
 	"fmt"
 	"net/http"
+
 	_ "github.com/google/uuid"
 )
 
@@ -21,7 +22,7 @@ type Send struct {
 }
 
 type Post struct {
-	Username string
+	User     User
 	Uid      string
 	Category string
 	Content  string
@@ -35,7 +36,7 @@ type Comment struct {
 	Cid      int
 	Content  string
 	Pid      int
-	Username string
+	User   User
 }
 
 type User struct {

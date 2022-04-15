@@ -35,7 +35,6 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 		}
 
 		AlreadyUsed := false
-		Users := RecupUser()
 		for _, v := range Users {
 			fmt.Println(v.Email)
 			if v.Email == mail {
@@ -43,13 +42,13 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 				Data.ErrorMessage = "Email déjà utilisé"
 			}
 		}
-		if AlreadyUsed == false {
+		if AlreadyUsed  {
+			http.Redirect(w, r, "/adduser", 301)
+		} else {
 			_, err := db.Exec(`INSERT INTO user ('uid', 'username', 'email', 'passwd', 'avatar', 'type') VALUES (?, ?, ?, ?, ?, ?)`, uuid.String(), username, mail, Hash(password), avatar, user)
 			Debug(err)
 			CreateCookie(w, r, uuid.String())
 			http.Redirect(w, r, "/", 301)
-		} else {
-			http.Redirect(w, r, "/adduser", 301)
 		}
 
 	}

@@ -9,16 +9,20 @@ body {
 .user-profile {
     color: white;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    height: 25vh;
+}
+.change-picture {
+    margin-left: auto;
 }
 #profile-picture {
-    height: 200px;
-    width: 200px;
+    margin-left: 30px;
+    height: 100px;
+    width: 100px;
     border-radius: 200px;
     background: #1dabb8;
     background-position: center center;
-    background-size: 100%;
-
+    background-size: 110%;
 }
 
 #cercle {

@@ -22,7 +22,7 @@ func AddComment(w http.ResponseWriter, r *http.Request) {
 	_, err := db.Exec(`INSERT INTO comments ('content', 'pid', 'uid') VALUES (?, ?, ?)`, comment_content, r.Form.Get("post_id"), UserLogin.Uid)
 	Debug(err)
 
-	NewComment := Comment{Cid: len(Posts[id_post].Comments) + 1, Content: comment_content, Uid: UserLogin.Uid, Username: UserLogin.Username}
+	NewComment := Comment{Cid: len(Posts[id_post].Comments) + 1, Content: comment_content, Uid: UserLogin.Uid, User: UserLogin}
 
 	Posts[id_post].Comments = append(Posts[id_post].Comments, NewComment)
 	http.Redirect(w, r, "/", 301)
