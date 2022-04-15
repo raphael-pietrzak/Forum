@@ -34,7 +34,7 @@ func Mike(w http.ResponseWriter, r *http.Request) {
 		_, err := db.Exec(SqlExec)
 		Debug(err)
 
-		Posts = append(Posts, Post{Pid: post_id, Content: post_content, Category: categorie, Uid: UserLogin.Uid, Username: UserLogin.Username})
+		Posts = append(Posts, Post{Pid: post_id, Content: post_content, Category: categorie, Uid: UserLogin.Uid, User: UserLogin})
 		http.Redirect(w, r, "/", 301)
 	}
 	fmt.Println(var1)

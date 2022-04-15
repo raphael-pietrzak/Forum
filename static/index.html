@@ -36,7 +36,7 @@
         </div>
         <div class="picture-log" id="name">
             <form action="/profile" method="post" class="pict-log-height">
-                <button id="cercle-log"></button>
+                <button id="cercle-log"  style="background-image: url('profil/{{.User.Avatar}}');"></button>
             </form>
             <form action="/logout" method="POST" >
                 <button class="log-out">Log out</button>
@@ -94,6 +94,7 @@
     <script> 
         UserPermissions("{{.User.Type}}");
         Like();
+        document.getElementById("cercle-log").style.backgroundImage = "url('profil/{{.User.Avatar}}')";
         document.querySelector('input').setAttribute('autofocus', 'autofocus');
     </script>
 </body>

@@ -64,7 +64,7 @@ func RecupPost() []Post {
 	for post := range newTab {
 		for _, user := range Users {
 			if newTab[post].Uid == user.Uid {
-				newTab[post].Username = user.Username
+				newTab[post].User = user
 			}
 		}
 	}
@@ -101,7 +101,7 @@ func RecupComment() []Comment {
 	for _,comment := range newTab {
 		for _,user := range Users {
 			if comment.Uid == user.Uid {
-				comment.Username = user.Username
+				comment.User = user
 			}
 		}
 		for post := range Posts {
