@@ -11,19 +11,76 @@
 </head>
 <body>
     <div class="user-profile">
-        <div id="profile-picture" class="profile-picture" style="background-image: url('profil/{{.User.Avatar}}');"></div>
-        <h2 class="username">{{.User.Username}}</h2>
-        <form action="/avatar" method="post" enctype="multipart/form-data" class="change-picture" id="myForm">
-            <div>
-                <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple >
-            </div>
-            <button id="submit">Submit</button>
+        <form action="/avatar" method="post" enctype="multipart/form-data" class="change-picture" id="form">
+            <input type="file" id="profile-picture" name="image_uploads" accept=".jpg, .jpeg, .png" multiple style="background-image: url('profil/{{.User.Avatar}}');" >
         </form>
+        <h2 class="username">{{.User.Username}}</h2>
+        
         <div class="type">
             <p>{{.User.Type}}</p>
         </div>
     </div>
-    <div class="my-posts">
+    <div class="button-bar">
+        <button onclick="replace(1)">My Posts</button>
+        <button onclick="replace(2)">Likes</button>
+        <button onclick="replace(3)">Categories</button>
+        <button onclick="replace(4)">Users</button>
+        <button class="end-line" style="flex: 2 1 0; margin-right: 0;"></button>
+    </div>
+
+    <div class="pages" id="div1">
+        <div class="post-container-header">
+            <h2>My Posts</h2>
+        </div>
+        <div class="post-container-body">
+            {{range .Post}}
+            <button class="post">
+                <div class="post-content">
+                    <p>{{.Content}}</p>
+                    <i class="fa fa-heart unlike" name="like" value="unlike"></i>
+                </div>
+            </button>
+            {{end}}
+        </div>
+    </div>
+    <div class="pages" id="div2">
+        <div class="post-container-header">
+            <h2>Likes</h2>
+        </div>
+        <div class="post-container-body">
+            <h3>Title</h3>
+            <h3>Category</h3>
+            <h3>Likes</h3>
+            <h3>Comments</h3>
+            <h3>Date</h3>
+        </div>
+    </div>
+    <div class="pages" id="div3">
+        <div class="post-container-header">
+            <h2>Categories</h2>
+        </div>
+        <div class="post-container-body">
+            <h3>Title</h3>
+            <h3>Category</h3>
+            <h3>Likes</h3>
+            <h3>Comments</h3>
+            <h3>Date</h3>
+        </div>
+    </div>
+    <div class="pages" id="div4">
+        <div class="post-container-header">
+            <h2>Users</h2>
+        </div>
+        <div class="post-container-body">
+            <h3>Username</h3>
+            <h3>Type</h3>
+            <h3>Likes</h3>
+            <h3>Comments</h3>
+            <h3>Date</h3>
+        </div>
+    </div>
+
+    <!-- <div class="my-posts pages">
         <h2>Mes posts</h2>
         {{range .Post}}
         <button class="post">
@@ -33,9 +90,13 @@
             </div>
         </button>
         {{end}}
-    </div>
+    </div> -->
 
-
+    <script>
+        document.getElementById("profile-picture").onchange = function() {
+        document.getElementById("form").submit();
+    };
+    </script>
     
 </body>
 </html>

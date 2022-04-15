@@ -1,14 +1,11 @@
 
 
 var a = true;
+var id_div = 1;
 
 
 function NewComment(id) {
   if (a == true) {
-    // .forEach(function(el) {  
-    // el.addEventListener("click",
-    console.log(id)
-    //add input div
     var input = document.createElement("div");
     input.className = "input";
 
@@ -33,10 +30,7 @@ function NewComment(id) {
     inputButton.innerHTML = "Post";
     formCom.appendChild(inputButton);
     input.appendChild(formCom);
-    console.log(id);
 
-    //delete div "comments"
-    console.log(document.getElementById("comment"));
     var comments = document.getElementsByClassName("comment");
     console.log(comments);
     for (var i = 0; i < comments.length; i++) {
@@ -46,7 +40,6 @@ function NewComment(id) {
   } else {
     a = true;
   }
-
 }
 
 
@@ -70,7 +63,6 @@ function UserPermissions(type){
 }
 
 function Like(){
-  //favorite heart like/unlike
   document.querySelectorAll(".fa-heart")
   .forEach(function(el) {  
   el.addEventListener("click",
@@ -81,5 +73,12 @@ function Like(){
       a = false;
       });
   });
+}
 
+function replace(id){
+  if (id != id_div){
+    document.getElementById('div' + id).style.display = "block";
+    document.getElementById('div' + id_div).style.display = "none";
+    id_div = id;
+  }
 }

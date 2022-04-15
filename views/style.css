@@ -82,7 +82,7 @@ header{
 
 main {
     background-color: white;
-    padding: 10% 0 10%;
+    padding: 10vh 0 10vh;
 }
 
 .container {
@@ -95,6 +95,14 @@ main {
 #cercle {
     height: 40px;
     width: 40px;
+    border-radius: 200px;
+    background: #1dabb8;
+    background-position: center center;
+    background-size: 110%;
+}
+#cercle-com {
+    height: 30px;
+    width: 30px;
     border-radius: 200px;
     background: #1dabb8;
     background-position: center center;
