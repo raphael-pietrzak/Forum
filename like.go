@@ -25,7 +25,7 @@ func Mike(w http.ResponseWriter, r *http.Request) {
 		post_content := r.Form.Get("post_content")
 		post_id, _ := strconv.Atoi(r.Form.Get("post_id"))
 		categorie := r.Form.Get("Sport")
-		like := r.Form.Get("unlike")
+		// like := r.Form.Get("unlike")
 		UserLogin := GetUserByCookies(w, r)
 		// fmt.Println(categorie)
 		SqlExec := `UPDATE posts ('content', 'category', 'uid') 
