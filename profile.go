@@ -45,9 +45,9 @@ func ChangementAvatar(w http.ResponseWriter, r *http.Request) {
 		return 
 	}
 	defer file.Close()
-	fmt.Printf("Uploaded File: %+v\n", handler.Filename)
-	fmt.Printf("File Size: %+v\n", handler.Size)
-	fmt.Printf("MIME Header: %+v\n", handler.Header)
+	// fmt.Printf("Uploaded File: %+v\n", handler.Filename)
+	// fmt.Printf("File Size: %+v\n", handler.Size)
+	// fmt.Printf("MIME Header: %+v\n", handler.Header)
 
 	_, err2 := db.Exec("UPDATE user SET avatar = '" + handler.Filename + "' ")
 	Debug(err2)

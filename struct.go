@@ -17,6 +17,7 @@ type Send struct {
 	User         User
 	PostCategory []string
 	Comment      []Comment
+	ErrorMessage string
 }
 
 type Post struct {
