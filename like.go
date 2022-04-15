@@ -28,8 +28,8 @@ func Mike(w http.ResponseWriter, r *http.Request) {
 		like := r.Form.Get("unlike")
 		UserLogin := GetUserByCookies(w, r)
 		// fmt.Println(categorie)
-		SqlExec := `UPDATE posts ('content', 'category', 'uid', 'like') 
-		VALUES ('` + post_content + `', '` + categorie + `', '` + UserLogin.Uid + `', '` + like + `');`
+		SqlExec := `UPDATE posts ('content', 'category', 'uid') 
+		VALUES ('` + post_content + `', '` + categorie + `', '` + UserLogin.Uid + `');`
 
 		_, err := db.Exec(SqlExec)
 		Debug(err)
