@@ -1,6 +1,7 @@
 package forum
 
 import (
+	"fmt"
 	"net/http"
 	"text/template"
 )
@@ -11,7 +12,13 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 
 	ErrParseForm(w, r)
 
+	croissante := r.Form.Get("Croissante")
+	decroissante := r.Form.Get("Decroissante")
+	fmt.Println(croissante)
+	fmt.Println(decroissante)
+
 	category := r.Form.Get("categ")
+	fmt.Println(category)
 	if category == "None" {
 		http.Redirect(w, r, "/", 301)
 	} else {
