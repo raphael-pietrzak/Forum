@@ -16,6 +16,9 @@ body {
     width: 200px;
     border-radius: 200px;
     background: #1dabb8;
+    background-position: center center;
+    background-size: 100%;
+    /* background-image: url("../profil/NOVY PP.png"); */
 }
 
 #cercle {

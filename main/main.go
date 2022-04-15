@@ -11,7 +11,6 @@ import (
 var PostContent string
 var Category string
 
-
 func main() {
 
 	f.TableCreation()
@@ -32,12 +31,15 @@ func main() {
 	http.HandleFunc("/forgot", f.Passwd_forgot)
 	http.HandleFunc("/logout", f.Logout)
 	http.HandleFunc("/profile", f.Profile)
-	http.HandleFunc("/unlike",f.Mike)
+	http.HandleFunc("/unlike", f.Mike)
 	http.HandleFunc("/avatar", f.ChangementAvatar)
 
 	//Show #CSS
 	fs := http.FileServer(http.Dir("./views"))
 	http.Handle("/views/", http.StripPrefix("/views/", fs))
+
+	fs2 := http.FileServer(http.Dir("./profil"))
+	http.Handle("/profil/", http.StripPrefix("/profil/", fs2))
 
 	fmt.Println("Listening at http://127.0.0.1:5500")
 	http.ListenAndServe("localhost:5500", nil)

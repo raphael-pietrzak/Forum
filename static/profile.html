@@ -11,9 +11,9 @@
 </head>
 <body>
     <div class="user-profile">
-        <div id="profile-picture"></div>
+        <div id="profile-picture" class="profile-picture" style="background-image: url('profil/{{.User.Avatar}}');"></div>
         <h2>{{.User.Username}}</h2>
-        <form action="/avatar" method="post">
+        <form action="/avatar" method="post" enctype="multipart/form-data">
             <div>
                 <label for="image_uploads">Changer sa photo</label>
                 <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple>
@@ -32,7 +32,6 @@
         </button>
         {{end}}
     </div>
-
 
 
     
