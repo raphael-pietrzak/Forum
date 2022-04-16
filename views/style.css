@@ -3,10 +3,6 @@ body {
     background-color: rgb(42, 44, 46);
 }
 
-
-
-
-
 header{
     display: flex;
     color: white;
@@ -16,6 +12,12 @@ header{
 }
 .forum {
     margin-left: 40px;
+    font-family: sans-serif;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    background: none;
+    border: none;
 }
 .button_filters {
     background: none;
@@ -82,7 +84,7 @@ header{
 
 main {
     background-color: white;
-    padding: 10% 0 10%;
+    padding: 10vh 0 10vh;
 }
 
 .container {
@@ -95,6 +97,14 @@ main {
 #cercle {
     height: 40px;
     width: 40px;
+    border-radius: 200px;
+    background: #1dabb8;
+    background-position: center center;
+    background-size: 110%;
+}
+#cercle-com {
+    height: 30px;
+    width: 30px;
     border-radius: 200px;
     background: #1dabb8;
     background-position: center center;
@@ -170,9 +180,6 @@ main {
 .like{
     color: rgb(199, 0, 0);
 }
-
-
-
 
 
 footer {

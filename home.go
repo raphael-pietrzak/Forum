@@ -6,6 +6,7 @@ import (
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
+	
 	UserLogin := GetUserByCookies(w, r)
 	Users = RecupUser()
 	Posts = RecupPost()

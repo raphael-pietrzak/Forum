@@ -61,13 +61,12 @@ html {
   box-sizing: border-box;
 }
   
-body {
+body2 {
   background-color: var(--bodyBackgroundColor);
   font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
   font-size: var(--bodyFontSize);
   font-weight: var(--bodyFontWeight);
   line-height: var(--bodyLineHeight);
-  margin: 0;
   min-block-size: 100vh;
 }
   
@@ -108,6 +107,7 @@ input[type='submit'] {
   cursor: pointer;
 }
   
+.form input[type='text'],
 .form input[type='email'],
 .form input[type='password'] {
   inline-size: 100%;
@@ -119,7 +119,7 @@ input[type='submit'] {
   --loginBorderRadius: 0.25em;
   --loginHeaderBackgroundColor: #282830;
   
---loginInputBorderRadius: 0.25em;
+  --loginInputBorderRadius: 0.25em;
 }
   
 .login__header {
@@ -156,15 +156,22 @@ input[type='submit'] {
   width: 0.5em;
 }
   
+.login input[type='text'],
 .login input[type='email'],
 .login input[type='password'] {
   border: 0.0625em solid #e5e5e5;
   padding: 1em 1.25em;
 }
+
+.login input[type='text'] {
+  border-top-left-radius: var(--loginInputBorderRadius);
+  border-top-right-radius: var(--loginInputBorderRadius);
+}
   
 .login input[type='email'] {
   border-top-left-radius: var(--loginInputBorderRadius);
   border-top-right-radius: var(--loginInputBorderRadius);
+  border-top: 0;
 }
   
 .login input[type='password'] {
@@ -203,4 +210,27 @@ input[type='submit'] {
 .login__footer p {
   margin: 0;
 }
-  
+
+menu {
+  display: flex;
+  height: 100px;
+  width: 100%;
+  margin: 0;
+  background-color: rgb(42, 44, 46);
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+menu button {
+  font-family: sans-serif;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+body {
+  margin: 0;
+}

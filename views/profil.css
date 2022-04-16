@@ -12,8 +12,9 @@ body {
     align-items: center;
     height: 25vh;
 }
+
 .change-picture {
-    margin-left: auto;
+    /* margin-left: auto; */
 }
 #profile-picture {
     margin-left: 30px;
@@ -32,12 +33,51 @@ body {
     background: #1dabb8;
 }
 
-.my-posts {
+.username {
+    margin-left: 30px;
+}
+
+.type {
+    margin-left: auto;
+    margin-right: 30px;
+    height: 100%;
+}
+
+.button-bar button {
+    /* float:left; */
+    color: white;
+    border: none;
+    /* width: 18%; */
+    width: 18vw;
+    height: 60px;
+    background-color: rgb(42, 44, 46);
+    margin: 3px 3px 0 0;
+}
+.button-bar {
     background-color: white;
     display: flex;
-    justify-content: center;
-    min-height: 70vh;
+    justify-content:flex-start;
+}
 
+.pages {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 70vh;
+}
+
+#div1{
+    display: block;
+}
+#div2 {
+    display: none;
+}
+#div3{
+    display: none;
+}
+#div4{
+    display: none;
 }
 
 .post {
@@ -54,8 +94,8 @@ body {
     display: flex;
     width: 100%;
 }
+
 .post-content p {
-    margin: 0px 0;
     display: flex;
     text-align: start;
     width: 80%;
@@ -66,9 +106,10 @@ body {
     margin-left: auto;
     cursor: pointer;
 }
+
 .unlike{
     color:#ccc;
-    }
+}
   
 .like{
     color: rgb(199, 0, 0);
