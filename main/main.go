@@ -30,6 +30,7 @@ func main() {
 	http.HandleFunc("/logout", f.Logout)
 	http.HandleFunc("/profile", f.Profile)
 	http.HandleFunc("/unlike", f.Mike)
+	http.HandleFunc("/addcategory", f.AddCategory)
 	http.HandleFunc("/avatar", f.ChangementAvatar)
 
 	//Show #CSS

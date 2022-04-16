@@ -13,24 +13,35 @@ body {
     height: 25vh;
 }
 
-.change-picture {
-    /* margin-left: auto; */
+.back {
+    margin-bottom: auto;
+    margin-top: 10px;
+    margin-left: 10px;
 }
+.back button{
+
+    color: white;
+    background: none;
+    border: none;
+}
+
 #profile-picture {
-    margin-left: 30px;
+    margin-left: 5px;
     height: 100px;
     width: 100px;
     border-radius: 200px;
-    background: #1dabb8;
+    background: none;
     background-position: center center;
-    background-size: 110%;
+    background-size: cover;
 }
 
 #cercle {
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     border-radius: 200px;
-    background: #1dabb8;
+    background: none;
+    background-position: center center;
+    background-size: cover;
 }
 
 .username {
@@ -52,6 +63,9 @@ body {
     height: 60px;
     background-color: rgb(42, 44, 46);
     margin: 3px 3px 0 0;
+}
+.button-bar button:focus {
+    background-color: #1dabb8;
 }
 .button-bar {
     background-color: white;

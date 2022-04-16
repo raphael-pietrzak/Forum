@@ -61,7 +61,7 @@ header{
     margin-bottom: 20px;
     margin-top: 20px;
     background-position: center center;
-    background-size: 110%;
+    background-size: cover;
 }
 
 .log-out  {
@@ -98,7 +98,7 @@ main {
     border-radius: 200px;
     background: #1dabb8;
     background-position: center center;
-    background-size: 110%;
+    background-size: cover;
 }
 #cercle-com {
     height: 30px;
@@ -106,7 +106,7 @@ main {
     border-radius: 200px;
     background: #1dabb8;
     background-position: center center;
-    background-size: 110%;
+    background-size: cover;
 }
 
 .post-comment{

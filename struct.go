@@ -14,10 +14,10 @@ var Data Send
 var Category []string
 
 type Send struct {
+	Users        []User
 	Post         []Post
 	User         User
 	PostCategory []string
-	Comment      []Comment
 	ErrorMessage string
 }
 

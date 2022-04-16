@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +11,15 @@
     <title>Profil</title>
 </head>
 <body>
+
     <div class="user-profile">
+        <form action="/" method="post" class="back">
+            <button ><i class="fa fa-arrow-left fa-lg"></i></button>
+        </form>
+        
+
         <form action="/avatar" method="post" enctype="multipart/form-data" class="change-picture" id="form">
-            <input type="file" id="profile-picture" name="image_uploads" accept=".jpg, .jpeg, .png" multiple style="background-image: url('profil/{{.User.Avatar}}');" >
+            <input type="file" id="profile-picture" name="image_uploads" accept=".jpg, .jpeg, .png, .gif" multiple style="background-image: url('profil/{{.User.Avatar}}');" >
         </form>
         <h2 class="username">{{.User.Username}}</h2>
         
@@ -21,7 +28,7 @@
         </div>
     </div>
     <div class="button-bar">
-        <button onclick="replace(1)">My Posts</button>
+        <button onclick="replace(1)">Posts</button>
         <button onclick="replace(2)">Likes</button>
         <button onclick="replace(3)">Categories</button>
         <button onclick="replace(4)">Users</button>
@@ -30,7 +37,7 @@
 
     <div class="pages" id="div1">
         <div class="post-container-header">
-            <h2>My Posts</h2>
+            <h2>Posts</h2>
         </div>
         <div class="post-container-body">
             {{range .Post}}
@@ -60,11 +67,13 @@
             <h2>Categories</h2>
         </div>
         <div class="post-container-body">
-            <h3>Title</h3>
-            <h3>Category</h3>
-            <h3>Likes</h3>
-            <h3>Comments</h3>
-            <h3>Date</h3>
+            {{range .PostCategory}}
+            {{.}}
+            {{end}}
+            <form action="/addcategory" method="post">
+                <input type="text" name="category">
+                <button>Add Category</button>
+            </form>
         </div>
     </div>
     <div class="pages" id="div4">
@@ -72,25 +81,12 @@
             <h2>Users</h2>
         </div>
         <div class="post-container-body">
-            <h3>Username</h3>
-            <h3>Type</h3>
-            <h3>Likes</h3>
-            <h3>Comments</h3>
-            <h3>Date</h3>
+            {{range .Users}}
+            <div id="cercle" style="background-image: url('profil/{{.Avatar}}');"></div>
+            <p>{{.Username}}</p>
+            {{end}}
         </div>
     </div>
-
-    <!-- <div class="my-posts pages">
-        <h2>Mes posts</h2>
-        {{range .Post}}
-        <button class="post">
-            <div class="post-content">
-                <p>{{.Content}}</p>
-                <i class="fa fa-heart unlike" name="like" value="unlike"></i>
-            </div>
-        </button>
-        {{end}}
-    </div> -->
 
     <script>
         document.getElementById("profile-picture").onchange = function() {

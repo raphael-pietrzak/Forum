@@ -20,9 +20,10 @@ func Profile(w http.ResponseWriter, r *http.Request) {
 	}
 
 	UserLogin := GetUserByCookies(w, r)
+	Users = RecupUser()
 
 	tmpl := template.Must(template.ParseFiles("static/profile.html"))
-	tmpl.Execute(w, Send{User: UserLogin, Post: MyPosts})
+	tmpl.Execute(w, Send{User: UserLogin, Post: MyPosts, Users: Users, PostCategory: Category})
 }
 
 var Avatar string
@@ -35,7 +36,6 @@ func ChangementAvatar(w http.ResponseWriter, r *http.Request) {
 
 	r.ParseMultipartForm(10 << 20)
 
-	fmt.Println("File Upload Endpoint Hit")
 	file, handler, err := r.FormFile("image_uploads")
 	if err != nil {
 		fmt.Println("Error Retrieving the File")
@@ -43,8 +43,9 @@ func ChangementAvatar(w http.ResponseWriter, r *http.Request) {
 		return 
 	}
 	defer file.Close()
+	User := GetUserByCookies(w, r)
 
-	_, err2 := db.Exec("UPDATE user SET avatar = '" + handler.Filename + "' ")
+	_, err2 := db.Exec("UPDATE user SET avatar=? WHERE uid=?", handler.Filename, User.Uid)
 	Debug(err2)
 
 	emptyFile, err := os.Create("profil/" + handler.Filename)
@@ -56,5 +57,12 @@ func ChangementAvatar(w http.ResponseWriter, r *http.Request) {
 	_, err3 := io.Copy(emptyFile, file)
 	Debug(err3)
 
+	http.Redirect(w, r, "/profile", 301)
+}
+
+func AddCategory(w http.ResponseWriter, r *http.Request){
+	ErrParseForm(w, r)
+	category := r.Form.Get("category")
+	Category = append(Category, category)
 	http.Redirect(w, r, "/profile", 301)
 }

@@ -14,7 +14,7 @@ func Mike(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.Form.Get("unlike"))
 	var var1 string
 	tmpl := template.Must(template.ParseFiles("static/index.html"))
-	tmpl.Execute(w, Send{Post: Posts, PostCategory: Category, Comment: Comments})
+	tmpl.Execute(w, Send{Post: Posts, PostCategory: Category})
 	var1 = r.Form.Get("unlike")
 	if var1 == "like" {
 		fmt.Println("yoyooyoyoyoyo")
