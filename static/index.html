@@ -12,7 +12,9 @@
 </head>
 <body>
     <header>
-        <h1 class="forum">Forum</h1>
+        <form action="/">
+            <button class="forum">Forum</button>
+        </form>
         <div class="SelectFilters">
             <button onclick="SelectFilters()" class="button_filters">Filters</button>
             
@@ -27,7 +29,7 @@
                     <option value="Croissante">Date Croissante</option>
                     <option value="Decroissante">Date Décroissante</option>
                 </select>
-                <button onclick="SelectDate()" name="Confirm">Apply</button>
+                <button name="Confirm">Apply</button>
             </form>
         </div>
         <div class="user-log" id="user-profile">
