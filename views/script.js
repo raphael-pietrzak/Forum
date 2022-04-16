@@ -58,25 +58,6 @@ function SelectFilters() {
   }
 }
 
-function SelectDate() {
-  console.log("Bonjour");
-  var selectValue = getSelectValue('select-date');
-  console.log(selectValue);
-  if (selectValue == "Croissante") {
-    console.log("Bien rentré");
-    document.getElementById("container").style.display = "flex";
-    document.getElementById("container").style.flexDirection = "reverse-column";
-  } else {
-    console.log("Bien rentré dans le décroissant");
-    document.getElementById("container").style.display = "flex";
-    document.getElementById("container").style.flexDirection = "column";
-  }
-}
-
-function getSelectValue(selectId) {
-  var selectElmt = document.getElementById(selectId);
-  return selectElmt.options[selectElmt.selectedIndex].value;
-}
 
 function UserPermissions(type){
   if (type == "guest") {
