@@ -180,6 +180,10 @@ main {
 .like{
     color: rgb(199, 0, 0);
 }
+.like-counter{
+    color:#ccc;
+    font-size: smaller;
+}
 
 
 footer {

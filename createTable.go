@@ -43,4 +43,13 @@ func TableCreation() {
 	); `)
 
 	Debug(err)
+
+	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS likes 
+	(
+		id INTEGER PRIMARY KEY, 
+		uid TEXT, 
+		pid INTEGER
+	);`)
+
+	Debug(err)
 }

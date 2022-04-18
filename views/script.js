@@ -67,10 +67,14 @@ function Like(){
   .forEach(function(el) {  
   el.addEventListener("click",
       function() {
-      if (this.classList.contains("unlike"))
-          this.classList.toggle("like");
-      else this.classList.toggle("unlike");
+      if (this.classList.contains("unlike")){
+        this.classList.toggle("like");
+      } else {
+        this.classList.toggle("unlike");
+      }
       a = false;
+      document.getElementById("inputlike").value = this.classList
+      document.getElementById("submitlike").submit();
       });
   });
 }

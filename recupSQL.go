@@ -2,6 +2,7 @@ package forum
 
 import (
 	"database/sql"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -30,36 +31,39 @@ func RecupUser() []User {
 		Debug(err)
 		newTab = append(newTab, User{Id: id, Uid: uid, Email: email, Username: username, Passwd: passwd, Avatar: avatar, Type: typee})
 	}
-	err = rows.Err()
-	Debug(err)
 
 	return newTab
 }
 
 func RecupPost() []Post {
-	var newTab []Post
+
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
-	selection := "SELECT * FROM posts"
-	rows, err := db.Query(selection)
+
+	rows, err := db.Query("SELECT * FROM posts")
 	Debug(err)
+
 	err = rows.Err()
 	Debug(err)
-	for rows.Next() {
 
-		//posts
+	var newTab []Post
+	for rows.Next() {
 		var pid int
 		var content string
 		var category string
 		var uid string
 
+		var counter int
+
 		err = rows.Scan(&pid, &content, &category, &uid)
 		Debug(err)
-		newTab = append(newTab, Post{Pid: pid, Content: content, Category: category, Uid: uid})
+		count, err := db.Query(`SELECT COUNT(*) FROM likes WHERE pid = ?`, pid)
+		Debug(err)
+		for count.Next() {
+			_ = count.Scan(&counter)
+		}
+		newTab = append(newTab, Post{Pid: pid, Content: content, Category: category, Uid: uid, LikeActive: "unlike", Like: counter})
 	}
-
-	err = rows.Err()
-	Debug(err)
 
 	for post := range newTab {
 		for _, user := range Users {
@@ -93,13 +97,10 @@ func RecupComment() []Comment {
 		Debug(err)
 		newTab = append(newTab, Comment{Cid: cid, Pid: pid, Content: comment, Uid: uid})
 
-		
 	}
 
-	err = rows.Err()
-	Debug(err)
-	for _,comment := range newTab {
-		for _,user := range Users {
+	for _, comment := range newTab {
+		for _, user := range Users {
 			if comment.Uid == user.Uid {
 				comment.User = user
 			}
@@ -111,4 +112,27 @@ func RecupComment() []Comment {
 		}
 	}
 	return newTab
+}
+
+func RecupLike(Uid string)  {
+	db, err := sql.Open("sqlite3", "./database.db")
+	Debug(err)
+	selection := "SELECT * FROM likes"
+	rows, err := db.Query(selection)
+	Debug(err)
+	err = rows.Err()
+	Debug(err)
+	for rows.Next() {
+		var id int
+		var uid string
+		var pid int
+		err = rows.Scan(&id, &uid, &pid)
+		Debug(err)
+
+		for post := range Posts {
+			if pid == Posts[post].Pid && uid == Uid {
+				Posts[post].LikeActive = "like"
+			}
+		}
+	}
 }

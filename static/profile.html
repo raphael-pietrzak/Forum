@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="views/profil.css">
     <link rel="icon" type="image/x-icon" href="/views/i.ico">
     <script src="/views/script.js"></script>
-    <title>Profil</title>
+    <title>Profil - Forum</title>
 </head>
 <body>
 
@@ -17,7 +17,6 @@
             <button ><i class="fa fa-arrow-left fa-lg"></i></button>
         </form>
         
-
         <form action="/avatar" method="post" enctype="multipart/form-data" class="change-picture" id="form">
             <input type="file" id="profile-picture" name="image_uploads" accept=".jpg, .jpeg, .png, .gif" multiple style="background-image: url('profil/{{.User.Avatar}}');" >
         </form>

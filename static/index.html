@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/style.css">
     <script src="/views/script.js"></script>
-    <title>Accueil</title>
+    <link rel="icon" type="image/x-icon" href="/views/i.ico">
+    <title>Accueil - Forum</title>
 </head>
 <body>
     <header>
@@ -54,21 +55,23 @@
             {{range .Post}}
                 <div class="post-comment">
 
+                    <input type="hidden" name="post_id" value="{{.Pid}}">
+                    <button onclick="NewComment(id)" id="{{.Pid}}" type="button" class="post">
+                        <div class="info-user-post">
+                            <div id="cercle" style="background-image: url('profil/{{.User.Avatar}}');"></div>
+                            <p>{{.User.Username}}</p>
+                            <form action="/like" method="post" id="submitlike">
+                                <input id="inputlike" type="hidden" name="like" value="">
+                            </form>
+                            <i class="{{.Pid}} fa fa-heart {{.LikeActive}}"></i>
+                            <p class="like-counter">{{.Like}}</p>
+                        </div>
+                        <div class="post-content">
+                            <p>{{.Content}}</p>
+                        </div>
+                    </button>
+                    <div id="comment{{.Pid}}" class="comment"></div>
 
-                    <form id="addNewComment">
-                        <input type="hidden" name="post_id" value="{{.Pid}}">
-                        <button onclick="NewComment(id)" id="{{.Pid}}" type="button" class="post">
-                            <div class="info-user-post">
-                                <div id="cercle" style="background-image: url('profil/{{.User.Avatar}}');"></div>
-                                <p>{{.User.Username}}</p>
-                                <i class="fa fa-heart unlike" name="like" value="unlike"></i>
-                            </div>
-                            <div class="post-content">
-                                <p>{{.Content}}</p>
-                            </div>
-                        </button>
-                        <div id="comment{{.Pid}}" class="comment"></div>
-                    </form>
 
                     {{range .Comments}}
                     <button class="comments">
@@ -83,7 +86,6 @@
                     </button>
                     {{end}}
 
-
                 </div>
             {{end}}
         </div>
@@ -96,6 +98,7 @@
     <footer>
         <p>Copyright © 2022</p>
         <p>All rights reserved</p>
+        <p>Audran Latorre - Maxim Doublait - Raphaël Pietrzak</p>
     </footer>
     <script> 
         UserPermissions("{{.User.Type}}");
