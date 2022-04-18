@@ -46,8 +46,6 @@ func LikePosts(w http.ResponseWriter, r *http.Request) {
 	like := likerecup[4]
 	post_id := likerecup[0]
 
-	
-
 	if like == "like" {
 		_, err := db.Exec(`INSERT OR IGNORE INTO likes ('pid', 'uid') VALUES (?, ?)`, post_id, GetUserByCookies(w, r).Uid)
 		Debug(err)
@@ -56,7 +54,6 @@ func LikePosts(w http.ResponseWriter, r *http.Request) {
 		Debug(err)
 	}
 
-	// db, _ := sql.Open("sqlite3", "./database.db")
 	http.Redirect(w, r, "/", 301)
 
 }

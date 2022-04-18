@@ -22,7 +22,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		Users = RecupUser()
+		RecupUser()
 		wrong_login := true
 
 		for i := range Users {
@@ -40,7 +40,6 @@ func Login(w http.ResponseWriter, r *http.Request) {
 }
 
 func Logout(w http.ResponseWriter, r *http.Request) {
-
 	DeleteCookie(w, r)
 	http.Redirect(w, r, "/", 301)
 }

@@ -20,9 +20,8 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	} else {
-		Posts = RecupPost()
-		Comments = RecupComment()
-		// Posts = RecupLike(UserLogin.Uid, Posts)
+		RecupPost()
+		RecupComment()
 		RecupLike(UserLogin.Uid)
 		Posts2 = Posts
 	}

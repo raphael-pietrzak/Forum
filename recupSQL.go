@@ -6,12 +6,22 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func RecupUser() []User {
+func RecupUser() {
+	//users
+	var id int
+	var uid string
+	var username string
+	var email string
+	var passwd string
+	var avatar string
+	var typee string
+
+	typee = "guest"
+
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
 
-	selection := "SELECT * FROM user"
-	rows, err := db.Query(selection)
+	rows, err := db.Query("SELECT * FROM user")
 	Debug(err)
 
 	err = rows.Err()
@@ -20,22 +30,22 @@ func RecupUser() []User {
 	var newTab []User
 
 	for rows.Next() {
-		var id int
-		var uid string
-		var username string
-		var email string
-		var passwd string
-		var avatar string
-		typee := "guest"
 		err = rows.Scan(&id, &uid, &username, &email, &passwd, &avatar, &typee)
 		Debug(err)
 		newTab = append(newTab, User{Id: id, Uid: uid, Email: email, Username: username, Passwd: passwd, Avatar: avatar, Type: typee})
 	}
 
-	return newTab
+	Users = newTab
 }
 
-func RecupPost() []Post {
+func RecupPost(){
+
+	//Posts
+	var pid int
+	var content string
+	var category string
+	var uid string
+	var counter int
 
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
@@ -48,12 +58,7 @@ func RecupPost() []Post {
 
 	var newTab []Post
 	for rows.Next() {
-		var pid int
-		var content string
-		var category string
-		var uid string
-
-		var counter int
+		
 
 		err = rows.Scan(&pid, &content, &category, &uid)
 		Debug(err)
@@ -73,59 +78,58 @@ func RecupPost() []Post {
 		}
 	}
 
-	return newTab
+	Posts = newTab
 }
 
-func RecupComment() []Comment {
-	var newTab []Comment
+func RecupComment(){
+	//comments
+	var cid int
+	var pid int
+	var comment string
+	var uid string
+	var user_comment User
+
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
-	selection := "SELECT * FROM comments"
-	rows, err := db.Query(selection)
+	rows, err := db.Query("SELECT * FROM comments")
 	Debug(err)
 	err = rows.Err()
 	Debug(err)
-	for rows.Next() {
 
-		//comments
-		var cid int
-		var pid int
-		var comment string
-		var uid string
+	for rows.Next() {
 
 		err = rows.Scan(&cid, &pid, &comment, &uid)
 		Debug(err)
-		newTab = append(newTab, Comment{Cid: cid, Pid: pid, Content: comment, Uid: uid})
 
-	}
-
-	for _, comment := range newTab {
 		for _, user := range Users {
-			if comment.Uid == user.Uid {
-				comment.User = user
+			if uid == user.Uid {
+				user_comment = user
+				break
 			}
 		}
 		for post := range Posts {
-			if comment.Pid == Posts[post].Pid {
-				Posts[post].Comments = append(Posts[post].Comments, comment)
+			if pid == Posts[post].Pid {
+				Posts[post].Comments = append(Posts[post].Comments, Comment{Uid: uid, Pid: pid, Content: comment, Cid: cid, User: user_comment})
 			}
 		}
 	}
-	return newTab
 }
 
 func RecupLike(Uid string)  {
+	//like
+	var id int
+	var uid string
+	var pid int
+
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
-	selection := "SELECT * FROM likes"
-	rows, err := db.Query(selection)
+	rows, err := db.Query("SELECT * FROM likes")
 	Debug(err)
 	err = rows.Err()
 	Debug(err)
+
 	for rows.Next() {
-		var id int
-		var uid string
-		var pid int
+		
 		err = rows.Scan(&id, &uid, &pid)
 		Debug(err)
 

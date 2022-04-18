@@ -18,7 +18,7 @@ func Profile(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	Users = RecupUser()
+	RecupUser()
 
 	tmpl := template.Must(template.ParseFiles("static/profile.html"))
 	tmpl.Execute(w, Send{User: User, Post: MyPosts, Users: Users, PostCategory: Category})
