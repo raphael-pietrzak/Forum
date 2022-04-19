@@ -1,5 +1,5 @@
 
-
+var typeUser = "";
 var a = true;
 var id_div = 1;
 
@@ -53,6 +53,7 @@ function SelectFilters() {
 
 
 function UserPermissions(type){
+  typeUser = type
   if (type == "guest") {
     document.getElementById("addpost").style.display = "none";
     document.getElementById("name").style.display = "none";
@@ -67,14 +68,16 @@ function Like(){
   .forEach(function(el) {  
   el.addEventListener("click",
       function() {
-      if (this.classList.contains("unlike")){
-        this.classList.toggle("like");
-      } else {
-        this.classList.toggle("unlike");
+      if (typeUser != "guest"){
+        if (this.classList.contains("unlike")){
+          this.classList.toggle("like");
+        } else {
+          this.classList.toggle("unlike");
+        }
+        a = false;
+        document.getElementById("inputlike").value = this.classList
+        document.getElementById("submitlike").submit();
       }
-      a = false;
-      document.getElementById("inputlike").value = this.classList
-      document.getElementById("submitlike").submit();
       });
   });
 }
@@ -86,3 +89,13 @@ function replace(id){
     id_div = id;
   }
 }
+
+// function DisplayComments(id){
+//   if (document.getElementById('commentaires'+id).style.display == 'flex') {
+//     document.getElementById('commentaires'+id).style.display = 'none'
+//     document.getElementsByClassName('showComments')[id-1].innerHTML = "<a onclick='DisplayComments(id)' id='{{.Pid}}' class='showComments'>Show Comments</a>"
+//   } else {
+//     document.getElementById('commentaires'+id).style.display = 'flex'
+//     document.getElementsByClassName('showComments')[id-1].innerHTML = "<a onclick='DisplayComments(id)' id='{{.Pid}}' class='showComments'>Hide Coms</a>"
+//   }
+// }

@@ -48,7 +48,8 @@ func TableCreation() {
 	(
 		id INTEGER PRIMARY KEY, 
 		uid TEXT, 
-		pid INTEGER
+		pid INTEGER,
+		cid INTEGER
 	);`)
 
 	Debug(err)

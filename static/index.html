@@ -63,28 +63,31 @@
                             <form action="/like" method="post" id="submitlike">
                                 <input id="inputlike" type="hidden" name="like" value="">
                             </form>
-                            <i class="{{.Pid}} fa fa-heart {{.LikeActive}}"></i>
+                            <i class="/{{.Pid}} 0 fa fa-heart {{.LikeActive}}"></i>
                             <p class="like-counter">{{.Like}}</p>
                         </div>
                         <div class="post-content">
                             <p>{{.Content}}</p>
+                            <!-- <a onclick="DisplayComments(id)" id="{{.Pid}}" class="showComments">Show Comments</a> -->
                         </div>
                     </button>
                     <div id="comment{{.Pid}}" class="comment"></div>
 
-
-                    {{range .Comments}}
-                    <button class="comments">
-                        <div class="info-user-post">
-                            <div id="cercle-com" style="background-image: url('profil/{{.User.Avatar}}');"></div>
-                            <p>{{.User.Username}}</p>
-                            <i class="fa fa-heart unlike"></i>
-                        </div>
-                        <div class="post-content">
-                            <p>{{.Content}}</p>
-                        </div>
-                    </button>
-                    {{end}}
+                    <div id="commentaires{{.Pid}}" class="coms">
+                        {{range .Comments}}
+                        <button class="comments">
+                            <div class="info-user-post">
+                                <div id="cercle-com" style="background-image: url('profil/{{.User.Avatar}}');"></div>
+                                <p>{{.User.Username}}</p>
+                                <i class="/{{.Cid}} 1 fa fa-heart {{.LikeActive}}"></i>
+                                <p class="like-counter">{{.Like}}</p>
+                            </div>
+                            <div class="post-content">
+                                <p>{{.Content}}</p>
+                            </div>
+                        </button>
+                        {{end}}
+                    </div>
 
                 </div>
             {{end}}

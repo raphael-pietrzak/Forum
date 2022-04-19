@@ -36,8 +36,8 @@ type Comment struct {
 	Content string
 	Pid     int
 	User    User
-	// Like  	[]string
-	// LikeActive bool
+	Like  	int
+	LikeActive string
 }
 
 type User struct {

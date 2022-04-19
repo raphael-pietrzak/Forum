@@ -88,6 +88,7 @@ func RecupComment(){
 	var comment string
 	var uid string
 	var user_comment User
+	var counter int
 
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
@@ -101,6 +102,12 @@ func RecupComment(){
 		err = rows.Scan(&cid, &pid, &comment, &uid)
 		Debug(err)
 
+		count, err := db.Query(`SELECT COUNT(*) FROM likes WHERE cid = ?`, cid)
+		Debug(err)
+		for count.Next() {
+			_ = count.Scan(&counter)
+		}
+
 		for _, user := range Users {
 			if uid == user.Uid {
 				user_comment = user
@@ -109,7 +116,7 @@ func RecupComment(){
 		}
 		for post := range Posts {
 			if pid == Posts[post].Pid {
-				Posts[post].Comments = append(Posts[post].Comments, Comment{Uid: uid, Pid: pid, Content: comment, Cid: cid, User: user_comment})
+				Posts[post].Comments = append(Posts[post].Comments, Comment{Uid: uid, Pid: pid, Content: comment, Cid: cid, User: user_comment, LikeActive: "unlike", Like: counter})
 			}
 		}
 	}
@@ -120,6 +127,7 @@ func RecupLike(Uid string)  {
 	var id int
 	var uid string
 	var pid int
+	var cid int
 
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
@@ -130,12 +138,19 @@ func RecupLike(Uid string)  {
 
 	for rows.Next() {
 		
-		err = rows.Scan(&id, &uid, &pid)
+		err = rows.Scan(&id, &uid, &pid, &cid)
 		Debug(err)
-
-		for post := range Posts {
-			if pid == Posts[post].Pid && uid == Uid {
-				Posts[post].LikeActive = "like"
+		if uid == Uid {
+			if cid == 0 {
+				Posts[pid-1].LikeActive = "like"
+			} else {
+				for i,post := range Posts {
+					for j :=  range post.Comments{
+						if Posts[i].Comments[j].Cid == cid {
+							Posts[i].Comments[j].LikeActive = "like"
+						}
+					}
+				}
 			}
 		}
 	}
