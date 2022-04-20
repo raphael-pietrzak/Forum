@@ -23,17 +23,19 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		}
 
 		Users = RecupUser()
+		wrong_login := true
 
 		for i := range Users {
 			if Users[i].Email == r.Form.Get("mail") && Users[i].Passwd == Hash(r.Form.Get("password")) {
 				CreateCookie(w, r, Users[i].Uid)
-				http.Redirect(w, r, "/", 301)
+				wrong_login = false
 			}
 		}
-
-		tmpl := template.Must(template.ParseFiles("static/login.html"))
-		tmpl.Execute(w, Posts)
-
+		if wrong_login {
+			http.Redirect(w, r, "/login", 301)
+		} else {
+			http.Redirect(w, r, "/", 301)
+		}
 	}
 }
 
@@ -57,9 +59,8 @@ func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
 
 		mail := r.Form.Get("mail")
 		password := r.Form.Get("new_password")
-		fmt.Println(mail, password)
 
-		_, err := db.Exec("UPDATE user SET passwd = '" + password + "' WHERE email='" + mail + "' ")
+		_, err := db.Exec(`UPDATE user SET passwd = ? WHERE email = ?`, password, mail)
 		Debug(err)
 
 		http.Redirect(w, r, "/login", 301)

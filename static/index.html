@@ -7,27 +7,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/style.css">
-    <link rel="icon" type="image/x-icon" href="/views/i.ico">
     <script src="/views/script.js"></script>
     <title>Accueil</title>
 </head>
 <body>
-<header>
-        <h1>Forum</h1>
+    <header>
+        <h1 class="forum">Forum</h1>
         <div class="SelectFilters">
-            <button onclick="SelectFilters()" class="button_profil">Filters</button>
+            <button onclick="SelectFilters()" class="button_filters">Filters</button>
             
-            <form action="/filters" method="post" class="choiceCategory" name="Category">
+            <form action="/filters" method="post" class="filters" name="Category" id="filters">
                 <select name="categ">
-                    <option value="None">None</option>
+                    <option value="None">Tout</option>
                     {{range .PostCategory}}
                     <option value="{{.}}">{{.}}</option>
                     {{end}}
                 </select>
-                <button name="Confirm">Apply</button>
+                <select  id="select-date" name="Date">
+                    <option value="Croissante">Date Croissante</option>
+                    <option value="Decroissante">Date Décroissante</option>
+                </select>
+                <button onclick="SelectDate()" name="Confirm">Apply</button>
             </form>
         </div>
-        <div id="user-profile">
+        <div class="user-log" id="user-profile">
             <form action="/login">
                 <button class="button_login">Login</button>
             </form>
@@ -35,99 +38,66 @@
                 <button class="button_sign_up">Sign up</button>
             </form>
         </div>
-        <div class="dropdown" id="name">
-            <form action="/profile" method="post">
-                <button id="cercle-log"></button>
+        <div class="picture-log" id="name">
+            <form action="/profile" method="post" class="pict-log-height">
+                <button id="cercle-log"  style="background-image: url('profil/{{.User.Avatar}}');"></button>
             </form>
-            <form action="/logout" method="POST" class="dropdown-content">
-                <button>Log out</button>
+            <form action="/logout" method="POST" >
+                <button class="log-out">Log out</button>
             </form>
         </div>
     </header>
     <main>
         <div class="container">
-            <!-- {{range .Post}} -->
+            {{range .Post}}
                 <div class="post-comment">
+
+
                     <form id="addNewComment">
                         <input type="hidden" name="post_id" value="{{.Pid}}">
                         <button onclick="NewComment(id)" id="{{.Pid}}" type="button" class="post">
                             <div class="info-user-post">
-                                <div id="cercle"></div>
-                                 <p>{{.Username}}</p>
-                                 <form action="/unlike" method="POST">
-                                    <!--<button type="submit" name="unlike" value="like" >
-                                        <i class="fa fa-heart unlike"></i>
-                                    </button>-->
-                                    <button type="submit" class="unlike">
-                                        <i class="fa fa-heart unlike"></i>
-                                    </button>
-                                         <!--<button type="submit" name="unlike" value="like" >-->
-                                </form>
+                                <div id="cercle" style="background-image: url('profil/{{.User.Avatar}}');"></div>
+                                <p>{{.User.Username}}</p>
+                                <i class="fa fa-heart unlike" name="like" value="unlike"></i>
                             </div>
                             <div class="post-content">
-                                 <p>{{.Content}}</p>
-                            </div> 
-                        <!-- </button>
+                                <p>{{.Content}}</p>
+                            </div>
+                        </button>
                         <div id="comment{{.Pid}}" class="comment"></div>
-                    </form> -->
+                    </form>
 
-                    <!-- {{range .Comments}} -->
-                </div id="toto">
+                    {{range .Comments}}
                     <button class="comments">
                         <div class="info-user-post">
-                            <div id="cercle"></div>
-                            <!-- <p>{{.Username}}</p> -->
-                            <form action="/unlike" method="POST">
-                               
-
-                                <button type="submit" value="like">Like</button>
-                            </form>
+                            <div id="cercle-com" style="background-image: url('profil/{{.User.Avatar}}');"></div>
+                            <p>{{.User.Username}}</p>
+                            <i class="fa fa-heart unlike"></i>
                         </div>
                         <div class="post-content">
-                            <!-- <p>{{.Content}}</p> -->
-                        </div>
-                    </button>
-                </div>
-                    <!-- {{end}} -->
-
-                    <!-- {{range .Comments}}
-                    <div class="post">
-                        <div id="cercle"></div>
-                        <div class="post-text">
-                            <p>{{.Username}}</p>
                             <p>{{.Content}}</p>
                         </div>
-                        <div class="like"></div>
-                    </div>
-                    {{end}} -->
+                    </button>
+                    {{end}}
+
+
                 </div>
-            <!-- {{end}} -->
+            {{end}}
         </div>
-        <div class="addpost">
+        <div class="addpost" id="addpost">
             <form action="/addpost">
                 <button>Post</button>
             </form>
         </div>
     </main>
     <footer>
-        <p>Copyright © 2020</p>
+        <p>Copyright © 2022</p>
         <p>All rights reserved</p>
     </footer>
-    <script> UserProfile("{{.User.Username}}");</script>
-    <script>
-        //favorite heart like/unlike
-        document.querySelectorAll(".fa-heart")
-        .forEach(function(el) {  
-        el.addEventListener("click",
-            function() {
-            if (this.classList.contains("unlike")) { 
-                this.classList.toggle("like");
-                this.value = "like";
-            } else {
-                this.classList.toggle("unlike")
-                this.value = "unlike"
-            };
-        });
+    <script> 
+        UserPermissions("{{.User.Type}}");
+        Like();
     </script>
 </body>
 </html>

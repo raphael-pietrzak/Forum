@@ -25,14 +25,12 @@ func AddPost(w http.ResponseWriter, r *http.Request) {
 		categorie := r.Form.Get("Sport")
 
 		UserLogin := GetUserByCookies(w, r)
-		// fmt.Println(categorie)
-		SqlExec := `INSERT INTO posts ('content', 'category', 'uid', 'like') 
-		VALUES ('` + post_content + `', '` + categorie + `', '` + UserLogin.Uid + `');`
+		
 
-		_, err := db.Exec(SqlExec)
+		_, err := db.Exec(`INSERT INTO posts ('content', 'category', 'uid') VALUES (?, ?, ?)`, post_content, categorie, UserLogin.Uid)
 		Debug(err)
 
-		Posts = append(Posts, Post{Pid: len(Posts) + 1, Content: post_content, Category: categorie, Uid: UserLogin.Uid, Username: UserLogin.Username})
+		Posts = append(Posts, Post{Pid: len(Posts) + 1, Content: post_content, Category: categorie, Uid: UserLogin.Uid, User: UserLogin})
 		http.Redirect(w, r, "/", 301)
 	}
 }

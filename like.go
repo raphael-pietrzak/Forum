@@ -25,16 +25,16 @@ func Mike(w http.ResponseWriter, r *http.Request) {
 		post_content := r.Form.Get("post_content")
 		post_id, _ := strconv.Atoi(r.Form.Get("post_id"))
 		categorie := r.Form.Get("Sport")
-		like := r.Form.Get("unlike")
+		// like := r.Form.Get("unlike")
 		UserLogin := GetUserByCookies(w, r)
 		// fmt.Println(categorie)
-		SqlExec := `UPDATE posts ('content', 'category', 'uid', 'like') 
-		VALUES ('` + post_content + `', '` + categorie + `', '` + UserLogin.Uid + `', '` + like + `');`
+		SqlExec := `UPDATE posts ('content', 'category', 'uid') 
+		VALUES ('` + post_content + `', '` + categorie + `', '` + UserLogin.Uid + `');`
 
 		_, err := db.Exec(SqlExec)
 		Debug(err)
 
-		Posts = append(Posts, Post{Pid: post_id, Content: post_content, Category: categorie, Uid: UserLogin.Uid, Username: UserLogin.Username})
+		Posts = append(Posts, Post{Pid: post_id, Content: post_content, Category: categorie, Uid: UserLogin.Uid, User: UserLogin})
 		http.Redirect(w, r, "/", 301)
 	}
 	fmt.Println(var1)

@@ -2,6 +2,7 @@ package forum
 
 import (
 	"database/sql"
+	"fmt"
 	"net/http"
 	"text/template"
 
@@ -14,7 +15,7 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 
 	case "GET":
 		tmpl := template.Must(template.ParseFiles("static/sign_up.html"))
-		tmpl.Execute(w, Posts)
+		tmpl.Execute(w, Data)
 
 	case "POST":
 		db, _ := sql.Open("sqlite3", "./database.db")
@@ -25,14 +26,30 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 		mail := r.Form.Get("mail")
 		password := r.Form.Get("password")
 		uuid := uuid.New()
-		avatar := "avatar"
-		// fmt.Println("le nouvel uuid est :", uuid)
+		avatar := "user.png"
+		user := "user"
 
-		_, err := db.Exec("INSERT INTO user ('uid','username','email', 'passwd', 'avatar') VALUES ('" + uuid.String() + "', '" + username + "', '" + mail + "', '" + Hash(password) + avatar + "')")
-		Debug(err)
+		if mail == "r@r" {
+			avatar = "admin.png"
+			user = "admin"
+		}
 
-		CreateCookie(w, r, uuid.String())
+		AlreadyUsed := false
+		for _, v := range Users {
+			fmt.Println(v.Email)
+			if v.Email == mail {
+				AlreadyUsed = true
+				Data.ErrorMessage = "Email déjà utilisé"
+			}
+		}
+		if AlreadyUsed  {
+			http.Redirect(w, r, "/adduser", 301)
+		} else {
+			_, err := db.Exec(`INSERT INTO user ('uid', 'username', 'email', 'passwd', 'avatar', 'type') VALUES (?, ?, ?, ?, ?, ?)`, uuid.String(), username, mail, Hash(password), avatar, user)
+			Debug(err)
+			CreateCookie(w, r, uuid.String())
+			http.Redirect(w, r, "/", 301)
+		}
 
-		http.Redirect(w, r, "/", 301)
 	}
 }

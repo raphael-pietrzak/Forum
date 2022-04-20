@@ -25,9 +25,10 @@ func RecupUser() []User {
 		var email string
 		var passwd string
 		var avatar string
-		err = rows.Scan(&id, &uid, &username, &email, &passwd, &avatar)
+		typee := "guest"
+		err = rows.Scan(&id, &uid, &username, &email, &passwd, &avatar, &typee)
 		Debug(err)
-		newTab = append(newTab, User{Id: id, Uid: uid, Email: email, Username: username, Passwd: passwd, Avatar: avatar})
+		newTab = append(newTab, User{Id: id, Uid: uid, Email: email, Username: username, Passwd: passwd, Avatar: avatar, Type: typee})
 	}
 	err = rows.Err()
 	Debug(err)
@@ -49,13 +50,12 @@ func RecupPost() []Post {
 		//posts
 		var pid int
 		var content string
-		var like int
 		var category string
 		var uid string
 
-		err = rows.Scan(&pid, &content, &like, &category, &uid)
+		err = rows.Scan(&pid, &content, &category, &uid)
 		Debug(err)
-		newTab = append(newTab, Post{Pid: pid, Content: content, Like: like, Category: category, Uid: uid})
+		newTab = append(newTab, Post{Pid: pid, Content: content, Category: category, Uid: uid})
 	}
 
 	err = rows.Err()
@@ -64,7 +64,7 @@ func RecupPost() []Post {
 	for post := range newTab {
 		for _, user := range Users {
 			if newTab[post].Uid == user.Uid {
-				newTab[post].Username = user.Username
+				newTab[post].User = user
 			}
 		}
 	}
@@ -101,7 +101,7 @@ func RecupComment() []Comment {
 	for _,comment := range newTab {
 		for _,user := range Users {
 			if comment.Uid == user.Uid {
-				comment.Username = user.Username
+				comment.User = user
 			}
 		}
 		for post := range Posts {

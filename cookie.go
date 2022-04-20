@@ -39,22 +39,22 @@ func GetUserByCookies(w http.ResponseWriter, r *http.Request) User {
 	var email string
 	var passwd string
 	var avatar string
+	typee := "guest"
 
 	if err != nil {
 		//fmt.Println("Cookie not found")
 	} else {
 		//fmt.Println("Cookie found")
-		//fmt.Println(cookie.Value)
-
+		
 		db, _ := sql.Open("sqlite3", "./database.db")
 
 		rows, err := db.Query("SELECT * FROM user WHERE uid='" + cookie.Value + "'")
 		Debug(err)
 
 		for rows.Next() {
-			err = rows.Scan(&id, &uid, &username, &email, &passwd, &avatar)
+			err = rows.Scan(&id, &uid, &username, &email, &passwd, &avatar, &typee)
 			Debug(err)
 		}
 	}
-	return User{Id: id, Uid: uid, Email: email, Passwd: passwd, Username: username, Avatar: avatar}
+	return User{Id: id, Uid: uid, Email: email, Passwd: passwd, Username: username, Avatar: avatar, Type: typee}
 }
