@@ -8,16 +8,16 @@
     <link rel="stylesheet" href="views/profil.css">
     <link rel="icon" type="image/x-icon" href="/views/i.ico">
     <script src="/views/script.js"></script>
-    <title>Profil</title>
+    <title>Profil - Forum</title>
 </head>
 <body>
+    <input id="type-user" type="hide" value="{{.User.Type}}">
 
     <div class="user-profile">
         <form action="/" method="post" class="back">
             <button ><i class="fa fa-arrow-left fa-lg"></i></button>
         </form>
         
-
         <form action="/avatar" method="post" enctype="multipart/form-data" class="change-picture" id="form">
             <input type="file" id="profile-picture" name="image_uploads" accept=".jpg, .jpeg, .png, .gif" multiple style="background-image: url('profil/{{.User.Avatar}}');" >
         </form>
@@ -30,8 +30,8 @@
     <div class="button-bar">
         <button onclick="replace(1)">Posts</button>
         <button onclick="replace(2)">Likes</button>
-        <button onclick="replace(3)">Categories</button>
-        <button onclick="replace(4)">Users</button>
+        <button onclick="replace(3)" class="hide">Categories</button>
+        <button onclick="replace(4)" class="hide">Users</button>
         <button class="end-line" style="flex: 2 1 0; margin-right: 0;"></button>
     </div>
 
@@ -92,6 +92,12 @@
         document.getElementById("profile-picture").onchange = function() {
         document.getElementById("form").submit();
     };
+        if (document.getElementById('type-user').value != 'admin') {
+            var hidden = document.getElementsByClassName('hide')
+            for (var i = 0; i < hidden.length; i++) {
+                hidden[i].style.display = 'none';
+            }
+        }
     </script>
     
 </body>

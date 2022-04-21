@@ -9,6 +9,7 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 	Posts2 := []Post{}
 
 	ErrParseForm(w, r)
+	UserLogin := GetUserByCookies(w, r)
 
 	category := r.Form.Get("categ")
 
@@ -19,8 +20,9 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	} else {
-		Posts = RecupPost()
-		Comments = RecupComment()
+		RecupPost()
+		RecupComment()
+		RecupLike(UserLogin.Uid)
 		Posts2 = Posts
 	}
 
@@ -30,8 +32,6 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 			Posts2[i], Posts2[j] = Posts2[j], Posts2[i]
 		}
 	}
-
-	UserLogin := GetUserByCookies(w, r)
 
 	tmpl := template.Must(template.ParseFiles("static/index.html"))
 	tmpl.Execute(w, Send{Post: Posts2, User: UserLogin, PostCategory: Category})

@@ -24,7 +24,6 @@ func DeleteCookie(w http.ResponseWriter, r *http.Request) {
 		Value:  "",
 		MaxAge: -1,
 	}
-
 	http.SetCookie(w, cookie)
 }
 

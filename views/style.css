@@ -155,6 +155,9 @@ main {
     word-wrap : break-word; 
 }
 
+/* .coms {
+    display: none;
+} */
 
 .comments {
     /* display: none; */
@@ -179,6 +182,10 @@ main {
   
 .like{
     color: rgb(199, 0, 0);
+}
+.like-counter{
+    color:#ccc;
+    font-size: smaller;
 }
 
 

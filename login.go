@@ -22,7 +22,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		Users = RecupUser()
+		RecupUser()
 		wrong_login := true
 
 		for i := range Users {
@@ -40,7 +40,6 @@ func Login(w http.ResponseWriter, r *http.Request) {
 }
 
 func Logout(w http.ResponseWriter, r *http.Request) {
-
 	DeleteCookie(w, r)
 	http.Redirect(w, r, "/", 301)
 }
@@ -52,18 +51,41 @@ func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
 		
 	case "GET":
 		tmpl := template.Must(template.ParseFiles("static/passwd_forgot.html"))
-		tmpl.Execute(w, Posts)
+		tmpl.Execute(w, Data)
+		Data.ErrorMessage = ""
 	case "POST":
 		db, _ := sql.Open("sqlite3", "./database.db")
 		ErrParseForm(w, r)
+		Data.ErrorMessage = ""
 
 		mail := r.Form.Get("mail")
 		password := r.Form.Get("new_password")
+		password_confirm := r.Form.Get("confirm_password")
 
-		_, err := db.Exec(`UPDATE user SET passwd = ? WHERE email = ?`, password, mail)
-		Debug(err)
+		fmt.Println(mail)
+		fmt.Println(password)
+		fmt.Println(password_confirm)
 
-		http.Redirect(w, r, "/login", 301)
+		if CheckMail(mail) == false && password != password_confirm {
+			Data.ErrorMessage = "Mail et mot de passe incorrect"
+			fmt.Println(Data.ErrorMessage)
+			http.Redirect(w, r, "/forgot", 301)
+		} else if password != password_confirm {
+			Data.ErrorMessage = "Mot de passe incorrect"
+			fmt.Println(Data.ErrorMessage)
+			http.Redirect(w, r, "/forgot", 301)
+		} else {
+			if CheckMail(mail) == false {
+				Data.ErrorMessage = "Mail incorrect"
+				fmt.Println(Data.ErrorMessage)
+				http.Redirect(w, r, "/forgot", 301)
+			} else {
+			_, err := db.Exec(`UPDATE user SET passwd = ? WHERE email = ?`, password, mail)
+			Debug(err)
+	
+			http.Redirect(w, r, "/login", 301)
+			}
+		}
 	}
 }
 

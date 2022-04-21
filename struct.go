@@ -1,12 +1,10 @@
 package forum
 
 import (
-	"fmt"
-	"net/http"
-
 	_ "github.com/google/uuid"
 )
 
+var Admin []string
 var Posts []Post
 var Users []User
 var Comments []Comment
@@ -26,17 +24,20 @@ type Post struct {
 	Uid      string
 	Category string
 	Content  string
-	Like     int
 	Comments []Comment
 	Pid      int
+	Like 	int
+	LikeActive string
 }
 
 type Comment struct {
-	Uid      string
-	Cid      int
-	Content  string
-	Pid      int
-	User   User
+	Uid     string
+	Cid     int
+	Content string
+	Pid     int
+	User    User
+	Like  	int
+	LikeActive string
 }
 
 type User struct {
@@ -49,12 +50,24 @@ type User struct {
 	Type     string
 }
 
+
+//Utilité Cookie ????
 type Cookie struct {
 	UUid  string
 	Name  string
 	Value string
 }
 
-func DataToStruct(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello from API")
+type Like struct {
+	Uid string
+	Pid int
+}
+
+func AdminSystem(email string) bool {
+	for _, v := range Admin {
+		if v == email {
+			return true
+		}
+	}
+	return false
 }
