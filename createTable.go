@@ -28,6 +28,7 @@ func TableCreation() {
 		pid INTEGER PRIMARY KEY, 
 		content TEXT,
 		category TEXT,
+		contentPhoto TEXT,
 		uid TEXT
 
 	);`)

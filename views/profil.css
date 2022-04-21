@@ -33,6 +33,7 @@ body {
     background: none;
     background-position: center center;
     background-size: cover;
+    cursor: pointer;
 }
 
 #cercle {
@@ -132,3 +133,10 @@ html {
     font-family: sans-serif;
 }
 
+input[type='file'] {
+    color: transparent;
+  }
+
+::-webkit-file-upload-button {
+    display: none;
+ }

@@ -109,7 +109,8 @@ input[type='submit'] {
   
 .form input[type='text'],
 .form input[type='email'],
-.form input[type='password'] {
+.form input[type='password'],
+.form input[type='password']  {
   inline-size: 100%;
 }
   
@@ -158,6 +159,7 @@ input[type='submit'] {
   
 .login input[type='text'],
 .login input[type='email'],
+.login input[type='password'],
 .login input[type='password'] {
   border: 0.0625em solid #e5e5e5;
   padding: 1em 1.25em;
@@ -229,6 +231,10 @@ menu button {
   cursor: pointer;
   background: none;
   border: none;
+}
+
+menu button:hover {
+  color: rgb(220, 221, 221);
 }
 
 body {
