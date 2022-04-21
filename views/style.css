@@ -147,11 +147,11 @@ main {
     width: 100%;
 }
 
-.post-content p {
+.content {
     margin: 10px 0;
     margin-left: 55px;
     text-align: start;
-    width: 80%;
+    /* width: 80%; */
     word-wrap : break-word; 
 }
 
@@ -170,11 +170,12 @@ main {
     font-size: large;
 }
 
-.fa-heart {
+.heart-counter {
     margin-left: auto;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
-
 
 .unlike{
     color:#ccc;
@@ -187,6 +188,12 @@ main {
     color:#ccc;
     font-size: smaller;
 }
+.date {
+    color:#ccc;
+    font-size: smaller;
+    margin-left: auto;
+}
+
 
 
 footer {

@@ -67,7 +67,7 @@ body2 {
   font-size: var(--bodyFontSize);
   font-weight: var(--bodyFontWeight);
   line-height: var(--bodyLineHeight);
-  min-block-size: 100vh;
+  min-block-size: 80vh ;
 }
   
 /* modules/anchor.css */
@@ -232,5 +232,7 @@ menu button {
 }
 
 body {
+  background-color: var(--bodyBackgroundColor);
+
   margin: 0;
 }

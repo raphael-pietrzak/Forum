@@ -17,27 +17,31 @@ type Send struct {
 	User         User
 	PostCategory []string
 	ErrorMessage string
+	SumLikes     int
+	SumPostLikes int
 }
 
 type Post struct {
-	User     User
-	Uid      string
-	Category string
-	Content  string
-	Comments []Comment
-	Pid      int
-	Like 	int
+	User       User
+	Uid        string
+	Category   string
+	Content    string
+	Comments   []Comment
+	Pid        int
+	Like       string
 	LikeActive string
+	Date       string
 }
 
 type Comment struct {
-	Uid     string
-	Cid     int
-	Content string
-	Pid     int
-	User    User
-	Like  	int
+	Uid        string
+	Cid        int
+	Content    string
+	Pid        int
+	User       User
+	Like       string
 	LikeActive string
+	Date       string
 }
 
 type User struct {
@@ -48,19 +52,6 @@ type User struct {
 	Username string
 	Avatar   string
 	Type     string
-}
-
-
-//Utilité Cookie ????
-type Cookie struct {
-	UUid  string
-	Name  string
-	Value string
-}
-
-type Like struct {
-	Uid string
-	Pid int
 }
 
 func AdminSystem(email string) bool {

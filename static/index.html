@@ -33,6 +33,9 @@
                 <button name="Confirm">Apply</button>
             </form>
         </div>
+
+        
+
         <div class="user-log" id="user-profile">
             <form action="/login">
                 <button class="button_login">Login</button>
@@ -63,11 +66,15 @@
                             <form action="/like" method="post" id="submitlike">
                                 <input id="inputlike" type="hidden" name="like" value="">
                             </form>
-                            <i class="/{{.Pid}} 0 fa fa-heart {{.LikeActive}}"></i>
-                            <p class="like-counter">{{.Like}}</p>
+                            <div class="heart-counter">
+                                <i class="/{{.Pid}} 0 fa fa-heart {{.LikeActive}}"></i>
+                                <p2 class="like-counter">{{.Like}}</p2>
+                            </div>
                         </div>
                         <div class="post-content">
-                            <p>{{.Content}}</p>
+                            <p class="content">{{.Content}}</p>
+                            <p class="date">{{.Date}}</p>
+
                             <!-- <a onclick="DisplayComments(id)" id="{{.Pid}}" class="showComments">Show Comments</a> -->
                         </div>
                     </button>
@@ -79,11 +86,14 @@
                             <div class="info-user-post">
                                 <div id="cercle-com" style="background-image: url('profil/{{.User.Avatar}}');"></div>
                                 <p>{{.User.Username}}</p>
-                                <i class="/{{.Cid}} 1 fa fa-heart {{.LikeActive}}"></i>
-                                <p class="like-counter">{{.Like}}</p>
+                                <div class="heart-counter">
+                                    <i class="/{{.Cid}} 1 fa fa-heart {{.LikeActive}}"></i>
+                                    <p2 class="like-counter">{{.Like}}</p2>
+                                </div>
                             </div>
                             <div class="post-content">
-                                <p>{{.Content}}</p>
+                                <p class="content">{{.Content}}</p>
+                                <p class="date">{{.Date}}</p>
                             </div>
                         </button>
                         {{end}}
@@ -101,7 +111,6 @@
     <footer>
         <p>Copyright © 2022</p>
         <p>All rights reserved</p>
-        <p>Audran Latorre - Maxim Doublait - Raphaël Pietrzak</p>
     </footer>
     <script> 
         UserPermissions("{{.User.Type}}");

@@ -2,6 +2,7 @@ package forum
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -14,9 +15,7 @@ func RecupUser() {
 	var email string
 	var passwd string
 	var avatar string
-	var typee string
-
-	typee = "guest"
+	typee := "guest"
 
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
@@ -38,13 +37,14 @@ func RecupUser() {
 	Users = newTab
 }
 
-func RecupPost(){
+func RecupPost() {
 
 	//Posts
 	var pid int
 	var content string
 	var category string
 	var uid string
+	var date string
 	var counter int
 
 	db, err := sql.Open("sqlite3", "./database.db")
@@ -58,16 +58,19 @@ func RecupPost(){
 
 	var newTab []Post
 	for rows.Next() {
-		
 
-		err = rows.Scan(&pid, &content, &category, &uid)
+		err = rows.Scan(&pid, &content, &category, &date, &uid)
 		Debug(err)
+		date = TimeSince(date)
+
 		count, err := db.Query(`SELECT COUNT(*) FROM likes WHERE pid = ?`, pid)
 		Debug(err)
 		for count.Next() {
 			_ = count.Scan(&counter)
 		}
-		newTab = append(newTab, Post{Pid: pid, Content: content, Category: category, Uid: uid, LikeActive: "unlike", Like: counter})
+		counter = 1456
+		finalcounter := Adaptlikes(counter)
+		newTab = append(newTab, Post{Pid: pid, Content: content, Category: category, Uid: uid, LikeActive: "unlike", Like: finalcounter, Date: date})
 	}
 
 	for post := range newTab {
@@ -81,13 +84,14 @@ func RecupPost(){
 	Posts = newTab
 }
 
-func RecupComment(){
+func RecupComment() {
 	//comments
 	var cid int
 	var pid int
 	var comment string
 	var uid string
 	var user_comment User
+	var date string
 	var counter int
 
 	db, err := sql.Open("sqlite3", "./database.db")
@@ -99,9 +103,10 @@ func RecupComment(){
 
 	for rows.Next() {
 
-		err = rows.Scan(&cid, &pid, &comment, &uid)
+		err = rows.Scan(&cid, &pid, &comment, &date, &uid)
 		Debug(err)
 
+		date = TimeSince(date)
 		count, err := db.Query(`SELECT COUNT(*) FROM likes WHERE cid = ?`, cid)
 		Debug(err)
 		for count.Next() {
@@ -114,15 +119,18 @@ func RecupComment(){
 				break
 			}
 		}
+		counter = 3987888
+
+		finalcounter := Adaptlikes(counter)
 		for post := range Posts {
 			if pid == Posts[post].Pid {
-				Posts[post].Comments = append(Posts[post].Comments, Comment{Uid: uid, Pid: pid, Content: comment, Cid: cid, User: user_comment, LikeActive: "unlike", Like: counter})
+				Posts[post].Comments = append(Posts[post].Comments, Comment{Uid: uid, Pid: pid, Content: comment, Cid: cid, User: user_comment, LikeActive: "unlike", Like: finalcounter, Date: date})
 			}
 		}
 	}
 }
 
-func RecupLike(Uid string)  {
+func RecupLike(Uid string) {
 	//like
 	var id int
 	var uid string
@@ -137,15 +145,19 @@ func RecupLike(Uid string)  {
 	Debug(err)
 
 	for rows.Next() {
-		
+
 		err = rows.Scan(&id, &uid, &pid, &cid)
 		Debug(err)
 		if uid == Uid {
 			if cid == 0 {
-				Posts[pid-1].LikeActive = "like"
+				for post := range Posts {
+					if pid == Posts[post].Pid {
+						Posts[post].LikeActive = "like"
+					}
+				}
 			} else {
-				for i,post := range Posts {
-					for j :=  range post.Comments{
+				for i, post := range Posts {
+					for j := range post.Comments {
 						if Posts[i].Comments[j].Cid == cid {
 							Posts[i].Comments[j].LikeActive = "like"
 						}
@@ -154,4 +166,18 @@ func RecupLike(Uid string)  {
 			}
 		}
 	}
+}
+
+func Adaptlikes(like int) string {
+	var finalcounter string
+	if like > 1000000000 {
+		finalcounter = fmt.Sprintf("%.2f", float64(like)/1000000000) + "Md"
+	} else if like > 1000000 {
+		finalcounter = fmt.Sprintf("%.2f", float64(like)/1000000) + "M"
+	} else if like > 1000 {
+		finalcounter = fmt.Sprintf("%.2f", float64(like)/1000) + "k"
+	} else {
+		finalcounter = fmt.Sprintf("%d", like)
+	}
+	return finalcounter
 }

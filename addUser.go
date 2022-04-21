@@ -22,6 +22,7 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 		ErrParseForm(w, r)
 
 		username := r.Form.Get("user_name")
+
 		mail := r.Form.Get("mail")
 		uuid := uuid.New().String()
 		password := r.Form.Get("password")
@@ -41,7 +42,6 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 			CreateCookie(w, r, uuid)
 			http.Redirect(w, r, "/", 301)
 		}
-
 	}
 }
 

@@ -28,10 +28,10 @@
         </div>
     </div>
     <div class="button-bar">
-        <button onclick="replace(1)">Posts</button>
-        <button onclick="replace(2)">Likes</button>
-        <button onclick="replace(3)" class="hide">Categories</button>
-        <button onclick="replace(4)" class="hide">Users</button>
+        <button class="menubar" onclick="replace(1)">Posts</button>
+        <button class="menubar" onclick="replace(2)">Likes</button>
+        <button onclick="replace(3)" class="menubar hide">Categories</button>
+        <button onclick="replace(4)" class="menubar hide">Users</button>
         <button class="end-line" style="flex: 2 1 0; margin-right: 0;"></button>
     </div>
 
@@ -52,14 +52,10 @@
     </div>
     <div class="pages" id="div2">
         <div class="post-container-header">
-            <h2>Likes</h2>
+            <h2>Nombre total de likes</h2>
         </div>
         <div class="post-container-body">
-            <h3>Title</h3>
-            <h3>Category</h3>
-            <h3>Likes</h3>
-            <h3>Comments</h3>
-            <h3>Date</h3>
+            <p>{{.SumLikes}}</p>
         </div>
     </div>
     <div class="pages" id="div3">
@@ -80,12 +76,19 @@
         <div class="post-container-header">
             <h2>Users</h2>
         </div>
+        {{range .Users}}
         <div class="post-container-body">
-            {{range .Users}}
+            
             <div id="cercle" style="background-image: url('profil/{{.Avatar}}');"></div>
             <p>{{.Username}}</p>
-            {{end}}
+            <p>{{.Type}}</p>
+            <form action="/promote" method="post">
+                <button name="promotion" value="promote {{.Uid}} {{.Type}}">Promote</button>
+                <button name="promotion" value="demote {{.Uid}} {{.Type}}">Demote</button>
+            </form>
         </div>
+        {{end}}
+
     </div>
 
     <script>

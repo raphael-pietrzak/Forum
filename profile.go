@@ -11,21 +11,25 @@ import (
 func Profile(w http.ResponseWriter, r *http.Request) {
 	MyPosts := []Post{}
 	User := GetUserByCookies(w, r)
+	sumlike := 0
 
 	for i := range Posts {
 		if Posts[i].Uid == User.Uid {
 			MyPosts = append(MyPosts, Posts[i])
+			// sumlike += Posts[i].Like
 		}
 	}
+	
 
 	RecupUser()
 
 	tmpl := template.Must(template.ParseFiles("static/profile.html"))
-	tmpl.Execute(w, Send{User: User, Post: MyPosts, Users: Users, PostCategory: Category})
+	tmpl.Execute(w, Send{User: User, Post: MyPosts, Users: Users, PostCategory: Category, SumLikes: sumlike })
 }
 
 
 func ChangementAvatar(w http.ResponseWriter, r *http.Request) {
+
 	db, _ := sql.Open("sqlite3", "./database.db")
 	ErrParseForm(w, r)
 
