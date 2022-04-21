@@ -47,7 +47,6 @@ func main() {
 	
 
 
-	f.main2()
 	//Max work
 	// http.HandleFunc("/unlike", f.Mike)
 	//
