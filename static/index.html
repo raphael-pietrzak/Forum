@@ -73,6 +73,9 @@
                         </div>
                         <div class="post-content">
                             <p>{{.Content}}</p>
+                            {{if ne .ContentPhoto "rien"}}
+                                <img src="profil/{{.ContentPhoto}}">
+                            {{end}}
                             <!-- <a onclick="DisplayComments(id)" id="{{.Pid}}" class="showComments">Show Comments</a> -->
                         </div>
                     </button>

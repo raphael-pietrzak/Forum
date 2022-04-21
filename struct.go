@@ -24,6 +24,7 @@ type Post struct {
 	Uid      string
 	Category string
 	Content  string
+	ContentPhoto string
 	Comments []Comment
 	Pid      int
 	Like 	int
