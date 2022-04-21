@@ -2,7 +2,10 @@ package forum
 
 import (
 	"database/sql"
+	"fmt"
 	"net/http"
+	_ "strconv"
+	"strings"
 	"text/template"
 
 	"github.com/google/uuid"
@@ -21,7 +24,10 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 		db, _ := sql.Open("sqlite3", "./database.db")
 		ErrParseForm(w, r)
 
-		username := r.Form.Get("user_name")
+		username := r.Form.Get("user_name") 
+		Firstletter := strings.ToUpper(string(username[0])) 
+        username = Firstletter + username[1:]
+		fmt.Println(username)
 		mail := r.Form.Get("mail")
 		uuid := uuid.New().String()
 		password := r.Form.Get("password")
