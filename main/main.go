@@ -16,21 +16,41 @@ func main() {
 	f.TableCreation()
 
 	//Recup Data
-	f.Category = []string{"Sport", "Jeux", "Nourriture"}
+	f.Category = []string{
+		"Sport",
+		"Jeux",
+		"Nourriture",
+	}
 
+	f.Admin = []string{
+		"r@r",
+		"admin@admin",
+		"a@a",
+	}
 
 	//HandleFunc
 	http.HandleFunc("/", f.Home)
+	http.HandleFunc("/profile", f.Profile)
+
+	http.HandleFunc("/adduser", f.AddUser)
 	http.HandleFunc("/addpost", f.AddPost)
 	http.HandleFunc("/addcomment", f.AddComment)
-	http.HandleFunc("/adduser", f.AddUser)
-	http.HandleFunc("/filters", f.Filters)
+	http.HandleFunc("/addcategory", f.AddCategory)
+
 	http.HandleFunc("/login", f.Login)
-	http.HandleFunc("/forgot", f.Passwd_forgot)
 	http.HandleFunc("/logout", f.Logout)
-	http.HandleFunc("/profile", f.Profile)
-	http.HandleFunc("/unlike", f.Mike)
+	http.HandleFunc("/forgot", f.Passwd_forgot)
+
 	http.HandleFunc("/avatar", f.ChangementAvatar)
+	http.HandleFunc("/like", f.LikePosts)
+	http.HandleFunc("/filters", f.Filters)
+
+
+
+	//Max work
+	// http.HandleFunc("/unlike", f.Mike)
+	//
+
 
 	//Show #CSS
 	fs := http.FileServer(http.Dir("./views"))
@@ -39,6 +59,6 @@ func main() {
 	fs2 := http.FileServer(http.Dir("./profil"))
 	http.Handle("/profil/", http.StripPrefix("/profil/", fs2))
 
-	fmt.Println("Listening at http://127.0.0.1:5500")
+	fmt.Println("Listening at http://localhost:5500")
 	http.ListenAndServe("localhost:5500", nil)
 }

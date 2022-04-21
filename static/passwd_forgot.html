@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="views/passwd_forgot.css">
+    <link rel="stylesheet" href="views/sign_up.css">
     <link rel="icon" type="image/x-icon" href="/views/i.ico">
-    <title>Forgot</title>
+    <title>Forgot  - Forum</title>
 </head>
-<body class="align">
+<body>
+  <menu class="menu">
+    <form action="/">
+      <button>Forum</button>
+    </form>
+  </menu>
+
+  <body2 class="align">
     <div class="grid">
       <form action="/forgot" method="post" class="form login">
         <header class="login__header">
@@ -27,7 +34,10 @@
         </footer>
       </form>
     </div>
-  </body>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+  </body2>
+  
+</body>
 </html>
 
 

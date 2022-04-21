@@ -61,13 +61,12 @@ html {
   box-sizing: border-box;
 }
   
-body {
+body2 {
   background-color: var(--bodyBackgroundColor);
   font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
   font-size: var(--bodyFontSize);
   font-weight: var(--bodyFontWeight);
   line-height: var(--bodyLineHeight);
-  margin: 0;
   min-block-size: 100vh;
 }
   
@@ -209,5 +208,29 @@ input[type='submit'] {
 }
   
 .login__footer p {
+  margin: 0;
+}
+
+menu {
+  display: flex;
+  height: 100px;
+  width: 100%;
+  margin: 0;
+  background-color: rgb(42, 44, 46);
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+menu button {
+  font-family: sans-serif;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+body {
   margin: 0;
 }
