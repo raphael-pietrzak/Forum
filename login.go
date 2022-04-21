@@ -62,22 +62,15 @@ func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
 		password := r.Form.Get("new_password")
 		password_confirm := r.Form.Get("confirm_password")
 
-		fmt.Println(mail)
-		fmt.Println(password)
-		fmt.Println(password_confirm)
-
 		if CheckMail(mail) == false && password != password_confirm {
 			Data.ErrorMessage = "Mail et mot de passe incorrect"
-			fmt.Println(Data.ErrorMessage)
 			http.Redirect(w, r, "/forgot", 301)
 		} else if password != password_confirm {
 			Data.ErrorMessage = "Mot de passe incorrect"
-			fmt.Println(Data.ErrorMessage)
 			http.Redirect(w, r, "/forgot", 301)
 		} else {
 			if CheckMail(mail) == false {
 				Data.ErrorMessage = "Mail incorrect"
-				fmt.Println(Data.ErrorMessage)
 				http.Redirect(w, r, "/forgot", 301)
 			} else {
 			_, err := db.Exec(`UPDATE user SET passwd = ? WHERE email = ?`, password, mail)
