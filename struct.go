@@ -62,6 +62,8 @@ type Cookie struct {
 type Like struct {
 	Uid string
 	Pid int
+	Uid_receveur string
+	Notification_count int
 }
 
 func AdminSystem(email string) bool {

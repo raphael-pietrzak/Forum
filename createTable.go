@@ -50,7 +50,8 @@ func TableCreation() {
 		id INTEGER PRIMARY KEY, 
 		uid TEXT, 
 		pid INTEGER,
-		cid INTEGER
+		cid INTEGER,
+		notification BOOL
 	);`)
 
 	Debug(err)

@@ -128,6 +128,8 @@ func RecupLike(Uid string) {
 	var uid string
 	var pid int
 	var cid int
+	// var uidreceveur string
+	var Notification_count int
 
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
@@ -136,9 +138,19 @@ func RecupLike(Uid string) {
 	err = rows.Err()
 	Debug(err)
 
+	// User := GetUserByCookies(w, r)
+
+	// for i := range Posts {
+	// 	if Posts[i].Uid == User.Uid {
+
+	// 	}
+	// }
+
+	// Notification_count, err = sql.Query(`SELECT COUNT(*) FROM likes WHERE pid = ?`)
+
 	for rows.Next() {
 
-		err = rows.Scan(&id, &uid, &pid, &cid)
+		err = rows.Scan(&id, &uid, &pid, &cid, &Notification_count)
 		Debug(err)
 		if uid == Uid {
 			if cid == 0 {

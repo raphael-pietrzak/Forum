@@ -35,8 +35,21 @@ header{
     color: rgb(220, 221, 221);
 }
 
+.addpost button{
+    background: none;
+    color: white;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    margin-left: 90px;
+}
+
+.addpost button:hover{
+    color: rgb(220, 221, 221);
+}
+
 .SelectFilters {
-    margin-left: 40px;
+    margin: 20px;
 }
 .filters {
     display: none;
@@ -98,10 +111,6 @@ header{
 .picture-log:hover .log-out {
     display: block;
 }
-
-
-
-
 
 main {
     background-color: white;

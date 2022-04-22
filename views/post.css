@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    background-color: rgb(42, 44, 46);
+}
+
+header{
+    display: flex;
+    color: white;
+    flex-direction: row;
+    align-items: center;
+    height: 100px;
+}
+main {
+    
+    background-color: white;
+    padding: 2vh 0 10vh;
+
+}
+
+/* main form {
+   
+} */
+
+.categ{
+    width: 100px;
+    margin-left: 320px;
+    margin-top: 20px;
+    padding: 80px;
+    font-family: Roboto,system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: large;
+}
+
+.text {
+    display: flex;
+}
+
+.text textarea {
+    width: 600px;
+    height: 400px;
+    color: rgb(42, 44, 46);
+    font-family: Roboto,system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    background-color: #f1f1f1;
+    display: flex;
+    border: 1px solid rgb(42, 44, 46);
+    min-height: 10vh;
+    border-radius: 20px;
+    font-size: large;
+    padding: 30px;
+}
+
+.text p {
+    display: flex;
+}
+
+.forum {
+    margin-left: 40px;
+    font-family: sans-serif;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+.forum:hover {
+    color: rgb(220, 221, 221);
+}
+
+.post {
+    width: 130px;
+    height: 40px;
+    margin-left: 860px;
+    margin-top: 80px;
+    border-radius: 20px;
+    background-color: #f1f1f1;
+    border: 1px solid rgb(42, 44, 46);
+}
+
+.post-image-icon {
+    /* border: 1px solid black; */
+    width: 60px;
+    height: 62px;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+/* input[type='file'] {
+    color: transparent;
+  }
+
+::-webkit-file-upload-button {
+    display: none;
+ } */
+
+
