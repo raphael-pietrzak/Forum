@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="261219699084-4s6k7ilm6uefdrpcj59upsunpf06a1db.apps.googleusercontent.com.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <link rel="stylesheet" href="views/sign_up.css">
     <link rel="icon" type="image/x-icon" href="/views/i.ico">
@@ -58,24 +56,45 @@
           </form>
 
         </div>
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-      <script>
-        function onSignIn(googleUser) {
-          // Useful data for your client-side scripts:
-          var profile = googleUser.getBasicProfile();
-          console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-          console.log('Full Name: ' + profile.getName());
-          console.log('Given Name: ' + profile.getGivenName());
-          console.log('Family Name: ' + profile.getFamilyName());
-          console.log("Image URL: " + profile.getImageUrl());
-          console.log("Email: " + profile.getEmail());
+ 
 
-          // The ID token you need to pass to your backend:
-          var id_token = googleUser.getAuthResponse().id_token;
-          console.log("ID Token: " + id_token);
-        }
-      </script>
     </body2>    
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <div id="g_id_onload"
+         data-client_id="822476215105-a1qeg4jvqdnjlut874jucd3lh0srpfr8.apps.googleusercontent.com"
+         data-callback="handleCredentialResponse">
+    </div>
+    <div class="g_id_signin" data-type="standard"></div>
   
   </body>
-</html>
+</html>  
+
+<!-- 
+<html>
+  <header>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.rawgit.com/oauth-io/oauth-js/c5af4519/dist/oauth.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.12.0/bootstrap-social.min.css">
+  </header>
+
+  <body>
+    <a id="github-button" class="btn btn-block btn-social btn-github">
+      <i class="fa fa-github"></i> Sign in with Github
+    </a>
+
+    <script>
+      $('#github-button').on('click', function() {
+        // Initialize with your OAuth.io app public key
+        OAuth.initialize('6a4f72865e75c79cf511');
+        // Use popup for OAuth
+        OAuth.popup('github').then(github => {
+          console.log(github);
+          // Retrieves user data from oauth provider
+          console.log(github.me());
+        });
+      })
+    </script>
+  </body>
+</html>  -->

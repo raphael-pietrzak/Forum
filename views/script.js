@@ -99,3 +99,30 @@ function replace(id){
 //     document.getElementsByClassName('showComments')[id-1].innerHTML = "<a onclick='DisplayComments(id)' id='{{.Pid}}' class='showComments'>Hide Coms</a>"
 //   }
 // }
+
+function onSignIn(googleUser) {
+  console.log("hahahahahaha")
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+
+function getBasicProfile(){
+  console.log("heeeheheheehhe")
+  gapi.auth2.authorize({
+    client_id: '822476215105-a1qeg4jvqdnjlut874jucd3lh0srpfr8.apps.googleusercontent.com',
+    scope: 'email profile openid',
+    response_type: 'id_token permission'
+  }, function(response) {
+    if (response.error) {
+      // An error happened!
+      return;
+    }
+    // The user authorized the application for the scopes requested.
+    var accessToken = response.access_token;
+    var idToken = response.id_token;
+    // You can also now use gapi.client to perform authenticated requests.
+  });
+}

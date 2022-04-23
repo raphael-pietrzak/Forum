@@ -4,7 +4,6 @@ import (
 	"fmt"
 	f "forum"
 	"net/http"
-
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -45,6 +44,7 @@ func main() {
 	http.HandleFunc("/like", f.LikePosts)
 	http.HandleFunc("/filters", f.Filters)
 
+	
 
 
 	//Max work
@@ -62,3 +62,4 @@ func main() {
 	fmt.Println("Listening at http://localhost:5500")
 	http.ListenAndServe("localhost:5500", nil)
 }
+
