@@ -2,6 +2,7 @@ package forum
 
 import (
 	"net/http"
+	"sort"
 	"text/template"
 )
 
@@ -32,6 +33,19 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 			Posts2[i], Posts2[j] = Posts2[j], Posts2[i]
 		}
 	}
+
+	likes := r.Form.Get("LikesFiltres")
+	if likes == "plikes" {
+		sort.SliceStable(Posts2, func(i, j int) bool {
+			return Posts2[i].Like2 < Posts2[j].Like2
+		})
+	}
+	if likes == "mlikes" {
+		sort.SliceStable(Posts2, func(i, j int) bool {
+			return Posts2[i].Like2 > Posts2[j].Like2
+		})
+	}
+	
 
 	tmpl := template.Must(template.ParseFiles("static/index.html"))
 	tmpl.Execute(w, Send{Post: Posts2, User: UserLogin, PostCategory: Category})

@@ -35,6 +35,10 @@
                     <option value="Croissante">Date Croissante</option>
                     <option value="Decroissante">Date Décroissante</option>
                 </select>
+                <select  id="select-date" name="LikesFiltres">
+                    <option value="plikes">Plus likés</option>
+                    <option value="mlikes">Moins likés</option>
+                </select>
                 <button name="Confirm">Apply</button>
             </form>
         </div>
@@ -47,6 +51,10 @@
             </form>
         </div>
         <div class="picture-log" id="name">
+            {{if ne .Notifs 0}}
+            <p class="notifs">{{.Notifs}}</p>
+            {{end}}
+
             <form action="/profile" method="post" class="pict-log-height">
                 <button id="cercle-log"  style="background-image: url('profil/{{.User.Avatar}}');"></button>
             </form>

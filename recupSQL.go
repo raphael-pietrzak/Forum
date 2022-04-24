@@ -71,7 +71,7 @@ func RecupPost() {
 		}
 		// сounter = 1465
 		finalcounter := Adaptlikes(counter)
-		newTab = append(newTab, Post{Pid: pid, Content: content, Category: category, Uid: uid, LikeActive: "unlike", Like: finalcounter, Date: date, ContentPhoto: contentPhoto})
+		newTab = append(newTab, Post{Pid: pid, Content: content, Category: category, Uid: uid, LikeActive: "unlike", Like: finalcounter, Date: date, ContentPhoto: contentPhoto, Like2: counter})
 	}
 
 	for post := range newTab {
@@ -178,6 +178,8 @@ func RecupLike(User User) {
 			}
 		}
 	}
+	Data.Notifs = len(Data.Notifications)
+
 }
 
 func Adaptlikes(like int) string {

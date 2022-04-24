@@ -38,7 +38,7 @@ func Profile(w http.ResponseWriter, r *http.Request) {
 
 
 	tmpl := template.Must(template.ParseFiles("static/profile.html"))
-	tmpl.Execute(w, Send{User: User, Post: MyPosts, Users: Users, PostCategory: Category, SumLikes: sumlike, Notifications: Data.Notifications})
+	tmpl.Execute(w, Send{User: User, Post: MyPosts, Users: Users, PostCategory: Category, SumLikes: sumlike, Notifications: Data.Notifications, Notifs: Data.Notifs})
 }
 
 
