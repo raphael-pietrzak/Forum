@@ -204,9 +204,9 @@ input[type='submit'] {
   border-bottom-right-radius: var(--loginBorderRadius);
   display: flex;
   justify-content: space-between;
-  padding-bottom: 1.5em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding-bottom: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
 }
   
 .login__footer p {
@@ -242,5 +242,4 @@ body {
 
   margin: 0;
 }
-
 

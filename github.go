@@ -1,190 +1,118 @@
 package forum
 
 import (
-	"bytes"
-	"encoding/json"
-	"fmt"
-	"io/ioutil"
-	"log"
-	"net/http"
-	"os"
 
 	// _ "github.com/joho/godotenv"
+	"fmt"
+	"net/http"
+
+	"github.com/gorilla/mux"
+	"github.com/gorilla/securecookie"
 )
 
-// func init() {
-//     // loads values from .env into the system
-//     if err := godotenv.Load(); err != nil {
-//         log.Fatal("No .env file found")
-//     }
-// }
+// cookie handling
 
-func main2() {
-	// Simply returns a link to the login route
-	http.HandleFunc("/", rootHandler)
+var cookieHandler = securecookie.New(
+	securecookie.GenerateRandomKey(64),
+	securecookie.GenerateRandomKey(32))
 
-	// Login route
-	http.HandleFunc("/login/github/", githubLoginHandler)
-
-	// Github callback
-	http.HandleFunc("/login/github/callback", githubCallbackHandler)
-
-	// Route where the authenticated user is redirected to
-	http.HandleFunc("/loggedin", func(w http.ResponseWriter, r *http.Request) {
-		loggedinHandler(w, r, "")
-	})
-
-	fmt.Println("[ UP ON PORT 5500 ]")
-	log.Panic(
-		http.ListenAndServe(":5500", nil),
-	)
+func getUserName(request *http.Request) (userName string) {
+	if cookie, err := request.Cookie("session"); err == nil {
+		cookieValue := make(map[string]string)
+		if err = cookieHandler.Decode("session", cookie.Value, &cookieValue); err == nil {
+			userName = cookieValue["name"]
+		}
+	}
+	return userName
 }
 
-func loggedinHandler(w http.ResponseWriter, r *http.Request, githubData string) {
-	if githubData == "" {
-		// Unauthorized users get an unauthorized message
-		fmt.Fprintf(w, "UNAUTHORIZED!")
-		return
+func setSession(userName string, response http.ResponseWriter) {
+	value := map[string]string{
+		"name": userName,
 	}
-
-	// Set return type JSON
-	w.Header().Set("Content-type", "application/json")
-
-	// Prettifying the json
-	var prettyJSON bytes.Buffer
-	// json.indent is a library utility function to prettify JSON indentation
-	parserr := json.Indent(&prettyJSON, []byte(githubData), "", "\t")
-	if parserr != nil {
-		log.Panic("JSON parse error")
+	if encoded, err := cookieHandler.Encode("session", value); err == nil {
+		cookie := &http.Cookie{
+			Name:  "session",
+			Value: encoded,
+			Path:  "/",
+		}
+		http.SetCookie(response, cookie)
 	}
-
-	// Return the prettified JSON as a string
-	fmt.Fprintf(w, string(prettyJSON.Bytes()))
 }
 
-func rootHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, `<a href="/login/github/">LOGIN</a>`)
+func clearSession(response http.ResponseWriter) {
+	cookie := &http.Cookie{
+		Name:   "session",
+		Value:  "",
+		Path:   "/",
+		MaxAge: -1,
+	}
+	http.SetCookie(response, cookie)
 }
 
-func getGithubClientID() string {
+// login handler
 
-	githubClientID, exists := os.LookupEnv("6a4f72865e75c79cf511")
-	if !exists {
-		log.Fatal("Github Client ID not defined in .env file")
+func loginHandler(response http.ResponseWriter, request *http.Request) {
+	name := request.FormValue("name")
+	pass := request.FormValue("password")
+	redirectTarget := "/"
+	if name != "" && pass != "" {
+		// .. check credentials ..
+		setSession(name, response)
+		redirectTarget = "/internal"
 	}
-
-	return githubClientID
+	http.Redirect(response, request, redirectTarget, 302)
 }
 
-func getGithubClientSecret() string {
+// logout handler
 
-	githubClientSecret, exists := os.LookupEnv("488e4df96297917aaca7b47fa551fceeda97a1c8")
-	if !exists {
-		log.Fatal("Github Client ID not defined in .env file")
-	}
-
-	return githubClientSecret
+func logoutHandler(response http.ResponseWriter, request *http.Request) {
+	clearSession(response)
+	http.Redirect(response, request, "/", 302)
 }
 
-func githubLoginHandler(w http.ResponseWriter, r *http.Request) {
-	// Get the environment variable
-	githubClientID := getGithubClientID()
+// index page
 
-	// Create the dynamic redirect URL for login
-	redirectURL := fmt.Sprintf(
-		"https://github.com/login/oauth/authorize?client_id=%s&redirect_uri=%s",
-		githubClientID,
-		"http://localhost:3000/login/github/callback",
-	)
+const indexPage = `
 
-	http.Redirect(w, r, redirectURL, 301)
+`
+
+func indexPageHandler(response http.ResponseWriter, request *http.Request) {
+	fmt.Fprintf(response, indexPage)
 }
 
-func githubCallbackHandler(w http.ResponseWriter, r *http.Request) {
-	code := r.URL.Query().Get("code")
+// internal page
 
-	githubAccessToken := getGithubAccessToken(code)
+const internalPage = `
+<h1>Internal</h1>
+<hr>
+<small>User: %s</small>
+<form method="post" action="/logout">
+    <button type="submit">Logout</button>
+</form>
+`
 
-	githubData := getGithubData(githubAccessToken)
-
-	loggedinHandler(w, r, githubData)
+func internalPageHandler(response http.ResponseWriter, request *http.Request) {
+	userName := getUserName(request)
+	if userName != "" {
+		fmt.Fprintf(response, internalPage, userName)
+	} else {
+		http.Redirect(response, request, "/", 302)
+	}
 }
 
-func getGithubAccessToken(code string) string {
+// server main method
 
-	clientID := getGithubClientID()
-	clientSecret := getGithubClientSecret()
+var router = mux.NewRouter()
 
-	// Set us the request body as JSON
-	requestBodyMap := map[string]string{
-		"client_id":     clientID,
-		"client_secret": clientSecret,
-		"code":          code,
-	}
-	requestJSON, _ := json.Marshal(requestBodyMap)
+func main() {
 
-	// POST request to set URL
-	req, reqerr := http.NewRequest(
-		"POST",
-		"https://github.com/login/oauth/access_token",
-		bytes.NewBuffer(requestJSON),
-	)
-	if reqerr != nil {
-		log.Panic("Request creation failed")
-	}
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Accept", "application/json")
+	router.HandleFunc("/", indexPageHandler)
+	router.HandleFunc("/internal", internalPageHandler)
 
-	// Get the response
-	resp, resperr := http.DefaultClient.Do(req)
-	if resperr != nil {
-		log.Panic("Request failed")
-	}
+	router.HandleFunc("/login", loginHandler).Methods("POST")
+	router.HandleFunc("/logout", logoutHandler).Methods("POST")
 
-	// Response body converted to stringified JSON
-	respbody, _ := ioutil.ReadAll(resp.Body)
-
-	// Represents the response received from Github
-	type githubAccessTokenResponse struct {
-		AccessToken string `json:"access_token"`
-		TokenType   string `json:"token_type"`
-		Scope       string `json:"scope"`
-	}
-
-	// Convert stringified JSON to a struct object of type githubAccessTokenResponse
-	var ghresp githubAccessTokenResponse
-	json.Unmarshal(respbody, &ghresp)
-
-	// Return the access token (as the rest of the
-	// details are relatively unnecessary for us)
-	return ghresp.AccessToken
-}
-
-func getGithubData(accessToken string) string {
-	// Get request to a set URL
-	req, reqerr := http.NewRequest(
-		"GET",
-		"https://api.github.com/user",
-		nil,
-	)
-	if reqerr != nil {
-		log.Panic("API Request creation failed")
-	}
-
-	// Set the Authorization header before sending the request
-	// Authorization: token XXXXXXXXXXXXXXXXXXXXXXXXXXX
-	authorizationHeaderValue := fmt.Sprintf("token %s", accessToken)
-	req.Header.Set("Authorization", authorizationHeaderValue)
-
-	// Make the request
-	resp, resperr := http.DefaultClient.Do(req)
-	if resperr != nil {
-		log.Panic("Request failed")
-	}
-
-	// Read the response as a byte slice
-	respbody, _ := ioutil.ReadAll(resp.Body)
-
-	// Convert byte slice to string and return
-	return string(respbody)
+	http.Handle("/", router)
+	http.ListenAndServe(":5500", nil)
 }

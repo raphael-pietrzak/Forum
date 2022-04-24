@@ -108,9 +108,18 @@ body {
 }
 #div3{
     display: none;
+
 }
 #div4{
     display: none;
+
+}
+.post-container-body4 {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 50%;
+    justify-self: center;
 }
 
 .post {
