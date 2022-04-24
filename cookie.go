@@ -1,12 +1,9 @@
 package forum
 
-
 import (
 	"database/sql"
 	"net/http"
 )
-
-
 
 func CreateCookie(w http.ResponseWriter, r *http.Request, uid string) {
 
@@ -18,15 +15,15 @@ func CreateCookie(w http.ResponseWriter, r *http.Request, uid string) {
 }
 
 func DeleteCookie(w http.ResponseWriter, r *http.Request) {
-	//delete cookie
+
 	cookie := &http.Cookie{
 		Name:   "session",
 		Value:  "",
 		MaxAge: -1,
 	}
 	http.SetCookie(w, cookie)
-}
 
+}
 
 func GetUserByCookies(w http.ResponseWriter, r *http.Request) User {
 
@@ -44,7 +41,7 @@ func GetUserByCookies(w http.ResponseWriter, r *http.Request) User {
 		//fmt.Println("Cookie not found")
 	} else {
 		//fmt.Println("Cookie found")
-		
+
 		db, _ := sql.Open("sqlite3", "./database.db")
 
 		rows, err := db.Query("SELECT * FROM user WHERE uid='" + cookie.Value + "'")

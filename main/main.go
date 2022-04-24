@@ -14,7 +14,6 @@ func main() {
 
 	f.TableCreation()
 
-	//Recup Data
 	f.Category = []string{
 		"Sport",
 		"Jeux",
@@ -43,13 +42,10 @@ func main() {
 	http.HandleFunc("/avatar", f.ChangementAvatar)
 	http.HandleFunc("/like", f.LikePosts)
 	http.HandleFunc("/filters", f.Filters)
+	http.HandleFunc("/promote", f.Promote)
+	http.HandleFunc("/delete", f.Delete)
+	http.HandleFunc("/modify", f.Modify)
 
-	
-
-
-	//Max work
-	// http.HandleFunc("/unlike", f.Mike)
-	//
 
 
 	//Show #CSS

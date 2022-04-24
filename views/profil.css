@@ -5,6 +5,9 @@ body {
     display: flex;
     flex-direction: column;
 }
+#type-user {
+    display: none;
+}
 
 .user-profile {
     color: white;
@@ -56,6 +59,8 @@ body {
 }
 
 .button-bar button {
+    font-family: Roboto,system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: larger;
     /* float:left; */
     color: white;
     border: none;
@@ -65,8 +70,14 @@ body {
     background-color: rgb(42, 44, 46);
     margin: 3px 3px 0 0;
 }
-.button-bar button:focus {
-    background-color: #1dabb8;
+.button-bar .menubar:focus {
+    outline: none;
+    background-color: white;
+    color: black;
+}
+
+.active {
+    background-color: white;
 }
 .button-bar {
     background-color: white;
@@ -81,6 +92,13 @@ body {
     align-items: center;
     min-height: 70vh;
 }
+.post-container-body1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10vh 0;
+    
+}
 
 #div1{
     display: block;
@@ -90,9 +108,18 @@ body {
 }
 #div3{
     display: none;
+
 }
 #div4{
     display: none;
+
+}
+.post-container-body4 {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 50%;
+    justify-self: center;
 }
 
 .post {
@@ -127,16 +154,55 @@ body {
 }
   
 .like{
-    color: rgb(199, 0, 0);
+    color: #a8bbd8;
+
 }
+.modify-post{
+    border-radius: 5px;
+    height: auto;
+    width: 150px;
+    position: absolute;
+    margin-left: -170px;
+    display: none;
+    /* visibility: hidden; */
+}
+
+.all-posts {
+    display: flex;
+    align-items: center;
+
+}
+.like-counter{
+    color:#ccc;
+    font-size: smaller;
+}
+
 html {
     font-family: sans-serif;
 }
+.iconify {
+    cursor: pointer;
+}
+
 
 input[type='file'] {
     color: transparent;
-  }
+}
 
 ::-webkit-file-upload-button {
     display: none;
- }
+}
+
+.elements-modify {
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.13);
+    padding: 0 20px;
+    
+    cursor: pointer;
+    background-color: white;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

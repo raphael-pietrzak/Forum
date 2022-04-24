@@ -16,7 +16,7 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 
 	case "GET":
-
+		DeleteCookie(w, r)
 		tmpl := template.Must(template.ParseFiles("static/sign_up.html"))
 		tmpl.Execute(w, Data)
 		Data.ErrorMessage = ""
@@ -58,7 +58,6 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 				http.Redirect(w, r, "/", 301)
 			}
 		}
-
 	}
 }
 

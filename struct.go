@@ -17,6 +17,8 @@ type Send struct {
 	User         User
 	PostCategory []string
 	ErrorMessage string
+	SumLikes     int
+	SumPostLikes int
 }
 
 type Post struct {
@@ -27,18 +29,20 @@ type Post struct {
 	ContentPhoto string
 	Comments []Comment
 	Pid      int
-	Like 	int
+	Like 	string
 	LikeActive string
+	Date       string
 }
 
 type Comment struct {
-	Uid     string
-	Cid     int
-	Content string
-	Pid     int
-	User    User
-	Like  	int
+	Uid        string
+	Cid        int
+	Content    string
+	Pid        int
+	User       User
+	Like       string
 	LikeActive string
+	Date       string
 }
 
 type User struct {
@@ -51,6 +55,7 @@ type User struct {
 	Type     string
 }
 
+<<<<<<< HEAD
 
 //Utilité Cookie ????
 type Cookie struct {
@@ -66,6 +71,8 @@ type Like struct {
 	Notification_count int
 }
 
+=======
+>>>>>>> e48cd09cb0b47c4a9a7f1b6c05ac36fd597eb766
 func AdminSystem(email string) bool {
 	for _, v := range Admin {
 		if v == email {
