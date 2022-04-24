@@ -8,17 +8,15 @@
     <link rel="icon" type="image/x-icon" href="/views/i.ico">
 </head>
 <body>
-    <form action="/addpost" method="post" >
-        <p><input placeholder="Write something..." name="post_content" required autofocus></p>
+    <form action="/addpost" method="post" enctype="multipart/form-data">
+        <p><input placeholder="Write something..." name="post_content" autofocus></p>
         <button>Post</button>
         <div>
             {{range .PostCategory}}
             <p><input type="checkbox" name="Sport" value="{{.}}" > {{.}}</p>
             {{end}}
         </div>
+        <input type="file" name="post-image" accept=".jpg, .jpeg, .png, .gif" multiple>
     </form>
-
-
-    
 </body>
 </html>

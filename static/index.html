@@ -17,7 +17,7 @@
             <button class="forum">Forum</button>
         </form>
         <div class="SelectFilters">
-            <button onclick="SelectFilters()" class="button_filters">Filters</button>
+            <button onfocus="SelectFilters()" class="button_filters">Filters</button>
             
             <form action="/filters" method="post" class="filters" name="Category" id="filters">
                 <select name="categ">
@@ -33,9 +33,6 @@
                 <button name="Confirm">Apply</button>
             </form>
         </div>
-
-        
-
         <div class="user-log" id="user-profile">
             <form action="/login">
                 <button class="button_login">Login</button>
@@ -57,8 +54,9 @@
         <div class="container">
             {{range .Post}}
                 <div class="post-comment">
-
-                    <input type="hidden" name="post_id" value="{{.Pid}}">
+                    <div class="points">
+                        <input type="hidden" name="post_id" value="{{.Pid}}">
+                    </div>
                     <button onclick="NewComment(id)" id="{{.Pid}}" type="button" class="post">
                         <div class="info-user-post">
                             <div id="cercle" style="background-image: url('profil/{{.User.Avatar}}');"></div>
@@ -73,8 +71,13 @@
                         </div>
                         <div class="post-content">
                             <p class="content">{{.Content}}</p>
+                            <br>
+                            {{if ne .ContentPhoto "rien"}}
+                                <img src="profil/{{.ContentPhoto}}">
+                            {{end}}
                             <p class="date">{{.Date}}</p>
 
+                            
                             <!-- <a onclick="DisplayComments(id)" id="{{.Pid}}" class="showComments">Show Comments</a> -->
                         </div>
                     </button>

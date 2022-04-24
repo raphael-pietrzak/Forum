@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="views/profil.css">
-    <link rel="icon" type="image/x-icon" href="/views/i.ico">
+    <link rel="icon" type="image/x-icon" href="/views/i2.ico">
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
     <script src="/views/script.js"></script>
     <title>Profil - Forum</title>
 </head>
@@ -27,26 +28,49 @@
             <p>{{.User.Type}}</p>
         </div>
     </div>
+    
     <div class="button-bar">
-        <button class="menubar" onclick="replace(1)">Posts</button>
-        <button class="menubar" onclick="replace(2)">Likes</button>
-        <button onclick="replace(3)" class="menubar hide">Categories</button>
-        <button onclick="replace(4)" class="menubar hide">Users</button>
+        <button id="menubar" class="menubar" onclick="replace(1)" autofocus>Posts</button>
+        <button id="menubar" class="menubar" onclick="replace(2)">Likes</button>
+        <button id="menubar" onclick="replace(3)" class="menubar hide">Categories</button>
+        <button id="menubar" onclick="replace(4)" class="menubar hide">Users</button>
         <button class="end-line" style="flex: 2 1 0; margin-right: 0;"></button>
     </div>
 
     <div class="pages" id="div1">
-        <div class="post-container-header">
-            <h2>Posts</h2>
-        </div>
-        <div class="post-container-body">
+
+        <div class="post-container-body1">
             {{range .Post}}
-            <button class="post">
-                <div class="post-content">
-                    <p>{{.Content}}</p>
-                    <i class="fa fa-heart unlike" name="like" value="unlike"></i>
+            <div class="all-posts">
+                <div class="modify-post" id="modify-post{{.Pid}}">
+                    <form action="/delete" method="post" >
+                        <button class="elements-modify">
+                            <input type="hidden" name="pid" value="{{.Pid}}">
+                            <p>Delete</p>
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                    <button onclick="modifypost(id)" id="{{.Pid}}" class="elements-modify">
+                        <p>Modify</p>
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+
                 </div>
-            </button>
+
+                <span onclick="modify(id)" id="modify-post{{.Pid}}" class="iconify" data-icon="feather:more-vertical"></span>
+
+                <button class="post">
+                    <form action="/modify" method="post">
+                        <input type="hidden" name="pid" value="{{.Pid}}">
+                        <div class="post-content " id="post-content{{.Pid}}">
+                            <p>{{.Content}}</p>
+                            <i class="fa fa-heart unlike" name="like" value="unlike"></i>
+                            <p2 class="like-counter">{{.Like}}</p2>
+                        </div>
+                    </form>
+
+                </button>
+            </div>
             {{end}}
         </div>
     </div>
@@ -73,19 +97,25 @@
         </div>
     </div>
     <div class="pages" id="div4">
-        <div class="post-container-header">
-            <h2>Users</h2>
-        </div>
         {{range .Users}}
         <div class="post-container-body">
+            <div class="modify-post" >
+                <form action="/promote" method="post" >
+                    <button name="promotion" value="promote {{.Uid}} {{.Type}}">Promote</button>
+                    <button name="promotion" value="demote {{.Uid}} {{.Type}}">Demote</button>
+                </form>
+                <button onclick="modifypost(id)"  class="elements-modify">
+                    <p>Modify</p>
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </button>
+            </div>
+            <span onclick="modify(id)" id="modify-post" class="iconify" data-icon="feather:more-vertical"></span>
+
             
             <div id="cercle" style="background-image: url('profil/{{.Avatar}}');"></div>
             <p>{{.Username}}</p>
             <p>{{.Type}}</p>
-            <form action="/promote" method="post">
-                <button name="promotion" value="promote {{.Uid}} {{.Type}}">Promote</button>
-                <button name="promotion" value="demote {{.Uid}} {{.Type}}">Demote</button>
-            </form>
+
         </div>
         {{end}}
 
@@ -101,6 +131,8 @@
                 hidden[i].style.display = 'none';
             }
         }
+        
+        
     </script>
     
 </body>

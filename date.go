@@ -28,17 +28,17 @@ func TimeSince(date1 string) string {
 	sec := int(sec2) - int(sec1)
 
 	if year > 0 {
-		return strconv.Itoa(year) + " y"
+		return strconv.Itoa(year) + "y"
 	} else if month > 0 {
-		return strconv.Itoa(month) + " m"
+		return strconv.Itoa(month) + "m"
 	} else if day > 0 {
-		return strconv.Itoa(day) + " d"
+		return strconv.Itoa(day) + "d"
 	} else if hour > 0 {
-		return strconv.Itoa(hour) + " h"
+		return strconv.Itoa(hour) + "h"
 	} else if min > 0 {
-		return strconv.Itoa(min) + " min"
+		return strconv.Itoa(min) + "min"
 	} else if sec > 0 {
-		return strconv.Itoa(sec) + " s"
+		return strconv.Itoa(sec) + "s"
 	} else {
 		return "now"
 	}

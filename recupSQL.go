@@ -46,6 +46,7 @@ func RecupPost() {
 	var uid string
 	var date string
 	var counter int
+	var contentPhoto string
 
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
@@ -59,7 +60,7 @@ func RecupPost() {
 	var newTab []Post
 	for rows.Next() {
 
-		err = rows.Scan(&pid, &content, &category, &date, &uid)
+		err = rows.Scan(&pid, &content, &category, &date, &contentPhoto, &uid)
 		Debug(err)
 		date = TimeSince(date)
 
@@ -68,9 +69,9 @@ func RecupPost() {
 		for count.Next() {
 			_ = count.Scan(&counter)
 		}
-		counter = 1456
+		// сounter = 1465
 		finalcounter := Adaptlikes(counter)
-		newTab = append(newTab, Post{Pid: pid, Content: content, Category: category, Uid: uid, LikeActive: "unlike", Like: finalcounter, Date: date})
+		newTab = append(newTab, Post{Pid: pid, Content: content, Category: category, Uid: uid, LikeActive: "unlike", Like: finalcounter, Date: date, ContentPhoto: contentPhoto})
 	}
 
 	for post := range newTab {
@@ -119,7 +120,7 @@ func RecupComment() {
 				break
 			}
 		}
-		counter = 3987888
+		// counter = 3987888
 
 		finalcounter := Adaptlikes(counter)
 		for post := range Posts {

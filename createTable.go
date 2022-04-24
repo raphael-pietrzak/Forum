@@ -29,6 +29,7 @@ func TableCreation() {
 		content TEXT,
 		category TEXT,
 		date TEXT,
+		contentPhoto TEXT,
 		uid TEXT
 
 	);`)

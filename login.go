@@ -51,18 +51,34 @@ func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
 		
 	case "GET":
 		tmpl := template.Must(template.ParseFiles("static/passwd_forgot.html"))
-		tmpl.Execute(w, Posts)
+		tmpl.Execute(w, Data)
+		Data.ErrorMessage = ""
 	case "POST":
 		db, _ := sql.Open("sqlite3", "./database.db")
 		ErrParseForm(w, r)
+		Data.ErrorMessage = ""
 
 		mail := r.Form.Get("mail")
 		password := r.Form.Get("new_password")
+		password_confirm := r.Form.Get("confirm_password")
 
-		_, err := db.Exec(`UPDATE user SET passwd = ? WHERE email = ?`, password, mail)
-		Debug(err)
-
-		http.Redirect(w, r, "/login", 301)
+		if CheckMail(mail) == false && password != password_confirm {
+			Data.ErrorMessage = "Mail et mot de passe incorrect"
+			http.Redirect(w, r, "/forgot", 301)
+		} else if password != password_confirm {
+			Data.ErrorMessage = "Mot de passe incorrect"
+			http.Redirect(w, r, "/forgot", 301)
+		} else {
+			if CheckMail(mail) == false {
+				Data.ErrorMessage = "Mail incorrect"
+				http.Redirect(w, r, "/forgot", 301)
+			} else {
+			_, err := db.Exec(`UPDATE user SET passwd = ? WHERE email = ?`, password, mail)
+			Debug(err)
+	
+			http.Redirect(w, r, "/login", 301)
+			}
+		}
 	}
 }
 

@@ -51,6 +51,18 @@ function SelectFilters() {
   }
 }
 
+function modify(id){
+  var elements = document.getElementsByClassName('modify-post');
+
+  for (var i = 0; i < elements.length; i++){
+      elements[i].style.display = "none";
+  }
+  if  (document.getElementById(id).style.display == "none"){
+    document.getElementById(id).style.display = "block";
+  } else {
+    document.getElementById(id).style.display = "none";
+  }
+}
 
 function UserPermissions(type){
   typeUser = type
@@ -90,12 +102,11 @@ function replace(id){
   }
 }
 
-// function DisplayComments(id){
-//   if (document.getElementById('commentaires'+id).style.display == 'flex') {
-//     document.getElementById('commentaires'+id).style.display = 'none'
-//     document.getElementsByClassName('showComments')[id-1].innerHTML = "<a onclick='DisplayComments(id)' id='{{.Pid}}' class='showComments'>Show Comments</a>"
-//   } else {
-//     document.getElementById('commentaires'+id).style.display = 'flex'
-//     document.getElementsByClassName('showComments')[id-1].innerHTML = "<a onclick='DisplayComments(id)' id='{{.Pid}}' class='showComments'>Hide Coms</a>"
-//   }
-// }
+
+function modifypost(id){
+  //replace div by an input
+  var elements = document.getElementById('post-content'+id);
+  if (elements.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim() != ""){
+    elements.innerHTML = '<input type="text" name="post_content" autofocus value="' + elements.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim() + '">';
+  }
+}

@@ -22,13 +22,14 @@ type Send struct {
 }
 
 type Post struct {
-	User       User
-	Uid        string
-	Category   string
-	Content    string
-	Comments   []Comment
-	Pid        int
-	Like       string
+	User     User
+	Uid      string
+	Category string
+	Content  string
+	ContentPhoto string
+	Comments []Comment
+	Pid      int
+	Like 	string
 	LikeActive string
 	Date       string
 }
