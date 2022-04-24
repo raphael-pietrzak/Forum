@@ -131,14 +131,15 @@ func RecupComment() {
 	}
 }
 
-func RecupLike(Uid string) {
+func RecupLike(User User) {
 	//like
 	var id int
 	var uid string
+	var user_liked string
+	var vu bool
 	var pid int
 	var cid int
 	// var uidreceveur string
-	var Notification_count int
 
 	db, err := sql.Open("sqlite3", "./database.db")
 	Debug(err)
@@ -146,22 +147,20 @@ func RecupLike(Uid string) {
 	Debug(err)
 	err = rows.Err()
 	Debug(err)
-
-	// User := GetUserByCookies(w, r)
-
-	// for i := range Posts {
-	// 	if Posts[i].Uid == User.Uid {
-
-	// 	}
-	// }
-
-	// Notification_count, err = sql.Query(`SELECT COUNT(*) FROM likes WHERE pid = ?`)
-
+	Data.Notifications = []string{}
 	for rows.Next() {
 
-		err = rows.Scan(&id, &uid, &pid, &cid, &Notification_count)
+		err = rows.Scan(&id, &uid, &user_liked, &vu, &pid, &cid)
 		Debug(err)
-		if uid == Uid {
+		if !vu && User.Uid == user_liked {
+			for _,user := range Users {
+				if user.Uid == uid {
+					Data.Notifications = append(Data.Notifications,user.Username + " liked your post")
+					break
+				}
+			}
+		}
+		if uid == User.Uid {
 			if cid == 0 {
 				for post := range Posts {
 					if pid == Posts[post].Pid {

@@ -16,7 +16,7 @@ Notre forum est également en ligne sur le net et accessible à l'adresse suivan
 <br>
 <br>
 ## 3) Les fonctionnalités
-Quand on accède au site, l'utilisateur n'est pas connecté alors il est considéré comment un "guest", il ne peut ni poster ni commenter le post de qui que ce soit. Il peut juste voir les posts. Il peut également les filtrer en fonction de leur date de publication et de leur(s) catégorie(s).
+Quand on accède au site, l'utilisateur n'est pas connecté alors il est considéré comment un "guest", il ne peut ni poster ni commenter le post de qui que ce soit. Il peut juste voir les posts. Il peut également les filtrer en fonction de leur date de publication de leur(s) catégorie(s) et de leur nombre de likes.
 <br>
 <br>
 ### a) Les Users

@@ -96,7 +96,7 @@ function Like(){
 
 function replace(id){
   if (id != id_div){
-    document.getElementById('div' + id).style.display = "block";
+    document.getElementById('div' + id).style.display = "flex";
     document.getElementById('div' + id_div).style.display = "none";
     id_div = id;
   }
@@ -107,6 +107,6 @@ function modifypost(id){
   //replace div by an input
   var elements = document.getElementById('post-content'+id);
   if (elements.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim() != ""){
-    elements.innerHTML = '<input type="text" name="post_content" autofocus value="' + elements.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim() + '">';
+    elements.innerHTML = '<input type="text" name="post_content" class="modify-text" autofocus value="' + elements.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim() + '">';
   }
 }

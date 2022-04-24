@@ -70,7 +70,7 @@
                                 <input id="inputlike" type="hidden" name="like" value="">
                             </form>
                             <div class="heart-counter">
-                                <i class="/{{.Pid}} 0 fa fa-heart {{.LikeActive}}"></i>
+                                <i class="/{{.Pid}} 0 fa fa-heart {{.LikeActive}} {{.User.Uid}}"></i>
                                 <p2 class="like-counter">{{.Like}}</p2>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                                 <div id="cercle-com" style="background-image: url('profil/{{.User.Avatar}}');"></div>
                                 <p>{{.User.Username}}</p>
                                 <div class="heart-counter">
-                                    <i class="/{{.Cid}} 1 fa fa-heart {{.LikeActive}}"></i>
+                                    <i class="/{{.Cid}} 1 fa fa-heart {{.LikeActive}}  {{.User.Uid}}"></i>
                                     <p2 class="like-counter">{{.Like}}</p2>
                                 </div>
                             </div>

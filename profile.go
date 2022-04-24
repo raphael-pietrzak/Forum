@@ -12,11 +12,20 @@ func Profile(w http.ResponseWriter, r *http.Request) {
 	RecupUser()
 	RecupPost()
 	RecupComment()
+
+	db, err := sql.Open("sqlite3", "./database.db")
+	Debug(err)
+
+
 	
 	MyPosts := []Post{}
 	User := GetUserByCookies(w, r)
 	sumlike := 0
-	RecupLike(User.Uid)
+	RecupLike(User)
+	_, err2 := db.Exec(`UPDATE likes SET vu = ? WHERE user_liked = ?`, true, User.Uid)
+	Debug(err2)
+
+
 
 
 	for i := range Posts {
@@ -29,7 +38,7 @@ func Profile(w http.ResponseWriter, r *http.Request) {
 
 
 	tmpl := template.Must(template.ParseFiles("static/profile.html"))
-	tmpl.Execute(w, Send{User: User, Post: MyPosts, Users: Users, PostCategory: Category, SumLikes: sumlike })
+	tmpl.Execute(w, Send{User: User, Post: MyPosts, Users: Users, PostCategory: Category, SumLikes: sumlike, Notifications: Data.Notifications})
 }
 
 
