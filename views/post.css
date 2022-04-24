@@ -5,38 +5,37 @@ body {
 
 header{
     display: flex;
-    color: white;
     flex-direction: row;
     align-items: center;
-    height: 100px;
+    height: 20vh;
 }
 main {
-    
+    display: flex;
+    height: 80vh;
     background-color: white;
-    padding: 2vh 0 10vh;
-
+    align-items: center;
+    justify-content: center;
 }
 
-/* main form {
-   
-} */
-
-.categ{
-    width: 100px;
-    margin-left: 320px;
-    margin-top: 20px;
-    padding: 80px;
-    font-family: Roboto,system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    font-size: large;
-}
 
 .text {
     display: flex;
+    align-items: center;
+    margin: 0 10%;
 }
 
+
+.categ{
+    width: 100px;
+    padding: 80px;
+    font-family: Roboto,system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: large;
+    width: auto;
+}
 .text textarea {
-    width: 600px;
-    height: 400px;
+    width: 40vw;
+    height: 40vh;
+    margin: 0;
     color: rgb(42, 44, 46);
     font-family: Roboto,system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     background-color: #f1f1f1;
@@ -46,49 +45,36 @@ main {
     border-radius: 20px;
     font-size: large;
     padding: 30px;
+    outline: none;
 }
 
-.text p {
-    display: flex;
+.fa-image{
+    font-size:35px;
 }
-
+.plus-button{
+    margin-left: 30px;
+    margin-top: auto;
+}
 .forum {
+    color: white;
     margin-left: 40px;
     font-family: sans-serif;
-    color: white;
     font-size: 30px;
     cursor: pointer;
     background: none;
     border: none;
 }
-.forum:hover {
-    color: rgb(220, 221, 221);
-}
-
 .post {
+    margin-top: 10vh;
     width: 130px;
     height: 40px;
-    margin-left: 860px;
-    margin-top: 80px;
     border-radius: 20px;
     background-color: #f1f1f1;
     border: 1px solid rgb(42, 44, 46);
 }
 
-.post-image-icon {
-    /* border: 1px solid black; */
-    width: 60px;
-    height: 62px;
-    margin-top: 50px;
-    margin-left: 50px;
+.main-post{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
-/* input[type='file'] {
-    color: transparent;
-  }
-
-::-webkit-file-upload-button {
-    display: none;
- } */
-
-
