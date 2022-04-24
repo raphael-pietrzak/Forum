@@ -20,6 +20,7 @@ type Send struct {
 	SumLikes     int
 	SumPostLikes int
 	Notifications []string
+	Notifs int
 }
 
 type Post struct {
@@ -30,6 +31,7 @@ type Post struct {
 	ContentPhoto string
 	Comments []Comment
 	Pid      int
+	Like2     int
 	Like 	string
 	LikeActive string
 	Date       string

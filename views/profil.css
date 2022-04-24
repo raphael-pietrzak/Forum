@@ -101,7 +101,7 @@ body {
 }
 
 #div1{
-    display: block;
+    display: none;
 }
 #div2 {
     display: none;
@@ -115,7 +115,7 @@ body {
 
 }
 #div5{
-    display: none;
+    display: flex;
 
 }
 .post-container-body4 {
@@ -226,5 +226,15 @@ input[type='file'] {
     border: none;
     background-color: #f1f1f1;
     font-size: large;
+
+}
+.notifs {
+    position: absolute;
+    padding: 3px;
+    margin: 0;
+    /* width: 1px; */
+    background-color: #e63636;
+    border-radius: 50px;
+    margin-left: 40px;
 
 }

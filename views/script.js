@@ -1,7 +1,7 @@
 
 var typeUser = "";
 var a = true;
-var id_div = 1;
+var id_div = 5;
 
 
 function NewComment(id) {
