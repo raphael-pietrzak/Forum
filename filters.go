@@ -22,7 +22,7 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 	} else {
 		RecupPost()
 		RecupComment()
-		RecupLike(UserLogin.Uid)
+		RecupLike(UserLogin)
 		Posts2 = Posts
 	}
 

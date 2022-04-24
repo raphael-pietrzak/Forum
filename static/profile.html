@@ -34,6 +34,7 @@
         <button id="menubar" class="menubar" onclick="replace(2)">Likes</button>
         <button id="menubar" onclick="replace(3)" class="menubar hide">Categories</button>
         <button id="menubar" onclick="replace(4)" class="menubar hide">Users</button>
+        <button id="menubar" onclick="replace(5)" class="menubar">Notifications</button>
         <button class="end-line" style="flex: 2 1 0; margin-right: 0;"></button>
     </div>
 
@@ -64,8 +65,6 @@
                         <input type="hidden" name="pid" value="{{.Pid}}">
                         <div class="post-content " id="post-content{{.Pid}}">
                             <p>{{.Content}}</p>
-                            <i class="fa fa-heart unlike" name="like" value="unlike"></i>
-                            <p2 class="like-counter">{{.Like}}</p2>
                         </div>
                     </form>
 
@@ -113,9 +112,17 @@
 
             
             <div id="cercle" style="background-image: url('profil/{{.Avatar}}');"></div>
-            <p>{{.Username}}</p>
-            <p>{{.Type}}</p>
+            <p class="name">{{.Username}}</p>
+            <p class="type">{{.Type}}</p>
 
+        </div>
+        {{end}}
+
+    </div>
+    <div class="pages" id="div5">
+        {{range .Notifications}}
+        <div class="post-container-body4">
+            {{.}}
         </div>
         {{end}}
 

@@ -19,6 +19,7 @@ type Send struct {
 	ErrorMessage string
 	SumLikes     int
 	SumPostLikes int
+	Notifications []string
 }
 
 type Post struct {

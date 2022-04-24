@@ -12,7 +12,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	RecupUser()
 	RecupPost()
 	RecupComment()
-	RecupLike(UserLogin.Uid)
+	RecupLike(UserLogin)
 
 	// Posts = RecupLike(UserLogin.Uid, Posts)
 
