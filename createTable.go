@@ -54,8 +54,7 @@ func TableCreation() {
 		user_liked TEXT,
 		vu BOOLEAN,
 		pid INTEGER,
-		cid INTEGER,
-		notification BOOL
+		cid INTEGER
 	);`)
 
 	Debug(err)

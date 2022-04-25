@@ -34,7 +34,6 @@
     <div class="button-bar">
         <button id="menubar" onclick="replace(5)" class="menubar" autofocus>Notifications</button>
         <button id="menubar" class="menubar" onclick="replace(1)" >Posts</button>
-        <button id="menubar" class="menubar" onclick="replace(2)">Likes</button>
         <button id="menubar" onclick="replace(3)" class="menubar hide">Categories</button>
         <button id="menubar" onclick="replace(4)" class="menubar hide">Users</button>
         <button class="end-line" style="flex: 2 1 0; margin-right: 0;"></button>
@@ -75,30 +74,8 @@
             {{end}}
         </div>
     </div>
-    <div class="pages" id="div2">
-        <div class="post-container-header">
-            <h2>Nombre total de likes</h2>
-        </div>
-        <div class="post-container-body">
-            <p>{{.SumLikes}}</p>
-        </div>
-    </div>
+
     <div class="pages" id="div3">
-        <div class="post-container-header">
-            <h2>Likes</h2>
-        </div>
-        <div class="post-container-body">
-            <h3>Title</h3>
-            <h3>Category</h3>
-            <h3>Likes</h3>
-            <h3>Comments</h3>
-            <h3>Date</h3>
-        </div>
-    </div>
-    <div class="pages" id="div4">
-        <div class="post-container-header">
-            <h2>Categories</h2>
-        </div>
         <div class="post-container-body">
             {{range .PostCategory}}
             {{.}}
@@ -112,18 +89,10 @@
     <div class="pages" id="div4">
         {{range .Users}}
         <div class="post-container-body4">
-            <div class="modify-post" >
-                <form action="/promote" method="post" >
-                    <button name="promotion" value="promote {{.Uid}} {{.Type}}">Promote</button>
-                    <button name="promotion" value="demote {{.Uid}} {{.Type}}">Demote</button>
-                </form>
-                <button onclick="modifypost(id)"  class="elements-modify">
-                    <p>Modify</p>
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                </button>
-            </div>
-            <span onclick="modify(id)" id="modify-post" class="iconify" data-icon="feather:more-vertical"></span>
-
+            <form action="/promote" method="post" >
+                <button name="promotion" value="promote {{.Uid}} {{.Type}}">Promote</button>
+                <button name="promotion" value="demote {{.Uid}} {{.Type}}">Demote</button>
+            </form>
             
             <div id="cercle" style="background-image: url('profil/{{.Avatar}}');"></div>
             <p class="name">{{.Username}}</p>
