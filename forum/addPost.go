@@ -15,7 +15,7 @@ func AddPost(w http.ResponseWriter, r *http.Request) {
 
 	case "GET":
 
-		tmpl := template.Must(template.ParseFiles("static/post.html"))
+		tmpl := template.Must(template.ParseFiles("forum/static/post.html"))
 		tmpl.Execute(w, Send{PostCategory: Category})
 
 	case "POST":
@@ -33,7 +33,7 @@ func AddPost(w http.ResponseWriter, r *http.Request) {
 
 		if handler != nil {
 			post = handler.Filename
-			emptyFile, err2 := os.Create("profil/" + handler.Filename)
+			emptyFile, err2 := os.Create("forum/profil/" + handler.Filename)
 			Debug(err2)
 
 			defer emptyFile.Close()

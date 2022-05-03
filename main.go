@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	f "forum"
+	f "forum/forum"
 	"net/http"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -49,11 +50,11 @@ func main() {
 
 
 	//Show #CSS
-	fs := http.FileServer(http.Dir("./views"))
-	http.Handle("/views/", http.StripPrefix("/views/", fs))
+	fs := http.FileServer(http.Dir("./forum/views"))
+	http.Handle("/forum/views/", http.StripPrefix("/forum/views/", fs))
 
-	fs2 := http.FileServer(http.Dir("./profil"))
-	http.Handle("/profil/", http.StripPrefix("/profil/", fs2))
+	fs2 := http.FileServer(http.Dir("./forum/profil"))
+	http.Handle("/forum/profil/", http.StripPrefix("/forum/profil/", fs2))
 
 	fmt.Println("Listening at http://localhost:5500")
 	http.ListenAndServe("localhost:5500", nil)

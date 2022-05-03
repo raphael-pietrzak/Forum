@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="views/profil.css">
-    <link rel="icon" type="image/x-icon" href="/views/i2.ico">
+    <link rel="stylesheet" href="/forum/views/profil.css">
+    <link rel="icon" type="image/x-icon" href="/forum/views/i2.ico">
     <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
-    <script src="/views/script.js"></script>
+    <script src="/forum/views/script.js"></script>
     <title>Profil - Forum</title>
 </head>
 <body>
@@ -22,7 +22,7 @@
         <p class="notifs">{{.Notifs}}</p>
         {{end}}
         <form action="/avatar" method="post" enctype="multipart/form-data" class="change-picture" id="form">
-            <input type="file" id="profile-picture" name="image_uploads" accept=".jpg, .jpeg, .png, .gif" multiple style="background-image: url('profil/{{.User.Avatar}}');" >
+            <input type="file" id="profile-picture" name="image_uploads" accept=".jpg, .jpeg, .png, .gif" multiple style="background-image: url('forum/profil/{{.User.Avatar}}');" >
         </form>
         <h2 class="username">{{.User.Username}}</h2>
         
@@ -68,6 +68,9 @@
                             <p>{{.Content}}</p>
                         </div>
                     </form>
+                    {{if ne .ContentPhoto "rien"}}
+                        <img src="forum/profil/{{.ContentPhoto}}">
+                    {{end}}
 
                 </button>
             </div>

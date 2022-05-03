@@ -13,7 +13,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	switch r.Method {
 	case "GET":
-		tmpl := template.Must(template.ParseFiles("static/login.html"))
+		tmpl := template.Must(template.ParseFiles("forum/static/login.html"))
 		tmpl.Execute(w, Posts)
 	case "POST":
 
@@ -50,7 +50,7 @@ func Passwd_forgot(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 		
 	case "GET":
-		tmpl := template.Must(template.ParseFiles("static/passwd_forgot.html"))
+		tmpl := template.Must(template.ParseFiles("forum/static/passwd_forgot.html"))
 		tmpl.Execute(w, Data)
 		Data.ErrorMessage = ""
 	case "POST":

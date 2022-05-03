@@ -238,3 +238,9 @@ input[type='file'] {
     margin-left: 40px;
 
 }
+.post img {
+    max-width: 80%;
+    background-size: auto;
+    min-width: none;
+    /* object-fit: cover; */
+}

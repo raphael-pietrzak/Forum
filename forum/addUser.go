@@ -17,7 +17,7 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 
 	case "GET":
 		DeleteCookie(w, r)
-		tmpl := template.Must(template.ParseFiles("static/sign_up.html"))
+		tmpl := template.Must(template.ParseFiles("forum/static/sign_up.html"))
 		tmpl.Execute(w, Data)
 		Data.ErrorMessage = ""
 

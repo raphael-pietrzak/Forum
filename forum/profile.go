@@ -37,7 +37,7 @@ func Profile(w http.ResponseWriter, r *http.Request) {
 	
 
 
-	tmpl := template.Must(template.ParseFiles("static/profile.html"))
+	tmpl := template.Must(template.ParseFiles("forum/static/profile.html"))
 	tmpl.Execute(w, Send{User: User, Post: MyPosts, Users: Users, PostCategory: Category, SumLikes: sumlike, Notifications: Data.Notifications, Notifs: Data.Notifs})
 }
 
@@ -57,7 +57,7 @@ func ChangementAvatar(w http.ResponseWriter, r *http.Request) {
 	_, err2 := db.Exec("UPDATE user SET avatar=? WHERE uid=?", handler.Filename, GetUserByCookies(w, r).Uid)
 	Debug(err2)
 
-	emptyFile, err := os.Create("profil/" + handler.Filename)
+	emptyFile, err := os.Create("forum/profil/" + handler.Filename)
 	Debug(err)
 
 	defer emptyFile.Close()
