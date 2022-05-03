@@ -55,7 +55,7 @@ func main() {
 	fs2 := http.FileServer(http.Dir("./profil"))
 	http.Handle("/profil/", http.StripPrefix("/profil/", fs2))
 
-	fmt.Println("Listening at http://localhost:5500")
-	http.ListenAndServe("localhost:5500", nil)
+	fmt.Println("Listening at http://localhost:8800")
+	http.ListenAndServe("localhost:8800", nil)
 }
 
