@@ -2,9 +2,11 @@
 
 Forum is a web application built using Golang, HTML, and CSS that enables users to create, post, and respond to messages. Users can also interact with posts by liking them. This project provides a platform for users to engage in discussions and share their thoughts on various topics.
 
-![Alt text](<Forum/screenshots/Screenshot 2023-08-16 at 15.15.31.png>)
-![Alt text](<Forum/screenshots/Screenshot 2023-08-16 at 15.16.57.png>)
-![Alt text](<Forum/screenshots/Screenshot 2023-08-16 at 15.17.53.png>)
+
+![Alt text](<screenshots/Screenshot 2023-08-16 at 15.15.31.png>)
+![Alt text](<screenshots/Screenshot 2023-08-16 at 15.16.57.png>)
+![Alt text](<screenshots/Screenshot 2023-08-16 at 15.17.53.png>)
+
 
 ## Features
 
