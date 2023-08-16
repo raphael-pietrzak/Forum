@@ -1,5 +1,7 @@
 package main
 
+
+
 import (
 	"fmt"
 	f "forum/forum"
@@ -11,6 +13,7 @@ import (
 var PostContent string
 var Category string
 
+// Main
 func main() {
 
 	f.TableCreation()
